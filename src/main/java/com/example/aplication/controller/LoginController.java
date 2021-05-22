@@ -2,6 +2,7 @@ package com.example.aplication.controller;
 
 import java.security.Principal;
 
+import com.example.aplication.helper.ViewRouteHelper;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,7 @@ public class LoginController {
             Model model, Principal principal,
             RedirectAttributes attribute) {
 
-        String url = "/user/login";
+        String url = ViewRouteHelper.LOGIN;
         if (error != null) {
             model.addAttribute("error", "USUARIO O CONTRASEÑA INCORRECTOS");
         }

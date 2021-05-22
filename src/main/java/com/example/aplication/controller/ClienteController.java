@@ -6,11 +6,13 @@ import javax.validation.Valid;
 
 import com.example.aplication.entity.Ciudad;
 import com.example.aplication.entity.Cliente;
+import com.example.aplication.helper.ViewRouteHelper;
 import com.example.aplication.service.ICiudadService;
 import com.example.aplication.service.IClienteService;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,14 +32,16 @@ public class ClienteController {
     @Autowired
     private ICiudadService ciudadService;
 
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     @GetMapping("/")
     public String listarClientes(Model model) {
         List<Cliente> listadoClientes = clienteService.listarTodos();
         model.addAttribute("titulo", "Lista de clientes");
         model.addAttribute("clientes", listadoClientes);
-        return "/views/clientes/listar";
+        return ViewRouteHelper.LISTAR;
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("create")
     public String crear(Model model) {
 
@@ -47,11 +51,12 @@ public class ClienteController {
         model.addAttribute("titulo", "Formulario: Nuevo Cliente");
         model.addAttribute("cliente", cliente);
         model.addAttribute("ciudades", listCiudades);
-        return "/views/clientes/frmCrear";
+        return ViewRouteHelper.CREAR;
     }
 
     // ********************* ABM Cliente ******************** */
     // Guardar Cliente en BD
+    @Secured("ROLE_ADMIN")
     @PostMapping("/save")
     public String guardar(@Valid @ModelAttribute Cliente cliente, BindingResult result, Model model,
             RedirectAttributes attributes) {
@@ -64,16 +69,17 @@ public class ClienteController {
             model.addAttribute("cliente", cliente);
             model.addAttribute("ciudades", listCiudades);
             System.out.println("Errores en el formulario: ");
-            return "/views/clientes/frmCrear";
+            return ViewRouteHelper.CREAR;
 
         }
         clienteService.guardar(cliente);
         System.out.println("Cliente Guardado: " + cliente);
         attributes.addFlashAttribute("success","Cliente guardado con exito");
 
-        return "redirect:/views/clientes/";
+        return ViewRouteHelper.REDIRECT_CLIENTE;
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/edit/{id}")
     public String editar(@PathVariable("id") Long idCliente, Model model, RedirectAttributes attributes) {
 
@@ -84,12 +90,12 @@ public class ClienteController {
             if (cliente == null) {
                 System.out.println("el id solicitado no existe");
                 attributes.addFlashAttribute("error","*ERROR* el Cliente solicitado no existe");
-                return "redirect:/views/clientes/";
+                return ViewRouteHelper.REDIRECT_CLIENTE;
             }
         } else {
             System.out.println("el id solicitado no existe");
             attributes.addFlashAttribute("error","*ERROR* el Cliente solicitado no existe");
-            return "redirect:/views/clientes/";
+            return ViewRouteHelper.REDIRECT_CLIENTE;
         }
 
         List<Ciudad> listCiudades = ciudadService.listaCiudades();
@@ -97,10 +103,10 @@ public class ClienteController {
         model.addAttribute("titulo", "Formulario: Editar Cliente");
         model.addAttribute("cliente", cliente);
         model.addAttribute("ciudades", listCiudades);
-       return "/views/clientes/frmCrear";
+       return ViewRouteHelper.CREAR;
     }
 
-
+    @Secured("ROLE_ADMIN")
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable("id") Long idCliente, RedirectAttributes attribute) {
 
@@ -112,19 +118,19 @@ public class ClienteController {
 			if (cliente == null) {
 				System.out.println("Error: El ID del cliente no existe!");
 				attribute.addFlashAttribute("error", "ATENCION: El ID del cliente no existe!");
-				return "redirect:/views/clientes/";
+				return ViewRouteHelper.REDIRECT_CLIENTE;
 			}
 		}else {
 			System.out.println("Error: Error con el ID del Cliente");
 			attribute.addFlashAttribute("error", "ATENCION: Error con el ID del Cliente!");
-			return "redirect:/views/clientes/";
+			return ViewRouteHelper.REDIRECT_CLIENTE;
 		}		
 		
 		clienteService.eliminar(idCliente);
 		System.out.println("Registro Eliminado con Exito!");
 		attribute.addFlashAttribute("warning", "Registro Eliminado con Exito!");
 
-		return "redirect:/views/clientes/";
+		return ViewRouteHelper.REDIRECT_CLIENTE;
 	}
 
 
