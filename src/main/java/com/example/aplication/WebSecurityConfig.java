@@ -25,7 +25,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configurerSecurityGlobar(AuthenticationManagerBuilder builder) throws Exception {
 
-        builder.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passEncoder)
+        builder.jdbcAuthentication()
+                .dataSource(dataSource)
+                .passwordEncoder(passEncoder)
                 .usersByUsernameQuery("SELECT username, password, enabled FROM users where username =?")
                 .authoritiesByUsernameQuery(
                         "Select u.username, r.rol FROM roles r inner join users u on r.user_id=u.idusers where u.username=?");
@@ -43,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .successHandler(loginSuccess)
         .loginPage("/login")
         .permitAll().and().logout().logoutUrl("/logout").logoutSuccessUrl("/logout").permitAll();
+        
         //http.authorizeRequests().antMatchers("/", "/home", "/index", "/css/**", "/js/**", "/images/**","/views/clientes/").hasAnyRole("ADMIN").anyRequest()
         //.authenticated();
 
