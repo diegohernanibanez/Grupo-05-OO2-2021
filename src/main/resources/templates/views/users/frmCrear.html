@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<htm>
+	<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="plantilla/template :: head">
+	</head>
+
+
+	<body>
+
+
+		<header th:replace="plantilla/template :: header"> </header>
+
+
+		<!--Formulario-->
+		<div class="container">
+			<div class="card bg-light">
+				<div class="card-header bg-dark text-white" th:text=${titulo}></div>
+				<div class="card-body">
+					<form th:action="@{/views/users/save}" th:object="${user}" method="post">
+						<div class="form-group row">
+
+							<input type="hidden" th:field="*{id}">
+							<label class="col-md-2" for="nombre">Nombre:</label>
+							<input type="text" th:field="*{nombre}" class="form-control form-control-sm col-md-6"
+								id="nombre" placeholder="Nombres del usuario">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
+								th:errors="*{nombre}">
+							</small>
+						</div>
+						<div class="form-group row">
+
+							<label class="col-md-2" for="apellido">Apellido:</label>
+							<input type="text" th:field="*{apellido}" class="form-control form-control-sm col-md-6"
+								id="apellido" placeholder="Apellido del usuario">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}"
+								th:errors="*{apellido}">
+							</small>
+						</div>
+						<div class="form-group row">
+
+							<label class="col-md-2" for="tipo_documento">Tipo de DNI:</label>
+							<input type="text" th:field="*{tipoDocumento}" class="form-control form-control-sm col-md-6"
+								id="tipoDocumento" placeholder="Tipo de DNI">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('tipoDocumento')}"
+								th:errors="*{tipoDocumento}">
+							</small>
+						</div>
+						<div class="form-group row">
+
+							<label class="col-md-2" for="dni">DNI:</label>
+							<input type="text" th:field="*{dni}" class="form-control form-control-sm col-md-6"
+								id="dni" placeholder="DNI">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('dni')}"
+								th:errors="*{dni}">
+							</small>
+						</div>
+						<div class="form-group row">
+
+							<label class="col-md-2" for="email">Email:</label>
+							<input type="text" th:field="*{email}" class="form-control form-control-sm col-md-6"
+								id="email" placeholder="Email">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('email')}"
+								th:errors="*{email}">
+							</small>
+						</div>
+						<div class="form-group row">
+
+							<label class="col-md-2" for="username">Nombre de Usuario:</label>
+							<input type="text" th:field="*{username}" class="form-control form-control-sm col-md-6"
+								id="username" placeholder="Nombre de Usuario">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('username')}"
+								th:errors="*{username}">
+							</small>
+						</div>
+						<div class="form-group row">
+
+							<label class="col-md-2" for="password">Contraseña:</label>
+							<input type="text" th:field="*{password}" class="form-control form-control-sm col-md-6"
+								id="password" placeholder="Contraseña">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('password')}"
+								th:errors="*{password}">
+							</small>
+						</div>
+
+						<div class="form-group row">
+							<label class="col-md-2" for="role">Role:</label>
+							<select type="text" th:field="*{role}" class="form-control form-control-sm col -md- 3"
+								id="tipo">
+
+								<option th:each="r:${role}" th:value="${r.id}" th:text="${r.tipo}">
+								</option>
+
+							</select>
+
+						</div>
+						<!-- <div class="form-group row">
+							<label for="ciudad">Ciudad:</label>
+							<select type="text" th:field="*{ciudad}" class="form-control form-control-sm col -md- 3"
+								id="ciudad">
+
+								<option th:each="ciudad:${ciudades}" th:value="${ciudad.id}" th:text="${ciudad.ciudad}">
+								</option>
+
+							</select>
+
+						</div> -->
+						<!-- <p> </p> -->
+						<div class="card-footer bg-dark">
+							<input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
+							<a class="btn btn-primary btn-sm" th:href="@{/views/users/}" role="button">Cancelar</a>
+						</div>
+
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!--/Formulario-->
+
+		<footer th:replace="plantilla/template :: footer"> </footer>
+
+
+	</body>
+
+	</html>

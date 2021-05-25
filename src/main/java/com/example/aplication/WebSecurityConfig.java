@@ -30,9 +30,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         builder.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(passEncoder)
-                .usersByUsernameQuery("SELECT username, password, enabled FROM users where username =?")
+                .usersByUsernameQuery("SELECT username, password, enabled FROM user where username =?")
                 .authoritiesByUsernameQuery(
-                        "Select u.username, r.rol FROM roles r inner join users u on r.user_id=u.idusers where u.username=?");
+                        "Select u.username, r.tipo FROM role r inner join user u on r.id=u.role_id where u.username=?");
 
     }
 
@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .loginPage("/login")
         .permitAll().and().logout().logoutUrl("/logout").logoutSuccessUrl("/logout").permitAll();
         
-        //http.authorizeRequests().antMatchers("/", "/home", "/index", "/css/**", "/js/**", "/images/**","/views/clientes/").hasAnyRole("ADMIN").anyRequest()
+        //http.authorizeRequests().antMatchers("/", "/home", "/index", "/css/**", "/js/**", "/images/**","/views/users/").hasAnyRole("ADMIN").anyRequest()
         //.authenticated();
 
     }

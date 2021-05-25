@@ -1,11 +1,11 @@
 package com.example.aplication.service;
 
 import java.util.List;
-import com.example.aplication.entity.Ciudad;
+import com.example.aplication.entity.Role;
 
-public interface ICiudadService {
+public interface IRoleService {
 
-    public List <Ciudad> listaCiudades();
+    public List <Role> listaRoles();
     // public void guardar (Ciudad ciudad);
     // public Ciudad buscarPorID (long id);
     // public void eliminar (long id);
