@@ -26,11 +26,6 @@ public class RoleServiceImplements implements IRoleService {
     }
 
     @Override
-    public List<Role> listarActivos() {   
-        return (List<Role>)roleRepository.findByEnabledTrue();
-    }
-
-    @Override
     public void guardar (Role user) {
         roleRepository.save(user);       
     }
