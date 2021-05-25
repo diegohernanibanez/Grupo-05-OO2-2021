@@ -20,6 +20,11 @@ public class UserServiceImplements implements IUserService {
     }
 
     @Override
+    public List<User> listarActivos() {   
+        return (List<User>)userRepository.findByEnabledTrue();
+    }
+
+    @Override
     public void guardar(User user) {
         userRepository.save(user);       
     }

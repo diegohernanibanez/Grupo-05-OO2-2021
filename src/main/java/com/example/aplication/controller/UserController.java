@@ -13,6 +13,7 @@ import com.example.aplication.service.IUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,11 +32,13 @@ public class UserController {
     private IUserService userService;
     @Autowired
     private IRoleService roleService;
+    @Autowired
+    private BCryptPasswordEncoder passEncoder;
 
     @Secured({"ROLE_ADMIN","ROLE_AUDITOR"})
     @GetMapping("/")
     public String listarUsers(Model model) {
-        List<User> listadoUsers = userService.listarTodos();
+        List<User> listadoUsers = userService.listarActivos();
         model.addAttribute("titulo", "Lista de usuarios");
         model.addAttribute("user", listadoUsers);
         System.out.println(listadoUsers);
@@ -63,7 +66,8 @@ public class UserController {
             RedirectAttributes attributes) {
 
         List<Role> listRoles = roleService.listaRoles();
-
+        System.out.println("RESULT: " + result);
+       
         if (result.hasErrors()) {
             
             model.addAttribute("titulo", "Formulario: Nuevo User");
@@ -73,6 +77,9 @@ public class UserController {
             return ViewRouteHelper.CREAR;
 
         }
+        user.setEnabled(true);
+        user.setPassword(passEncoder.encode(user.getPassword()));
+
         userService.guardar(user);
         System.out.println("User Guardado: " + user);
         attributes.addFlashAttribute("success","User guardado con exito");
@@ -84,16 +91,11 @@ public class UserController {
     @GetMapping("/edit/{id}")
     public String editar(@PathVariable("id") Long idUser, Model model, RedirectAttributes attributes) {
 
-        
         User user = null;
         if (idUser > 0) {
             user = userService.buscarPorID(idUser);
-            if (user == null) {
-                System.out.println("el id solicitado no existe");
-                attributes.addFlashAttribute("error","*ERROR* el User solicitado no existe");
-                return ViewRouteHelper.REDIRECT_CLIENTE;
-            }
-        } else {
+        }
+        if (user == null) {
             System.out.println("el id solicitado no existe");
             attributes.addFlashAttribute("error","*ERROR* el User solicitado no existe");
             return ViewRouteHelper.REDIRECT_CLIENTE;
@@ -114,20 +116,16 @@ public class UserController {
 		User user = null;
 		
 		if (idUser > 0) {
-			user = userService.buscarPorID(idUser);
-			
-			if (user == null) {
-				System.out.println("Error: El ID del user no existe!");
-				attribute.addFlashAttribute("error", "ATENCION: El ID del user no existe!");
-				return ViewRouteHelper.REDIRECT_CLIENTE;
-			}
-		}else {
-			System.out.println("Error: Error con el ID del User");
-			attribute.addFlashAttribute("error", "ATENCION: Error con el ID del User!");
-			return ViewRouteHelper.REDIRECT_CLIENTE;
-		}		
+            user = userService.buscarPorID(idUser);
+        }
+        if (user == null) {
+            System.out.println("el id solicitado no existe");
+            attribute.addFlashAttribute("error","*ERROR* el User solicitado no existe");
+            return ViewRouteHelper.REDIRECT_CLIENTE;
+        }
 		
-		userService.eliminar(idUser);
+        user.setEnabled(false);
+		userService.guardar(user);
 		System.out.println("Registro Eliminado con Exito!");
 		attribute.addFlashAttribute("warning", "Registro Eliminado con Exito!");
 

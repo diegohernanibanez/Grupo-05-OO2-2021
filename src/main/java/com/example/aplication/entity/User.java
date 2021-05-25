@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user")
@@ -34,12 +33,10 @@ public class User implements Serializable {
     @NotEmpty
     private String dni;
     @NotEmpty
-    @NotEmpty
     @Email
     private String email;
     @NotEmpty
     private String username;
-    @NotNull
     private Boolean enabled;
     @NotEmpty
     private String password;
@@ -120,12 +117,12 @@ public class User implements Serializable {
     }
 
 
-    public Boolean getEnable() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
 
-    public void setEnable(Boolean enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
