@@ -1,13 +1,12 @@
 package com.example.aplication.repository;
 
-import com.example.aplication.entity.Cliente;
+import com.example.aplication.entity.Role;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ClienteRepository extends CrudRepository <Cliente, Long> {
 
+public interface RoleRepository extends CrudRepository<Role, Long> {
 
-    
 }
