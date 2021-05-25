@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="ciudades")
-public class Ciudad implements Serializable {
+@Table (name="role")
+public class Role implements Serializable {
     
     /**
 	 * 
@@ -19,18 +19,18 @@ public class Ciudad implements Serializable {
 	@Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Long id;
-    private String ciudad;
+    private String tipo;
     public Long getId() {
         return id;
     }
     public void setId(Long id) {
         this.id = id;
     }
-    public String getCiudad() {
-        return ciudad;
+    public String getTipo() {
+        return tipo;
     }
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
 
@@ -50,7 +50,7 @@ public class Ciudad implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Ciudad other = (Ciudad) obj;
+        Role other = (Role) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -60,7 +60,7 @@ public class Ciudad implements Serializable {
     }
     @Override
     public String toString() {
-        return "Ciudad [ciudad=" + ciudad + ", id=" + id + "]";
+        return "Role [tipo=" + tipo + ", id=" + id + "]";
     }
 
     

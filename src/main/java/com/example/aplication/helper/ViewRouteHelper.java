@@ -4,8 +4,8 @@ public class ViewRouteHelper {
 
     /**** Views ****/
 	//HOME
-    public final static String LISTAR = "/views/clientes/listar";
-    public final static String CREAR = "/views/clientes/frmCrear";
+    public final static String LISTAR = "/views/users/listar";
+    public final static String CREAR = "/views/users/frmCrear";
 
 	
 	//USER
@@ -13,7 +13,7 @@ public class ViewRouteHelper {
 	
 	// /**** Redirects ****/
     public final static String HOME_ROOT = "/home";
-    public final static String REDIRECT_CLIENTE = "redirect:/views/clientes/";
+    public final static String REDIRECT_CLIENTE = "redirect:/views/users/";
 
 	
     

@@ -18,7 +18,7 @@ public class SpringappApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		String pass1 = "user";
+		String pass1 = "auditor";
 		String pass2 = "admin";
 
 		System.out.println(passEncoder.encode(pass1));
