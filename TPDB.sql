@@ -4,6 +4,12 @@
 -- ------------------------------------------------------
 -- Server version	8.0.17
 
+-- ------ Inicialización de BD -------------
+drop database if exists spring_db;
+create database if not exists spring_db;
+use spring_db;
+-- ------------------------------------------
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
