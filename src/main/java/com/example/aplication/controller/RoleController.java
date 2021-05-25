@@ -37,7 +37,7 @@ public class RoleController {
     @Secured({"ROLE_ADMIN","ROLE_AUDITOR"})
     @GetMapping("/")
     public String listarUsers(Model model) {
-        List<Role> listadoRoles = roleService.listarTodos();
+        List<Role> listadoRoles = roleService.listarActivos();
         model.addAttribute("titulo", "Lista de roles");
         model.addAttribute("role", listadoRoles);
         System.out.println(listadoRoles);
@@ -85,8 +85,8 @@ public class RoleController {
 
         }
 
-        role.setTipo(role.getTipo());
-
+        role.setTipo("ROLE_" + role.getTipo().toUpperCase());
+        role.setEnabled(true);
         roleService.guardar(role);
         System.out.println("Role Guardado: " + role);
         attributes.addFlashAttribute("success","Role guardado con exito");
@@ -138,7 +138,9 @@ public class RoleController {
             return ViewRouteHelper.REDIRECT_ROLE;
         }
 		
-        roleService.eliminar(idRole);
+
+        role.setEnabled(false);
+        roleService.guardar(role);
 		System.out.println("Registro Eliminado con Exito!");
 		attribute.addFlashAttribute("warning", "Registro Eliminado con Exito!");
 
