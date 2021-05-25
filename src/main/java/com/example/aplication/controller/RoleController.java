@@ -41,11 +41,12 @@ public class RoleController {
     @GetMapping("/")
     public String listarUsers(Model model) {
         List<Role> listadoRoles = roleService.listarTodos();
-        model.addAttribute("titulo", "Lista de Roles");
+        model.addAttribute("titulo", "Lista de roles");
         model.addAttribute("role", listadoRoles);
         System.out.println(listadoRoles);
 
-        return ViewRouteHelper.LISTAR_ROL;
+        // cambiar view
+        return ViewRouteHelper.LISTAR_ROLES;
     }
 
     @Secured("ROLE_ADMIN")
@@ -59,7 +60,9 @@ public class RoleController {
         model.addAttribute("role", role);
         model.addAttribute("user", listUser);
         
-        return ViewRouteHelper.CREAR_ROL;
+
+        /// cambiar viewRoute
+        return ViewRouteHelper.CREAR_ROLES;
     }
 
     // ********************* ABM User ******************** */
@@ -81,7 +84,7 @@ public class RoleController {
             System.out.println("Errores en el formulario: ");
             
             // cambiar viewRoute
-            return ViewRouteHelper.CREAR_ROL;
+            return ViewRouteHelper.CREAR_ROLES;
 
         }
 
@@ -93,7 +96,7 @@ public class RoleController {
 
 
         // cambiar view
-        return ViewRouteHelper.REDIRECT_ROL;
+        return ViewRouteHelper.REDIRECT_ROLE;
     }
 
     @Secured("ROLE_ADMIN")
@@ -109,7 +112,7 @@ public class RoleController {
             attributes.addFlashAttribute("error","*ERROR* el Rol solicitado no existe");
             
             //cambiar view
-            return ViewRouteHelper.REDIRECT_ROL;
+            return ViewRouteHelper.REDIRECT_ROLE;
         }
 
         List<User> listUser = userService.listarActivos();
@@ -119,11 +122,10 @@ public class RoleController {
         model.addAttribute("user", listUser);
       
         //cambiar view
-        return ViewRouteHelper.CREAR_ROL;
+        return ViewRouteHelper.CREAR_ROLES;
     }
 
 
-    // este metodo no lo toque :D
     @Secured("ROLE_ADMIN")
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable("id") Long idRole, RedirectAttributes attribute) {
@@ -135,17 +137,15 @@ public class RoleController {
         }
         if (role == null) {
             System.out.println("el id solicitado no existe");
-            attribute.addFlashAttribute("error","*ERROR* el Rol solicitado no existe");
-            return ViewRouteHelper.REDIRECT_ROL;
+            attribute.addFlashAttribute("error","*ERROR* el rol solicitado no existe");
+            return ViewRouteHelper.REDIRECT_ROLE;
         }
 		
-        //role.setEnabled(false);
-		//roleService.guardar(role);
-        
+        roleService.eliminar(idRole);
 		System.out.println("Registro Eliminado con Exito!");
 		attribute.addFlashAttribute("warning", "Registro Eliminado con Exito!");
 
-		return ViewRouteHelper.REDIRECT_ROL;
+		return ViewRouteHelper.REDIRECT_ROLE;
 	}
 
 

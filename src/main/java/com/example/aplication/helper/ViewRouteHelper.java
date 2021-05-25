@@ -11,15 +11,14 @@ public class ViewRouteHelper {
 	//USER
     public final static String LOGIN = "/user/login";
 
-    //ROLE
-    public final static String LISTAR_ROL = "/views/roles/listar";
-    public final static String CREAR_ROL = "/views/roles/frmCrear";
+    //ROLES
+    public final static String LISTAR_ROLES = "/views/roles/listar";
+    public final static String CREAR_ROLES = "/views/roles/frmCrear";
 	
 	// /**** Redirects ****/
     public final static String HOME_ROOT = "/home";
     public final static String REDIRECT_CLIENTE = "redirect:/views/users/";
-    public final static String REDIRECT_ROL = "redirect:/views/roles/";
-
+    public final static String REDIRECT_ROLE = "redirect:/views/roles/";
 	
     
 }
