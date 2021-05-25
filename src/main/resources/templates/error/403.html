@@ -3,20 +3,15 @@
 <head th:replace="plantilla/template :: head">
 </head>
 <body>
-	<header th:replace="plantilla/template :: header"></header>
 	
-	<div class="container text-center py-3">
+	<header th:replace="plantilla/template :: header"></header>
+	<div class="container text-center py-3"  >
 		<div class="panel bg-light">
-			<div class="panel-heading">
-				<h3 class="panel-title text-danger">
-					<span th:text="${error}"></span> - <span th:text="${status}"></span>
-				</h3>
-			</div>
 			<div class="panel-body">
-				<img th:src="@{/images/403.jpg}" width="48" height="48">
-				<br>
-				<h4>USTED NO TIENE ACCESO PARA ESTA ZONA</h4>
-				<br>
+				<img th:src="@{/images/403_error.svg}" width="600" height="390">
+				<br >
+				<h4 style = "font-family:georgia,garamond,serif;font-size:30px;font-style:italic;">No tiene los permisos para acceder!</h4>
+				<br>   			 
 				<button class="btn btn-success" onclick="goBack()">&laquo;Regresar</button>
 			</div>
 			
