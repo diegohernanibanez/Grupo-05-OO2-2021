@@ -41,7 +41,6 @@
             <table class="table table-dark table-hover">
                 <thead>
                     <tr>
-
                         <!--th scope="col">Nombre</th-->
                         <th scope="col">Role</th>
                         <th scope="col" sec:authorize= "hasRole('ROLE_ADMIN')">Editar</th>
@@ -59,7 +58,6 @@
                          <!--Boton borrar-->
                         <td><a class="btn btn-danger btn-sm" th:href="@{/views/roles/delete/}+${cl.id}" sec:authorize= "hasRole('ROLE_ADMIN')" role="button"
                                 onclick="return confirm('Seguro que desea eliminar');">Delete</a></td>
-
 
                     </tr>
 
