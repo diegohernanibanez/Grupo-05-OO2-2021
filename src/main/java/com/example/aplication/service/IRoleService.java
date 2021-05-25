@@ -6,9 +6,10 @@ import com.example.aplication.entity.Role;
 public interface IRoleService {
 
     public List <Role> listaRoles();
-    // public void guardar (Ciudad ciudad);
-    // public Ciudad buscarPorID (long id);
-    // public void eliminar (long id);
+    public List <Role> listarTodos();
+    public void guardar (Role user);
+    public Role buscarPorID (long id);
+    public void eliminar (long id);
 
     
 }

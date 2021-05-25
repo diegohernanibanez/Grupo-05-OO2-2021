@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<htm>
+	<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="plantilla/template :: head">
+	</head>
+
+
+	<body>
+
+
+		<header th:replace="plantilla/template :: header"> </header>
+
+
+		<!--Formulario-->
+		<div class="container">
+			<div class="card bg-light">
+				<div class="card-header bg-dark text-white" th:text=${titulo}></div>
+				<div class="card-body">
+					<form th:action="@{/views/roles/save}" th:object="${role}" method="post">
+						<div class="form-group row">
+
+							<input type="hidden" th:field="*{id}">
+							
+							<label class="col-md-2" for="tipo">Nombre:</label>
+							<input type="text" th:field="*{tipo}" class="form-control form-control-sm col-md-6"
+								id="tipo" placeholder="Nombres del rol">
+								
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('tipo')}"
+								th:errors="*{tipo}">
+							</small>
+						</div>
+						
+						<!--div class="form-group row">
+							<label class="col-md-2" for="user">User:</label>
+							<select type="text" th:field="*{user}" class="form-control form-control-sm col -md- 3"
+								id="username">
+
+								<option th:each="u:${user}" th:value="${u.id}" th:text="${u.username}">
+								</option>
+
+							</select>
+
+						</div-->
+						
+						<div class="card-footer bg-dark">
+							<input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
+							<a class="btn btn-primary btn-sm" th:href="@{/views/users/}" role="button">Cancelar</a>
+						</div>
+
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!--/Formulario-->
+
+		<footer th:replace="plantilla/template :: footer"> </footer>
+
+
+	</body>
+
+	</html>
