@@ -60,7 +60,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`,`role_id`),
   KEY `fk_user_role_idx` (`role_id`),
   CONSTRAINT `FKn82ha3ccdebhokx3a8fgdqeyy` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Velez','Mati','dni','12345678','mati@asd.com','mati',_binary '','$2a$10$A9IQzDnfuwlhTXyBLb2Y7e1KJBGY4QgpdCDwcAUWm.tC.yhO/uSZG',1),(2,'dsa','asd','das','12345678','asd@asd.com','dsa',_binary '\0','asd',1),(3,'Ibañez','Diego','DNI','38079225','diego.hernan.ibanez@gmail.com','dieguito',_binary '','$2a$10$200DaOGdSfCyDROlnT0LIew0bD0Z27NymKzVntvqxWoN0FXRkiE0q',2);
+INSERT INTO `user` VALUES (1,'Velez','Mati','DNI','12345678','mati@asd.com','mati',_binary '','$2a$10$A9IQzDnfuwlhTXyBLb2Y7e1KJBGY4QgpdCDwcAUWm.tC.yhO/uSZG',1),(3,'Ibañez','Diego','DNI','38079225','diego.hernan.ibanez@gmail.com','dieguito',_binary '','$2a$10$200DaOGdSfCyDROlnT0LIew0bD0Z27NymKzVntvqxWoN0FXRkiE0q',2),(8,'Sassenus','Milly','DNI','87654321','milly@asd.com','milly',_binary '','$2a$10$XyLWKTcwMoZpmO.T5rZCVO.VkMQsA5x.nnKIzYclEBFe2TiD8XzxK',1),(9,'Ortiz','Aylu','DNI','43215678','Aylu@asd.com','aylu',_binary '','$2a$10$QuxAnPSM3wZdGXgKV8fNDOldvWK8g8aEU8TMzFXoaQ8uEtpm92WbK',2),(11,'-','Inhabilitado','DNÏ','00000000','asd@asd.com','inhabilitado',_binary '\0','$2a$10$qJJL37mMJ88V1iV13u6QtuWpEtzlDV.7.LLXGlf37Sw5I0N3iDetO',1),(12,'-','Inhabilitado2','DNÏ','00000000','asd@asd.com','user',_binary '\0','$2a$10$EdODzvj5x9cMgY/RmFahKungT6LnnRiHyo8fJbbuFVR8jiQ2Z.F1W',2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -82,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-24 22:31:38
+-- Dump completed on 2021-05-25 18:06:30
