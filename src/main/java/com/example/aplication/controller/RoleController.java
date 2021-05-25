@@ -13,7 +13,6 @@ import com.example.aplication.service.IUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,8 +33,6 @@ public class RoleController {
     private IUserService userService;
     @Autowired
     private IRoleService roleService;
-    @Autowired
-    private BCryptPasswordEncoder passEncoder;
 
     @Secured({"ROLE_ADMIN","ROLE_AUDITOR"})
     @GetMapping("/")
