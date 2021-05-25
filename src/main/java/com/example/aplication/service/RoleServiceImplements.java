@@ -20,5 +20,30 @@ public class RoleServiceImplements implements IRoleService {
         return (List<Role>) roleRepository.findAll();
     }
 
+    @Override
+    public List<Role> listarTodos() {   
+        return (List<Role>)roleRepository.findAll();
+    }
+
+    @Override
+    public List<Role> listarActivos() {   
+        return (List<Role>)roleRepository.findByEnabledTrue();
+    }
+
+    @Override
+    public void guardar (Role user) {
+        roleRepository.save(user);       
+    }
+
+    @Override
+    public Role buscarPorID(long id) { 
+        return roleRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void eliminar(long id) {
+        roleRepository.deleteById(id);
+    }
+
     
 }
