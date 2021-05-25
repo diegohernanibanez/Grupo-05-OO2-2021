@@ -62,6 +62,7 @@ public class Role implements Serializable {
     public String toString() {
         return "Role [tipo=" + tipo + ", id=" + id + "]";
     }
+   
 
     
 
