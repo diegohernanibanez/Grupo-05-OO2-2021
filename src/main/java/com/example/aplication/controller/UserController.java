@@ -50,7 +50,7 @@ public class UserController {
     public String crear(Model model) {
 
         User user = new User();
-        List<Role> listRoles = roleService.listaRoles();
+        List<Role> listRoles = roleService.listarActivos();
 
         model.addAttribute("titulo", "Formulario: Nuevo User");
         model.addAttribute("user", user);
@@ -65,7 +65,7 @@ public class UserController {
     public String guardar(@Valid @ModelAttribute User user, BindingResult result, Model model,
             RedirectAttributes attributes) {
 
-        List<Role> listRoles = roleService.listaRoles();
+        List<Role> listRoles = roleService.listarActivos();
         System.out.println("RESULT: " + result);
        
         if (result.hasErrors()) {
@@ -101,7 +101,7 @@ public class UserController {
             return ViewRouteHelper.REDIRECT_CLIENTE;
         }
 
-        List<Role> listRoles = roleService.listaRoles();
+        List<Role> listRoles = roleService.listarActivos();
 
         model.addAttribute("titulo", "Formulario: Editar User");
         model.addAttribute("user", user);
