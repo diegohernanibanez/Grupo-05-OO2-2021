@@ -103,6 +103,7 @@ public class RoleController {
         Role role = null;
         if (idRole > 0) {
             role = roleService.buscarPorID(idRole);
+            role.setTipo(role.getTipo().split("ROLE_")[1]);
         }
         if (role == null) {
             System.out.println("el id solicitado no existe");
@@ -115,7 +116,7 @@ public class RoleController {
         List<User> listUser = userService.listarActivos();
 
         model.addAttribute("titulo", "Formulario: Editar Rol");
-        model.addAttribute("rol", role);
+        model.addAttribute("role", role);
         model.addAttribute("user", listUser);
       
         //cambiar view
