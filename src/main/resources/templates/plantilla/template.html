@@ -4,7 +4,11 @@
 
 <head th:fragment="head">
 	<meta charset="UTF-8">
-	<title> Clientes </title>
+	<title> Usuarios </title>
+	
+	<!--Utilizando el navegador Mozilla Firefox, se visualiza correctamente el favicon-->
+	<link rel="icon" href="images/favicon32x32.png" type="image/png">
+	
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
@@ -34,7 +38,7 @@
 							<a class="nav-link" aria-current="page" th:href="@{/home}">Inicio</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/views/users/">Lista Clientes</a>
+							<a class="nav-link" href="/views/users/">Lista Usuarios</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="/views/roles/">Lista Roles</a>
