@@ -87,7 +87,7 @@
 
 						<div class="form-group row">
 							<label class="col-md-2" for="role">Role:</label>
-							<select type="text" th:field="*{role}" class="form-control form-control-sm col -md- 3"
+							<select type="text"  th:field="*{role}" class="form-control form-control-sm col-md-6"
 								id="tipo">
 
 								<option th:each="r:${role}" th:value="${r.id}" th:text="${r.tipo}">

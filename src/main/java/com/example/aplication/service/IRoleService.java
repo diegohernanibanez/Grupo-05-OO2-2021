@@ -7,6 +7,7 @@ public interface IRoleService {
 
     public List <Role> listaRoles();
     public List <Role> listarTodos();
+    public List <Role> listarActivos();
     public void guardar (Role user);
     public Role buscarPorID (long id);
     public void eliminar (long id);

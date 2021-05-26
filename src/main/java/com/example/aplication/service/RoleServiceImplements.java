@@ -40,5 +40,10 @@ public class RoleServiceImplements implements IRoleService {
         roleRepository.deleteById(id);
     }
 
+    @Override
+    public List<Role> listarActivos() {
+        return (List<Role>)roleRepository.findByEnabledTrue();
+    }
+
     
 }
