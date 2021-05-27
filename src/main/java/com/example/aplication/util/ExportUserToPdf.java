@@ -31,7 +31,7 @@ public class ExportUserToPdf extends AbstractPdfView {
         List<User> listadoUsers = (List<User>) model.get("user");
         // Tabla titulos de los atributos de la tabla - cambiar 6 por la cantidad de
         // columnas correspondientes
-        PdfPTable tablaUsers = new PdfPTable(6);
+        PdfPTable tablaUsers = new PdfPTable(7);
 
         // Fuentes y tamaños para las secciones
         Font fuenteTitulo = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20, Color.BLUE);
@@ -69,7 +69,7 @@ public class ExportUserToPdf extends AbstractPdfView {
         // en los float se puede poner ajustar el ancho de cada columnna, agregar o
         // quitar floats segun la cantidad de columnas
         // tablaUsers.setWidths(relativeWidths);
-        tablaUsers.setWidths(new float[] { 2.9f, 2.5f, 3.4f, 3f, 8f, 3f });
+        tablaUsers.setWidths(new float[] { 2.9f, 2.5f, 3.4f, 3f, 3f, 8f  ,3f});
 
         // Repetir este bloque para cada columna del pdf
         celda = new PdfPCell(new Phrase("Apellido", fuenteCeldas));
@@ -80,6 +80,13 @@ public class ExportUserToPdf extends AbstractPdfView {
         tablaUsers.addCell(celda);
 
         celda = new PdfPCell(new Phrase("Nombre", fuenteCeldas));
+        celda.setBackgroundColor(new Color(40, 190, 138));
+        celda.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+        celda.setVerticalAlignment(PdfPCell.ALIGN_CENTER);
+        celda.setPadding(5);
+        tablaUsers.addCell(celda);
+
+        celda = new PdfPCell(new Phrase("Username", fuenteCeldas));
         celda.setBackgroundColor(new Color(40, 190, 138));
         celda.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
         celda.setVerticalAlignment(PdfPCell.ALIGN_CENTER);
@@ -125,6 +132,12 @@ public class ExportUserToPdf extends AbstractPdfView {
             tablaUsers.addCell(celda1);
 
             celda1 = new PdfPCell(new Phrase(user.getNombre(), fuenteContenidoData));
+            celda1.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+            celda1.setVerticalAlignment(PdfPCell.ALIGN_CENTER);
+            celda1.setPadding(5);
+            tablaUsers.addCell(celda1);
+
+            celda1 = new PdfPCell(new Phrase(user.getUsername(), fuenteContenidoData));
             celda1.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
             celda1.setVerticalAlignment(PdfPCell.ALIGN_CENTER);
             celda1.setPadding(5);
