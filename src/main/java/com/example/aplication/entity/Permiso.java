@@ -4,29 +4,38 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.InheritanceType;
 
 @Entity
 @Table (name = "permiso")
-public class Permiso {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Permiso {
 
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY) 
     protected int id;
 
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_persona", nullable = false)
     protected Persona pedido;
 
     @Column(name="fecha", nullable=false)
     protected LocalDate fecha;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="permiso")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "lugar") // deberia ser con mappedBy = "permiso" , pero re rompe. No sé qué onda
     protected Set<Lugar> desdeHasta = new HashSet<Lugar>();
 
     public int getId() {

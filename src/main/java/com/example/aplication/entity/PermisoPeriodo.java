@@ -1,15 +1,24 @@
 package com.example.aplication.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table (name = "permisoperiodo")
 public class PermisoPeriodo extends Permiso{
 
     @Column(name="cantDias", nullable=false)
     private int cantDias;
 
-    @Column(columnDefinition="tinyint(1) default 0")
+    @Column(columnDefinition="tinyint(1) default 0" , nullable = false)
     private boolean vacaciones;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_idRodado", nullable = false)
     private Rodado rodado;
 
     public int getCantDias() {
