@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<htm>
+    <html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="plantilla/template :: head">
+    </head>
+
+
+    <body>
+
+
+        <header th:replace="plantilla/template :: header"> </header>
+
+        <div class="container">
+            <h1 th:text="${titulo}"> </h1>
+        </div>
+
+
+
+        <!--tabla con los datos de users-->
+        <div class="container">
+
+            <div class="container">
+                <p>
+                    <a class="btn btn-primary btn-sm" th:href="@{/views/roles/create}" sec:authorize= "hasRole('ROLE_ADMIN')" role="button">Nuevo
+                        Rol</a>
+                    <a class="btn btn-success btn-sm" th:href="@{/views/roles/(format=pdf)}" role="button">Exportar a PDF
+                    </a>
+
+
+        
+                    
+                </a>
+
+                </p>
+            </div>
+
+
+
+
+            <table class="table table-dark table-hover">
+                <thead>
+                    <tr>
+                        <!--th scope="col">Nombre</th-->
+                        <th scope="col">Role</th>
+                        <th scope="col" sec:authorize= "hasRole('ROLE_ADMIN')">Editar</th>
+                        <th scope="col" sec:authorize= "hasRole('ROLE_ADMIN')">Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cl:${role}">
+
+                        <td th:text="${cl.tipo}"></td>
+                        <!--td th:text="${cl.role.tipo}"></td-->
+                        <!--Boton Editar-->
+                        <td><a class="btn btn-success btn-sm" th:href="@{/views/roles/edit/}+${cl.id}" sec:authorize= "hasRole('ROLE_ADMIN')"
+                                role="button">Edit</a></td>
+                         <!--Boton borrar-->
+                        <td><a class="btn btn-danger btn-sm" th:href="@{/views/roles/delete/}+${cl.id}" sec:authorize= "hasRole('ROLE_ADMIN')" role="button"
+                                onclick="return confirm('Seguro que desea eliminar');">Delete</a></td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+
+        </div>
+
+
+        <footer th:replace="plantilla/template :: footer"> </footer>
+
+
+    </body>
+
+    </html>

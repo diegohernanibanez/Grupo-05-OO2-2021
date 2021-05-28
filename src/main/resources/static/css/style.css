@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+
+}
+
+body{
+
+    background-image: url('fondo.jpg') ;
+
+}
+
+.form-registrer {
+
+    width: 500px;
+    background: #530303c0;
+    padding: 30px;
+    margin: auto;
+    margin-top: 200px;
+    border-radius: 4px;
+    font-family: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 37px #000000;
+
+
+}
+
+.form-registrer h4 {
+    font-size: 22px;
+    margin-top: 20px;
+    padding: 14px;
+
+}
+
+.controls {
+    width: 100%;
+    background: #570f0f;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #000000;
+    font-family: 'calibri';
+    font-size: 18px;
+    box-shadow: 7px 1px 37px #000000;
+    color: white;
+}
+
+.form-registrer p {
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+
+}
+
+.form-registrer a {
+    color: white;
+    text-decoration: none;
+
+
+}
+
+.form-registrer a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.form-registrer .botons {
+    width: 100%;
+background: #5f0000;    
+border: none;
+padding: 12px;
+color: white;
+margin:  16px 0;
+font-size:  16px;
+box-shadow: 7px 1px 37px #000000;
+}
