@@ -14,6 +14,9 @@ public class ViewRouteHelper {
     //ROLES
     public final static String LISTAR_ROLES = "/views/roles/listar";
     public final static String CREAR_ROLES = "/views/roles/frmCrear";
+
+    //PERSONAS
+    public final static String LISTAR_PERSONAS = "/views/personas/listar";
 	
 	// /**** Redirects ****/
     public final static String HOME_ROOT = "/home";

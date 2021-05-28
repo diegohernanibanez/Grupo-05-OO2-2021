@@ -25,6 +25,21 @@ public class Persona {
 	@Column(name="dni", unique=true, nullable=false, length=8)
     private long dni;
 
+    @Column(columnDefinition="tinyint(1) default 1" , nullable = false)
+    private boolean enabled;
+
+
+
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
 
     public int getId() {
         return id;

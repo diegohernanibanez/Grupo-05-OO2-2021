@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<htm>
+    <html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="plantilla/template :: head">
+    </head>
+
+
+    <body>
+
+
+        <header th:replace="plantilla/template :: header"> </header>
+
+        <div class="container">
+            <h1 th:text="${titulo}"> </h1>
+        </div>
+
+
+
+        <!--tabla con los datos de users-->
+        <div class="container">
+
+            <div class="container">
+
+                <!--dejo el container vacio-->
+            </div>
+
+
+
+
+            <table class="table table-dark table-hover">
+                <thead>
+                    <tr>
+                        <!--th scope="col">Nombre</th-->
+                        <th scope="col">Persona</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Dni</th>
+                        <th scope="col">Enabled</th>
+                        <th scope="col">Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cl:${persona}">
+
+                        <td th:text="${cl.nombre}" ></td>
+                        <td th:text="${cl.apellido}"></td>
+                        <td th:text="${cl.dni}"></td>
+                        <td th:text="${cl.enabled}" id= "pie"></td>
+
+
+                        <!--Boton Editar-->
+                        <td><button class="btn btn-default btn-sm dropdown-toggle"
+                            type="button" data-toggle="dropdown">
+                            Estado <span class="caret"></span>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="#"> Activar</a></li>
+                              <li class="divider"></li>
+                              <li><a onclick="setPersonaDisabled()">Desactivar</a></li>
+                            </ul>
+                        </td>
+                  
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+
+        </div>
+
+
+        <footer th:replace="plantilla/template :: footer"> </footer>
+
+        <script type="text/javascript">
+            function setPersonaDisabled() {
+                var element = document.getElementById("pie");
+                element.setAttribute("th:value", "false");
+            }
+        </script>
+
+
+    </body>
+
+    </html>
