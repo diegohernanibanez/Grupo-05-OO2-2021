@@ -3,17 +3,10 @@
     <html xmlns:th="http://www.thymeleaf.org">
 
     <head th:replace="plantilla/template :: head">
- 
- 
-        <!--<link rel="stylesheet" type="text/css"  th:href="@{../../../static/css/style.css}"> media="screen">-->
-        
-       
-        <link rel="stylesheet" type="text/css" href="../../../static/css/style.css" media="screen">
-
     </head>
 
 
-    <body>
+    <body class="body-form">
 
 
         <header th:replace="plantilla/template :: header"> </header>
@@ -21,50 +14,45 @@
 
         <!--Formulario-->
         <div class="container">
-            <div class="card bg-light">
-                <div class="card-header bg-dark text-white" th:text=${titulo}></div>
-                <div class="card-body">
-                    <form th:action="@{/views/roles/save}" th:object="${role}" method="post">
-                        <div class="form-group row">
+            <form th:action="@{/views/roles/save}" th:object="${role}" method="post">
+                <div class="form-group row">
 
-                            <section class="form-registrer">
-                                <h4>Formulario Registro Permiso Diario</h4>
-                                <h4>Datos de la persona</h4>
-                                <input class="controls" type="text" name="nombre" id="nombre"
-                                    placeholder="Ingrese su nombre">
-                                <input class="controls" type="text" name="apellido" id="apellido"
-                                    placeholder="Ingrese su apellido">
-                                <h4>Solicitud de permiso Diario</h4>
-                                <input class="controls" type="text" name="fecha" id="fecha"
-                                    placeholder="Ingrese la fecha actual">
-                                <input class="controls" type="text" name="desdeHasta" id="desdeHasta"
-                                    placeholder="Ingrese su dni">
-                                <h4>Lugar Solicitado</h4>
-                                <input class="controls" type="text" name="lugar" id="lugar"
-                                    placeholder="Ingrese el lugar de destino">
-                                <input class="controls" type="text" name="codigopostal" id="codigopostal"
-                                    placeholder="Ingrese el codigopostal">
+                    <section class="form-registrer">
+                        <h4>Formulario Registro Permiso Diario</h4>
+                        <h4>Datos de la persona</h4>
+                        <input class="controls" type="text" name="nombre" id="nombre"
+                            placeholder="Ingrese su nombre">
+                        <input class="controls" type="text" name="apellido" id="apellido"
+                            placeholder="Ingrese su apellido">
+                        <h4>Solicitud de permiso Diario</h4>
+                        <input class="controls" type="text" name="fecha" id="fecha"
+                            placeholder="Ingrese la fecha actual">
+                        <input class="controls" type="text" name="desdeHasta" id="desdeHasta"
+                            placeholder="Ingrese su dni">
+                        <h4>Lugar Solicitado</h4>
+                        <input class="controls" type="text" name="lugar" id="lugar"
+                            placeholder="Ingrese el lugar de destino">
+                        <input class="controls" type="text" name="codigopostal" id="codigopostal"
+                            placeholder="Ingrese el codigopostal">
 
-                                <h4>Motivo de viaje</h4>
-                                <input class="controls" type="text" name="motivo" id="motivo"
-                                    placeholder="Ingrese su motivo de viaje">
-                                <input class="botons" type="submit" value="Registrar">
-                                <input class="botons" type="submit" value="cancelar">
+                        <h4>Motivo de viaje</h4>
+                        <input class="controls" type="text" name="motivo" id="motivo"
+                            placeholder="Ingrese su motivo de viaje">
+                        <input class="botons" type="submit" value="Registrar">
+                        <a class="botons btn btn-primary btn-sm" th:href="@{/home}">Cancelar</a>
 
 
 
-                            </section>
+                    </section>
 
-                        </div>
-                        <div class="card-footer bg-dark">
-                            <input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
-                            <a class="btn btn-primary btn-sm" th:href="@{/home}" role="button">Cancelar</a>
-                        </div>
-
-
-                    </form>
                 </div>
-            </div>
+                <!-- <div class="card-footer bg-dark">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
+                    <a class="btn btn-primary btn-sm" th:href="@{/home}" role="button">Cancelar</a>
+                </div> -->
+
+
+            </form>
         </div>
 
         <!--/Formulario-->
