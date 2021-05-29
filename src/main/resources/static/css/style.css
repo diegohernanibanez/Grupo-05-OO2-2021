@@ -8,8 +8,8 @@
 
 body{
 
-    background-image: url('fondo.jpg') ;
-
+    background-image: url('../images/fondo.jpg' );
+    
 }
 
 .form-registrer {
@@ -18,7 +18,7 @@ body{
     background: #530303c0;
     padding: 30px;
     margin: auto;
-    margin-top: 200px;
+    margin-top: 50px;
     border-radius: 4px;
     font-family: 'calibri';
     color: white;
@@ -29,8 +29,8 @@ body{
 
 .form-registrer h4 {
     font-size: 22px;
-    margin-top: 20px;
-    padding: 14px;
+    margin-top: 1px;
+    padding: 10px;
 
 }
 
@@ -67,6 +67,18 @@ body{
 }
 
 .form-registrer .botons {
+    width: 100%;
+background: #5f0000;    
+border: none;
+padding: 12px;
+color: white;
+margin:  16px 0;
+font-size:  16px;
+box-shadow: 7px 1px 37px #000000;
+}
+
+
+.form-registrer .btn-group {
     width: 100%;
 background: #5f0000;    
 border: none;
