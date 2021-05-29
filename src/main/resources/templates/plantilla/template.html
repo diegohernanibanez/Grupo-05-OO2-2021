@@ -12,6 +12,7 @@
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
+		<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 
@@ -38,13 +39,16 @@
 							<a class="nav-link" aria-current="page" th:href="@{/home}">Inicio</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/views/users/">Lista Usuarios</a>
+							<a class="nav-link" href="/views/users/" sec:authorize="isAuthenticated()" >Lista Usuarios</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/views/roles/">Lista Roles</a>
+							<a class="nav-link" href="/views/roles/" sec:authorize="isAuthenticated()">Lista Roles</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/views/personas/">Lista Personas</a>
+							<a class="nav-link" href="/views/personas/" sec:authorize="isAuthenticated()" >Lista Personas</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/seleccionPermiso"  >Tramitar Permiso</a>
 						</li>
 
 					</ul>
