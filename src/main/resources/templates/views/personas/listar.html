@@ -24,6 +24,9 @@
 
                 <a class="btn btn-primary btn-sm" th:href="@{/views/personas/create}" role="button">Nueva
                     Persona</a>
+                </a> <br/>
+                <br/></a>
+
                 
             </div>
 
@@ -38,7 +41,6 @@
                         <th scope="col">Apellido</th>
                         <th scope="col">Dni</th>
                         <th scope="col">Enabled</th>
-                        <th scope="col">Editar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,18 +50,6 @@
                         <td th:text="${cl.apellido}"></td>
                         <td th:text="${cl.dni}"></td>
                         <td th:text="${cl.enabled}" id= "pie"></td>
-
-
-                        <!--Boton Editar-->
-                        <td><button class="btn btn-default btn-sm dropdown-toggle"
-                            type="button" data-toggle="dropdown">
-                            Estado <span class="caret"></span>
-                            <ul class="dropdown-menu" role="menu">
-                              <li><a href="#"> Activar</a></li>
-                              <li class="divider"></li>
-                              <li><a onclick="setPersonaDisabled()">Desactivar</a></li>
-                            </ul>
-                        </td>
                   
                     </tr>
 

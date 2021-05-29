@@ -45,7 +45,7 @@ public class PersonaController {
 
         Persona persona = new Persona();
         model.addAttribute("titulo", "Formulario: Nueva Persona");
-        model.addAttribute("Persona", persona);
+        model.addAttribute("persona", persona);
         
 
         /// cambiar viewRoute
