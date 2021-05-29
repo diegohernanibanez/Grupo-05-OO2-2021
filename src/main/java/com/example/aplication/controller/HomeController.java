@@ -12,4 +12,9 @@ public class HomeController {
 		return "home";
 	}
 
+	@GetMapping ("/form")
+	public String form() {
+		return "/views/permiso/formularioPermiso";
+	}
+
 }

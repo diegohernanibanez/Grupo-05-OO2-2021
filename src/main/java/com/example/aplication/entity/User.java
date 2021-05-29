@@ -2,6 +2,7 @@ package com.example.aplication.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,7 +28,10 @@ public class User extends Persona implements Serializable {
     private String email;
     @NotEmpty
     private String username;
+
+    @Column(columnDefinition="tinyint(1) default 1" , nullable = false)
     private Boolean enabled;
+    
     @NotEmpty
     private String password;
     

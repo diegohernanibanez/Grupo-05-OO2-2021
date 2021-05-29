@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         builder.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(passEncoder)
-                .usersByUsernameQuery("SELECT username, password, enabled FROM user where username =?")
+                .usersByUsernameQuery("SELECT username, password, p.enabled FROM user u inner join persona p on u.id = p.id where username =?")
                 .authoritiesByUsernameQuery(
                         "Select u.username, r.tipo FROM role r inner join user u on r.id=u.role_id where u.username=?");
 
