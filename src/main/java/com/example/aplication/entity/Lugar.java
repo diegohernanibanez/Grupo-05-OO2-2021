@@ -1,10 +1,15 @@
 package com.example.aplication.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +25,9 @@ public class Lugar {
 
     @Column(name="codigoPostal", nullable=false, length=8)
     private String codigoPostal;
+
+    @ManyToMany(fetch=FetchType.LAZY) 
+    protected Set<Permiso> permisos = new HashSet<Permiso>();
 
     public int getIdLugar() {
         return idLugar;
@@ -45,45 +53,21 @@ public class Lugar {
         this.codigoPostal = codigoPostal;
     }
 
+    public Set<Permiso> getPermisos() {
+        return permisos;
+    }
+
+    public void setPermisos(Set<Permiso> permisos) {
+        this.permisos = permisos;
+    }
+
     @Override
     public String toString() {
-        return "Lugar [codigoPostal=" + codigoPostal + ", idLugar=" + idLugar + ", lugar=" + lugar + "]";
+        return "Lugar [codigoPostal=" + codigoPostal + ", idLugar=" + idLugar + ", lugar=" + lugar + ", permisos="
+                + permisos + "]";
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((codigoPostal == null) ? 0 : codigoPostal.hashCode());
-        result = prime * result + idLugar;
-        result = prime * result + ((lugar == null) ? 0 : lugar.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Lugar other = (Lugar) obj;
-        if (codigoPostal == null) {
-            if (other.codigoPostal != null)
-                return false;
-        } else if (!codigoPostal.equals(other.codigoPostal))
-            return false;
-        if (idLugar != other.idLugar)
-            return false;
-        if (lugar == null) {
-            if (other.lugar != null)
-                return false;
-        } else if (!lugar.equals(other.lugar))
-            return false;
-        return true;
-    }
-
+ 
     
     
 }
