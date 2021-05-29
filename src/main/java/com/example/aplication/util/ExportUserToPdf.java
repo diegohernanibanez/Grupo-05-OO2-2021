@@ -149,7 +149,7 @@ public class ExportUserToPdf extends AbstractPdfView {
             celda1.setPadding(5);
             tablaUsers.addCell(celda1);
 
-            celda1 = new PdfPCell(new Phrase(user.getDni(), fuenteContenidoData));
+            celda1 = new PdfPCell(new Phrase(String.valueOf(user.getDni()), fuenteContenidoData));
             celda1.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
             celda1.setVerticalAlignment(PdfPCell.ALIGN_CENTER);
             celda1.setPadding(5);
