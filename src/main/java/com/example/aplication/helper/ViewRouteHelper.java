@@ -17,11 +17,14 @@ public class ViewRouteHelper {
 
     //PERSONAS
     public final static String LISTAR_PERSONAS = "/views/personas/listar";
+    public final static String CREAR_PERSONAS = "/views/personas/frmCrear";
 	
 	// /**** Redirects ****/
     public final static String HOME_ROOT = "/home";
     public final static String REDIRECT_CLIENTE = "redirect:/views/users/";
     public final static String REDIRECT_ROLE = "redirect:/views/roles/";
+    public final static String REDIRECT_PERSONA = "redirect:/views/personas/";
+
 	
     
 }

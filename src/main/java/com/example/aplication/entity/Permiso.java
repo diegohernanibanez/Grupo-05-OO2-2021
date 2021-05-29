@@ -7,7 +7,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +35,7 @@ public abstract class Permiso {
     @Column(name="fecha", nullable=false)
     protected LocalDate fecha;
 
-    @ManyToMany(fetch=FetchType.LAZY) 
+    @ManyToMany(mappedBy = "permisos")
     protected Set<Lugar> lugares = new HashSet<Lugar>();
     
 
