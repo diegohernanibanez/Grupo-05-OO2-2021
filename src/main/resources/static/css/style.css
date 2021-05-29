@@ -18,7 +18,7 @@
     background: #530303c0;
     padding: 30px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 10px;
     border-radius: 4px;
     font-family: 'calibri';
     color: white;
@@ -28,9 +28,9 @@
 }
 
 .form-registrer h4 {
-    font-size: 22px;
+    font-size: 17px;
     margin-top: 1px;
-    padding: 10px;
+    padding: 3px;
 
 }
 
@@ -48,7 +48,7 @@
 }
 
 .form-registrer p {
-    height: 40px;
+    height: 30px;
     text-align: center;
     font-size: 18px;
 
@@ -72,7 +72,7 @@
     border: none;
     padding: 12px;
     color: white;
-    margin:  16px 0;
+    margin:  10px 0;
     font-size:  16px;
     box-shadow: 7px 1px 37px #000000;
 }
@@ -82,7 +82,7 @@
     width: 100%;
     background: #5f0000;    
     border: none;
-    padding: 12px;
+    padding: 5px;
     color: white;
     margin:  16px 0;
     font-size:  16px;
