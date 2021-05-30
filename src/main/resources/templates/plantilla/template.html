@@ -5,14 +5,18 @@
 <head th:fragment="head">
 	<meta charset="UTF-8">
 	<title> Usuarios </title>
-	
+
 	<!--Utilizando el navegador Mozilla Firefox, se visualiza correctamente el favicon-->
 	<link rel="icon" href="images/favicon32x32.png" type="image/png">
-	
+
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-		<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	
+	<link rel="stylesheet" type="text/css" href="../../static/js/jquery-ui-1.12.1.custom/jquery-ui.css">
+	<script type="text/javascript" src="../../static/js/jquery-3.3.1.min.js" ></script>
+	<script type="text/javascript" src="../../static/js/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
 </head>
 
 
@@ -39,16 +43,18 @@
 							<a class="nav-link" aria-current="page" th:href="@{/home}">Inicio</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/views/users/" sec:authorize="isAuthenticated()" >Lista Usuarios</a>
+							<a class="nav-link" href="/views/users/" sec:authorize="isAuthenticated()">Lista
+								Usuarios</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="/views/roles/" sec:authorize="isAuthenticated()">Lista Roles</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/views/personas/" sec:authorize="isAuthenticated()" >Lista Personas</a>
+							<a class="nav-link" href="/views/personas/" sec:authorize="isAuthenticated()">Lista
+								Personas</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/seleccionPermiso"  >Tramitar Permiso</a>
+							<a class="nav-link" href="/seleccionPermiso">Tramitar Permiso</a>
 						</li>
 
 					</ul>
@@ -62,29 +68,18 @@
 							<a class="btn btn-success" th:href="@{/login}" role="button">LogIn</a>
 						</li>
 					</ul>
-					
-					
+
+
 					<!-- Logout  -->
 					<ul>
 						<li class="navbar-nav" sec:authorize="isAuthenticated()">
-						
+
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-warning" >Logout</button>
-							  </form>
+								<button class="btn btn-warning">Logout</button>
+							</form>
 						</li>
-	
+
 					</ul>
-
-			
-			
-
-
-
-
-
-
-
-
 
 				</div>
 			</div>
@@ -96,10 +91,10 @@
 		</nav>
 		<!-- MENSAJES -->
 		<div class="alert alert-success alert-dismissable" th:if="${success != null}">
-			
+
 			<label th:text="${success}"></label>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			
+
 		</div>
 
 		<div class="alert alert-danger alert-dismissable" th:if="${error != null}">
@@ -112,7 +107,7 @@
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 
 		</div>
-		
+
 		<div class="alert alert-info alert-dismissable" th:if="${info != null}">
 			<label th:text="${info}"></label>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -131,15 +126,18 @@
 			<p>Unla Sistemas Grupo 5</p>
 		</div>
 
-		<script type="text/javascript" th:scr="@{/js/jquery-3.3.1.min.js}">  </script>
-		<script type="text/javascript" th:scr="@{/js/popper.min.js}">  </script>
-		<script type="text/javascript" th:scr="@{/js/bootstrap.min.js}">  </script>
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-   	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+		<script type="text/javascript" th:scr="@{/js/jquery-3.3.1.min.js}"> </script>
+		<script type="text/javascript" th:scr="@{/js/popper.min.js}"> </script>
+		<script type="text/javascript" th:scr="@{/js/bootstrap.min.js}"> </script>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+		</script>
 
 	</footer>
 
@@ -149,5 +147,3 @@
 </body>
 
 </html>
-
-
