@@ -30,6 +30,12 @@ public class PersonaServiceImplements implements IPersonaService {
         return personaRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public void guardar (Persona user) {
+        personaRepository.save(user);       
+    }
+
+
     
     
 }

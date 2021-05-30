@@ -75,8 +75,57 @@
 				</div>
 				</li>
 
-				</ul>
-				</li>
+						<li>
+							<li class="nav-item"></li>
+								<div class="btn-group">
+									<button type="button" class="btn btn-default dropdown-toggle"
+											data-toggle="dropdown">
+									  Personas<span class="caret"></span>
+									</button>
+								  
+									<ul class="dropdown-menu" role="menu">
+									  <li><a href="/views/personas/create">Crear</a></li>
+									  <li><a href="#">Buscar</a></li>
+									  <li class="divider"></li>
+									  <li><a href="/views/personas/" sec:authorize="isAuthenticated()">Listar</a></li>
+									</ul>
+								  </div>
+	
+							
+						</li>
+
+					</ul>
+					</li>
+
+					</ul>
+					
+					
+
+					<!-- Login -->
+					<ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+						<li sec:authorize="!isAuthenticated()">
+							<a class="btn btn-success" th:href="@{/login}" role="button">LogIn</a>
+						</li>
+					</ul>
+					
+					
+					<!-- Logout  -->
+					<ul>
+
+						
+						<li class="navbar-nav" sec:authorize="isAuthenticated()">
+						
+							<form th:action="@{/logout}" method="post">
+								<button class="btn btn-warning" >Logout</button>
+							  </form>
+						</li>
+	
+					</ul>
+
+			
+					
+
+
 
 				</ul>
 

@@ -3,14 +3,17 @@ package com.example.aplication.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+
 
 @Entity
 @Table (name = "lugar")
@@ -26,7 +29,14 @@ public class Lugar {
     @Column(name="codigoPostal", nullable=false, length=8)
     private String codigoPostal;
 
-    @ManyToMany(fetch=FetchType.LAZY) 
+
+    @JoinTable(
+        name = "pemisos_lugares",
+        joinColumns = @JoinColumn(name = "FK_LUGAR", nullable = false),
+        inverseJoinColumns = @JoinColumn(name="FK_PERMISO", nullable = false)
+    )
+
+    @ManyToMany(cascade = CascadeType.ALL) 
     protected Set<Permiso> permisos = new HashSet<Permiso>();
 
     public int getIdLugar() {
