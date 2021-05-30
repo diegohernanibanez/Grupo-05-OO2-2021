@@ -13,10 +13,10 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" th:href="@{/css/style.css}">
-	
+
 	<link rel="stylesheet" type="text/css" href="../../static/js/jquery-ui-1.12.1.custom/jquery-ui.css">
-	<script type="text/javascript" src="../../static/js/jquery-3.3.1.min.js" ></script>
-	<script type="text/javascript" src="../../static/js/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
+	<script type="text/javascript" src="../../static/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../static/js/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 </head>
 
 
@@ -56,32 +56,50 @@
 						<li class="nav-item">
 							<a class="nav-link" href="/seleccionPermiso">Tramitar Permiso</a>
 						</li>
+						<li>
 
-					</ul>
+							<div>
+								<div class="dropdown">
+									<button class="btn btn-secondary dropdown-toggle" type="button"
+										id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="false">
+										Buscar Permiso
+									</button>
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										<a class="dropdown-item" href="#">Permiso por Persona</a>
+										<a class="dropdown-item" href="#">Permiso por Rodado</a>
+										<a class="dropdown-item" href="#">Permiso entre fechas</a>
+									</div>
+								</div>
+							</div>
+				</div>
+				</li>
+
+				</ul>
+				</li>
+
+				</ul>
+
+				<!-- Login -->
+				<ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+					<li sec:authorize="!isAuthenticated()">
+						<a class="btn btn-success" th:href="@{/login}" role="button">LogIn</a>
+					</li>
+				</ul>
+
+
+				<!-- Logout  -->
+				<ul>
+					<li class="navbar-nav" sec:authorize="isAuthenticated()">
+
+						<form th:action="@{/logout}" method="post">
+							<button class="btn btn-warning">Logout</button>
+						</form>
 					</li>
 
-					</ul>
+				</ul>
 
-					<!-- Login -->
-					<ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-						<li sec:authorize="!isAuthenticated()">
-							<a class="btn btn-success" th:href="@{/login}" role="button">LogIn</a>
-						</li>
-					</ul>
-
-
-					<!-- Logout  -->
-					<ul>
-						<li class="navbar-nav" sec:authorize="isAuthenticated()">
-
-							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-warning">Logout</button>
-							</form>
-						</li>
-
-					</ul>
-
-				</div>
+			</div>
 			</div>
 
 			</div>
