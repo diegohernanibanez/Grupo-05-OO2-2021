@@ -28,10 +28,17 @@
                         <!--Fecha Hasta-->
                         <input class="controls" type="text" name="desdeHasta" id="desdeHasta"
                             placeholder="Ingrese su dni">
+
                         <h4>Solicitud de permiso Periodo</h4>
                         <!--Cantidad de dias, la Fecha Actual se setea por parametro-->
                         <input class="controls" type="text" name="cantDias" id="cantDias"
                             placeholder="Cantidad de Dias">
+
+                        <!-- vacaciones -->
+                        <h4>Vacaciones</h4>
+                        <input type="checkbox" id="switch" name="vacaciones" > 
+                        <label for="switch" class="lbl"></label>
+
                         <h4>Lugar Solicitado</h4>
                         <!--Lugar-->
                         <input class="controls" type="text" name="lugar" id="lugar"
@@ -39,19 +46,22 @@
                         <!--Codigo Postal-->
                         <input class="controls" type="text" name="codigopostal" id="codigopostal"
                             placeholder="Ingrese el codigo postal">
-                            
-                           <!--link a pagina para saber codigo postal--> 
+
+                        <!--link a pagina para saber codigo postal-->
                         <h6 align="right">
-                        	<a  href="https://www6.oca.com.ar/BuscadorCP/" target="_blank" style="color:#5F9EA0;">No sé mi código postal</a>
-	                    </h6>
-           
+                            <a href="https://www6.oca.com.ar/BuscadorCP/" target="_blank" style="color:#5F9EA0;">No sé
+                                mi código postal</a>
+                        </h6>
+
                         <h4>Rodado</h4>
                         <!--Dominio-->
                         <input class="controls" type="text" name="dominio" id="dominio"
                             placeholder="Ingrese el Domino 'Patente' del vehiculo ">
-                        <!--Motivo-->
-                        <input class="controls" type="text" name="motivo" id="motivo"
+                        <!--vehiculo-->
+                        <input class="controls" type="text" name="vehiculo" id="vehiculo"
                             placeholder="Ingrese el tipo de vehiculo">
+
+
                         <input class="botons" type="submit" value="Registrar">
                         <a class="botons btn btn-primary btn-sm" th:href="@{/seleccionPermiso}">Cancelar</a>
 
