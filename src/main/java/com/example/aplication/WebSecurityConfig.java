@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Configuracion de http para acceso publico
         // http.authorizeRequests().antMatchers("/", "/home", "/index", "/css/**",
         // "/js/**", "/images/**").permitAll().anyRequest().authenticated();
-        http.authorizeRequests().antMatchers("/", "/home", "/index", "/css/**", "/js/**", "/images/**","/seleccionPermiso","/permisoPeriodo","/permisoDiario").permitAll().anyRequest()
+        http.authorizeRequests().antMatchers("/", "/home", "/index", "/css/**", "/js/**", "/images/**","/seleccionPermiso","/permisoPeriodo","/crearPermisoDiario","/savePermisoDiario").permitAll().anyRequest()
         .authenticated().and().formLogin()
         .successHandler(loginSuccess)
         .loginPage("/login")

@@ -29,7 +29,6 @@ public class Lugar {
     @Column(name="codigoPostal", nullable=false, length=8)
     private String codigoPostal;
 
-
     @JoinTable(
         name = "pemisos_lugares",
         joinColumns = @JoinColumn(name = "FK_LUGAR", nullable = false),

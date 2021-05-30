@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +19,8 @@ import javax.persistence.Table;
 import javax.persistence.InheritanceType;
 
 @Entity
-@Table (name = "permiso")
 @Inheritance(strategy = InheritanceType.JOINED)
+@Table (name = "permiso")
 public abstract class Permiso {
 
     
@@ -27,7 +28,6 @@ public abstract class Permiso {
     @GeneratedValue(strategy =GenerationType.IDENTITY) 
     protected int id;
 
-   
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_persona", nullable = false)
     protected Persona pedido;
@@ -36,20 +36,20 @@ public abstract class Permiso {
     protected LocalDate fecha;
 
     @ManyToMany(mappedBy = "permisos")
-    protected Set<Lugar> lugares = new HashSet<Lugar>();
+    protected Set<Lugar> desdeHasta = new HashSet<Lugar>();
     
-
-    public Set<Lugar> getLugares() {
-        return lugares;
-    }
-
-    public void setLugares(Set<Lugar> lugares) {
-        this.lugares = lugares;
-    }
 
 
     public int getId() {
         return id;
+    }
+
+    public Set<Lugar> getDesdeHasta() {
+        return desdeHasta;
+    }
+
+    public void setDesdeHasta(Set<Lugar> desdeHasta) {
+        this.desdeHasta = desdeHasta;
     }
 
     public void setId(int id) {
@@ -75,7 +75,7 @@ public abstract class Permiso {
      
     @Override
     public String toString() {
-        return "Permiso [fecha=" + fecha + ", id=" + id + ", lugares=" + lugares + ", pedido=" + pedido + "]";
+        return "Permiso [fecha=" + fecha + ", id=" + id + ", lugares=" + desdeHasta + ", pedido=" + pedido + "]";
     }
 
    

@@ -12,5 +12,6 @@ public interface PersonaRepository extends CrudRepository<Persona, Long>{
 
     List<Persona> findAll();
     List<Persona> findByEnabledTrue();
+    Persona findByDni(long dni);
     
 }
