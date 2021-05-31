@@ -1,6 +1,6 @@
 package com.example.aplication.controller;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,9 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -78,43 +78,5 @@ public class PersonaController {
         return ViewRouteHelper.REDIRECT_PERSONA;
     }
 
-    @GetMapping("/edit/{id}")
-    public String editar(@PathVariable("id") Long idPersona, Model model, RedirectAttributes attributes) {
-
-        Persona persona = null;
-        if (idPersona > 0) {
-            persona = personaService.buscarPorID(idPersona);
-        }
-        if (persona == null) {
-            System.out.println("el id solicitado no existe");
-            attributes.addFlashAttribute("error", "*ERROR* la Persona solicitado no existe");
-
-            // cambiar view
-            return ViewRouteHelper.REDIRECT_PERSONA;
-        }
-
-        model.addAttribute("titulo", "Formulario: Editar Rol");
-        model.addAttribute("persona", persona);
-        // cambiar view
-        return ViewRouteHelper.CREAR_PERSONAS;
-    }
-
-    @GetMapping("/buscar/persona/{dni}")
-    public String buscarPersonas(@PathVariable("dni") Long dni,Model model) {
-
-        List<Persona> listar = personaService.listarTodos();
-        List<Persona> listadoPersonas = new ArrayList<Persona>();
-
-        for (Persona persona : listar) {
-                if (persona.getDni() == dni) {
-                    listadoPersonas.add(persona);
-                }
-        }
-        model.addAttribute("titulo", "Lista de personas");
-        model.addAttribute("persona", listadoPersonas);
-
-        // cambiar view
-        return ViewRouteHelper.LISTAR_PERSONAS;
-    }
 
 }

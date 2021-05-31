@@ -40,6 +40,12 @@ public class PersonaServiceImplements implements IPersonaService {
         personaRepository.save(user);       
     }
 
+    @Override
+    public List<Persona> listarDni(Long dni) {
+        
+        return personaRepository.findByDni(dni);
+    }
+
 
     
     

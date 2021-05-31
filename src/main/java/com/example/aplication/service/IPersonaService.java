@@ -11,5 +11,6 @@ public interface IPersonaService {
     public Persona buscarPorID (long id);
     public Persona buscarPorDNI (long dni);
     public void guardar (Persona user);
+    public List <Persona> listarDni(Long dni);
 
 }
