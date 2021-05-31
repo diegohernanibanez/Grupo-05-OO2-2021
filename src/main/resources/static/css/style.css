@@ -8,8 +8,15 @@
 
 .body-form {
 
-    background-image: url('../images/fondo.jpg');
+    background-image: url('../images/fondo.jpg') ;
+    background-size: cover;
+    
 
+}
+.body-home{
+
+    background-image:url('../images/back.jpg')  ;
+    background-size: cover;
 }
 
 .form-registrer {
@@ -119,9 +126,43 @@
     left: 36px;
     background: #01e239;
 }
+
 #switch:checked+.lbl {
     background: rgb(43, 129, 3);
 }
-#switch{
+
+/* oculta el checkbox desplazable */
+#switch {
     display: none;
+}
+
+
+.box {
+    position: relative;
+    top: 26px;
+    left: 30px;
+}
+
+input.src {
+    text-align: center;
+    padding: 9px 7px 9px 32px;
+    outline: none;
+    font-size: 13px;
+    border-radius: 100px;
+    /* color de la fuente */
+    color: rgb(20, 2, 16);
+
+    border: 3px solid #017414;
+    background: #fff url("../images/search-icon.png") no-repeat 9px center;
+    width: 0px;
+    transition: all .5s;
+
+}
+
+input.src:hover {
+    width: 180px;
+    background-color: #fff;
+    border-color: #56e249;
+    box-shadow: 0 0 5px #110000;
+
 }
