@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<htm>
+    <html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="plantilla/template :: head">
+    </head>
+
+                            <th scope="col">Nombre</th>
+
+    <body>
+
+
+        <header th:replace="plantilla/template :: header"> </header>
+        <p>
+            <h4 class="text-center mb-4"> Buscar Permiso Por Periodo</h4>
+        </p>
+
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+
+
+
+
+                <label>
+
+
+                    <form th:action="@{/buscar}">
+
+
+
+                        <a class="btn btn-primary btn-sm" th:href="@{/home}" role="button">Volver</a>
+                        &nbsp;
+
+                        <!-- &nbsp;
+                        <input type="text" name="dni" id="dni" size="50" th:value="${dni}" required
+                        class="src" role="button" placeholder="Buscar Ingrese Dni" />
+                        &nbsp; -->
+                        <input type="text" name="dni" id="dni" size="50" class="src" role="button"
+                            placeholder="Buscar Ingrese Dni" />
+                        &nbsp;
+
+
+                    </form>
+
+
+                </label>
+
+                <table class="table table-dark table-hover">
+
+
+                    <thead>
+                        <tr>
+                            <!--th scope="col">Nombre</th-->
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Dni</th>
+                            <th scope="col">Fecha Emision</th>
+                            <th scope="col">Valido Hasta</th>
+                            <th scope="col">Vacaciones</th>
+                            <th scope="col">Dominio Vehiculo</th>
+                            <th scope="col">Vehiculo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- cambiar listProducts por el que corresponda -->
+                        <tr th:each="cl:${listProducts}">
+                            <td th:text="${cl.apellido}"></td>
+                            <td th:text="${cl.nombre}"></td>
+                            <td th:text="${cl.dni}"></td>
+                            <td th:text="${cl.nombre}"></td>
+                            <td th:text="${cl.apellido}"></td>
+                            <td th:text="${cl.dni}"></td>
+                            <td th:text="${cl.nombre}"></td>
+                            <td th:text="${cl.apellido}"></td>
+                            <td th:text="${cl.dni}"></td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+
+            </div>
+
+        </div>
+
+        <footer th:replace="plantilla/template :: footer"> </footer>
+
+
+
+
+    </body>
+
+    </html>

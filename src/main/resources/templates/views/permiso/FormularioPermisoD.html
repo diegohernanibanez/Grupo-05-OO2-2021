@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<htm>
+    <html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="plantilla/template :: head">
+    </head>
+
+
+    <body class="body-form">
+
+
+        <header th:replace="plantilla/template :: header"> </header>
+
+
+        <!--Formulario-->
+        <div class="container">
+            <form th:action="@{/savePermisoDiario}" th:object="${permiso}" method="post">
+                <div class="form-group row">
+
+                    <section class="form-registrer">
+                        <p align="center"> Formulario Registro Permiso Diario</p>
+                        <h4>Datos de la persona</h4>
+                        <input class="controls" th:field="*{pedido.nombre}" type="text" name="nombre" id="nombre"
+                            placeholder="Ingrese su nombre">
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('pedido.nombre')}"
+								th:errors="*{pedido.nombre}">
+							</small>
+                        <input class="controls" th:field="*{pedido.apellido}" type="text" name="apellido" id="apellido"
+                            placeholder="Ingrese su apellido">
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('pedido.apellido')}"
+								th:errors="*{pedido.apellido}">
+							</small>
+                        <h4>Solicitud de permiso Diario</h4>
+                        <input class="controls" th:field="*{pedido.dni}" type="text" name="desdeHasta" id="desdeHasta"
+                            placeholder="Ingrese su dni ">
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('pedido.dni')}"
+								th:errors="*{pedido.dni}">
+							</small>
+                            
+                        <h4>Lugar Solicitado</h4>
+
+                        <div class="form-group row">
+							<label class="col-md-2" for="desdeHasta">Lugar:</label>
+							<select type="lugar"  th:field="*{desdeHasta}" class="form-control form-control-sm col-md-6"
+								id="lugar">
+
+								<option th:each="r:${desdeHasta}" th:value="${r.idLugar}" th:text="${r.lugar}">
+								</option>
+
+							</select>
+
+						</div>
+                        
+
+
+                        <h4>Motivo de viaje</h4>
+                        <input class="controls" th:field="*{motivo}"  type="text" name="motivo" id="motivo"
+                            placeholder="Ingrese su motivo de viaje">
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('motivo')}"
+								th:errors="*{motivo}">
+							</small>
+                        <input class="botons" type="submit" th:href="@{/home}" role="button" value="Registrar" >
+                        <a class="botons btn btn-primary btn-sm" th:href="@{/seleccionPermiso}">Cancelar</a>
+
+
+
+                    </section>
+
+                </div>
+
+
+            </form>
+        </div>
+
+        <!--/Formulario-->
+
+
+        <footer th:replace="plantilla/template :: footer"> </footer>
+
+
+    </body>
+
+    </html>
