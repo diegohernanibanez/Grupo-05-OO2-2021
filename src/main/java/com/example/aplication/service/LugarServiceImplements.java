@@ -25,8 +25,8 @@ public class LugarServiceImplements implements ILugarService{
     //}
 
     @Override
-    public Lugar buscarPorID(int id) { 
-        return LugarRepository.findById(Long.valueOf(id)).orElse(null);
+    public Lugar buscarPorID(long id) { 
+        return LugarRepository.findById(id).orElse(null);
     }
 
     @Override

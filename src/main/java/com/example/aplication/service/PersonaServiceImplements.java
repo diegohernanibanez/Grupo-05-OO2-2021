@@ -31,11 +31,6 @@ public class PersonaServiceImplements implements IPersonaService {
     }
 
     @Override
-    public Persona buscarPorDNI(long dni) { 
-        return personaRepository.findByDni(dni);
-    }
-
-    @Override
     public void guardar (Persona user) {
         personaRepository.save(user);       
     }

@@ -21,7 +21,7 @@ public class Lugar {
 
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY) 
-    private int idLugar;
+    private long idLugar;
 
     @Column(name="lugar", nullable=false, length=45)
     private String lugar;
@@ -38,11 +38,11 @@ public class Lugar {
     @ManyToMany(cascade = CascadeType.ALL) 
     protected Set<Permiso> permisos = new HashSet<Permiso>();
 
-    public int getIdLugar() {
+    public long getIdLugar() {
         return idLugar;
     }
 
-    public void setIdLugar(int idLugar) {
+    public void setIdLugar(long idLugar) {
         this.idLugar = idLugar;
     }
 
