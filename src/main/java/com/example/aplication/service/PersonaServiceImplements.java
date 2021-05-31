@@ -30,11 +30,7 @@ public class PersonaServiceImplements implements IPersonaService {
         return personaRepository.findById(id).orElse(null);
     }
 
-    @Override
-    public Persona buscarPorDNI(long dni) { 
-        return personaRepository.findByDni(dni);
-    }
-
+  
     @Override
     public void guardar (Persona user) {
         personaRepository.save(user);       
@@ -44,6 +40,12 @@ public class PersonaServiceImplements implements IPersonaService {
     public List<Persona> listarDni(Long dni) {
         
         return personaRepository.findByDni(dni);
+    }
+
+    @Override
+    public Persona buscarPorDNI(long dni) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 
