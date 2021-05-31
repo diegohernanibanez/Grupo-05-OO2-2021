@@ -5,65 +5,74 @@
     <head th:replace="plantilla/template :: head">
     </head>
 
+                            <th scope="col">Nombre</th>
 
     <body>
 
 
         <header th:replace="plantilla/template :: header"> </header>
         <p>
-            <h4 class="text-center mb-4"> Buscar persona por DNI</h4>
+            <h4 class="text-center mb-4"> Buscar Permiso Diario</h4>
         </p>
 
         <div class="container mt-5">
             <div class="row justify-content-center">
-               
 
-          
 
-                <label >
 
-         
+
+                <label>
+
+
                     <form th:action="@{/buscar}">
 
-                        <a class="btn btn-primary btn-sm" th:href="@{/views/personas/}" role="button">Volver</a>
+
+
+                        <a class="btn btn-primary btn-sm" th:href="@{/home}" role="button">Volver</a>
                         &nbsp;
-                        &nbsp;
+
+                        <!-- &nbsp;
                         <input type="text" name="dni" id="dni" size="50" th:value="${dni}" required
                         class="src" role="button" placeholder="Buscar Ingrese Dni" />
+                        &nbsp; -->
+                        <input type="text" name="dni" id="dni" size="50" class="src" role="button"
+                            placeholder="Buscar Ingrese Dni" />
                         &nbsp;
 
 
                     </form>
 
-            
-                    </label>
-                  
+
+                </label>
+
                 <table class="table table-dark table-hover">
-                   
+
 
                     <thead>
                         <tr>
                             <!--th scope="col">Nombre</th-->
-                            <th scope="col">Persona</th>
                             <th scope="col">Apellido</th>
+                            <th scope="col">Nombre</th>
                             <th scope="col">Dni</th>
-                            <th scope="col">Enabled</th>
+                            <th scope="col">Fecha Emision</th>
+                            <th scope="col">Motivo</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- cambiar listProducts por el que corresponda -->
                         <tr th:each="cl:${listProducts}">
-
+                            <td th:text="${cl.apellido}"></td>
+                            <td th:text="${cl.nombre}"></td>
+                            <td th:text="${cl.dni}"></td>
                             <td th:text="${cl.nombre}"></td>
                             <td th:text="${cl.apellido}"></td>
-                            <td th:text="${cl.dni}"></td>
-                            <td th:text="${cl.enabled}" id="pie"></td>
-
                         </tr>
 
                     </tbody>
-             
+
                 </table>
-            
+
 
             </div>
 
