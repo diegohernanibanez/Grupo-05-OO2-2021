@@ -16,7 +16,7 @@ public class Persona {
 
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY) 
-    private int id;
+    private long id;
 
     @Column(name="nombre", nullable=false, length=45)
     private String nombre;
@@ -44,12 +44,12 @@ public class Persona {
     }
 
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -83,17 +83,6 @@ public class Persona {
         this.dni = dni;
     }
 
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((apellido == null) ? 0 : apellido.hashCode());
-        result = prime * result + (int) (dni ^ (dni >>> 32));
-        result = prime * result + id;
-        result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-        return result;
-    }
 
 
     @Override
