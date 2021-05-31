@@ -22,24 +22,29 @@
 
             <div class="container">
 
-                <a class="btn btn-primary btn-sm" th:href="@{/views/personas/create}" role="button">Nueva
-                    Persona</a>
-                </a> <br/>
-                <br/></a>
+                <div class="box">
+
+                    <form th:action="@{/buscar}">
+
+                        <a class="btn btn-primary btn-sm" th:href="@{/views/personas/create}" role="button">Nueva
+                            Persona</a> 
+                            <input type="text" name="dni" id="dni" size="50" th:value="${dni}" required
+                            class="src" role="button" placeholder="Buscar Ingrese Dni" />
+
+                    </form>
+                </div>
 
 
-                <h4 class="text-center mb-4"> Buscar persona por DNI</h4>
-                <!-- <form th:action="@{/}" th:object="${persona}" method="get">
-
-                    <input type="text" th:field="{dni}" class="form-control col-md-4" />
-
-                    <button type="submit" class="btn btn-success mt-4 mb-4">Buscar</button>
 
 
-                </form> -->
-                
+
+
+                <h4 class="text-center mb-4"> Listado De personas </h4>
+                <p>
+
+                </p>
             </div>
-            
+
 
 
 
@@ -57,11 +62,11 @@
                 <tbody>
                     <tr th:each="cl:${persona}">
 
-                        <td th:text="${cl.nombre}" ></td>
+                        <td th:text="${cl.nombre}"></td>
                         <td th:text="${cl.apellido}"></td>
                         <td th:text="${cl.dni}"></td>
-                        <td th:text="${cl.enabled}" id= "pie"></td>
-                  
+                        <td th:text="${cl.enabled}" id="pie"></td>
+
                     </tr>
 
                 </tbody>

@@ -10,25 +10,40 @@
 
 
         <header th:replace="plantilla/template :: header"> </header>
+        <p>
+            <h4 class="text-center mb-4"> Buscar persona por DNI</h4>
+        </p>
 
         <div class="container mt-5">
             <div class="row justify-content-center">
+               
 
-                <h4 class="text-center mb-4"> Buscar persona por DNI</h4>
+          
 
+                <label >
 
-                <form th:action="@{/buscar}">
-                    &nbsp;
-                    <input type="text" name="dni" id="dni" size="50" th:value="${dni}" required />
-                    &nbsp;
-                    <input type="submit" value="Search" />
-                    &nbsp;
-
-                </form>
+         
+                    <form th:action="@{/buscar}">
 
 
 
+                        <a class="btn btn-primary btn-sm" th:href="@{/views/personas/}" role="button">Volver</a>
+                        &nbsp;
+                      
+                        &nbsp;
+                        <input type="text" name="dni" id="dni" size="50" th:value="${dni}" required
+                        class="src" role="button" placeholder="Buscar Ingrese Dni" />
+                        &nbsp;
+
+
+                    </form>
+
+            
+                    </label>
+                  
                 <table class="table table-dark table-hover">
+                   
+
                     <thead>
                         <tr>
                             <!--th scope="col">Nombre</th-->
@@ -49,9 +64,9 @@
                         </tr>
 
                     </tbody>
-
+             
                 </table>
-
+            
 
             </div>
 
