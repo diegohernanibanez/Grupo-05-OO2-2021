@@ -56,7 +56,14 @@ public class BuscarController {
     }
   
 
+    @RequestMapping("/buscar/permisoFecha")
+    public String buscarPermisoFecha(Model model, @Param("dni") Long dni) {
+        List<Persona> listProducts = personaServiceImplements.listarDni(dni);
+        model.addAttribute("listProducts", listProducts);
+        model.addAttribute("dni", dni);
 
+        return "views/buscar/buscarFechaValida";
+    }
 
 
 }

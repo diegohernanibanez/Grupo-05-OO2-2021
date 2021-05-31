@@ -5,14 +5,14 @@
     <head th:replace="plantilla/template :: head">
     </head>
 
-
+                            <th scope="col">Nombre</th>
 
     <body>
 
 
         <header th:replace="plantilla/template :: header"> </header>
         <p>
-            <h4 class="text-center mb-4"> Buscar Permiso por Rodado</h4>
+            <h4 class="text-center mb-4"> Buscar Permiso Entre Fechas</h4>
         </p>
 
         <div class="container mt-5">
@@ -29,14 +29,16 @@
 
 
                         <a class="btn btn-primary btn-sm" th:href="@{/home}" role="button">Volver</a>
-                        &nbsp;
+                       
 
                         <!-- &nbsp;
                         <input type="text" name="dni" id="dni" size="50" th:value="${dni}" required
                         class="src" role="button" placeholder="Buscar Ingrese Dni" />
                         &nbsp; -->
-                        <input type="text" name="dominio" id="dominio" size="50" class="src" role="button"
-                            placeholder="Ingrese Dominio Del Vehiculo" />
+                        &nbsp;
+                        <span>Ingrese Fecha -> </span>
+                        <input type="date" name="Fecha" id="Fecha" size="50" class="date" role="button"
+                             />
                         &nbsp;
 
 
