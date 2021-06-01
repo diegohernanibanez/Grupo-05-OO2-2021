@@ -65,7 +65,6 @@ public class PermisoController {
             RedirectAttributes attributes) {
 
         System.out.println("RESULT: " + result);
-        System.out.println("HOLA");
 
         if (result.hasErrors()) {
 

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -35,7 +36,13 @@ public abstract class Permiso {
     @Column(name="fecha", nullable=false)
     protected LocalDate fecha;
 
-    @ManyToMany(mappedBy = "permisos")
+    @JoinTable(
+        name = "pemisos_lugares",
+        joinColumns = @JoinColumn(name = "FK_LUGAR", nullable = false),
+        inverseJoinColumns = @JoinColumn(name="FK_PERMISO", nullable = false)
+    )
+
+    @ManyToMany(cascade = CascadeType.ALL)
     protected Set<Lugar> desdeHasta = new HashSet<Lugar>();
     
 
