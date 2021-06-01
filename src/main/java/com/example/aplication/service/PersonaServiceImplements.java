@@ -41,6 +41,10 @@ public class PersonaServiceImplements implements IPersonaService {
         return personaRepository.findByDni(dni);
     }
 
+    @Override
+    public Persona buscarPorDni(long dni){
+        return personaRepository.findByDni(dni);
+    }
    
 
 

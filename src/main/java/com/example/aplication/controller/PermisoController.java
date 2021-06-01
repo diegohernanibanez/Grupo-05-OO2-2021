@@ -5,8 +5,10 @@ import javax.validation.Valid;
 import com.example.aplication.entity.Lugar;
 import com.example.aplication.entity.Permiso;
 import com.example.aplication.entity.PermisoDiario;
+import com.example.aplication.entity.Persona;
 import com.example.aplication.service.ILugarService;
 import com.example.aplication.service.IPermisoService;
+import com.example.aplication.service.IPersonaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,9 @@ public class PermisoController {
     private IPermisoService permisoService;
 
     @Autowired
+    private IPersonaService personaService;
+
+    @Autowired
     private ILugarService lugarService;
 
     @GetMapping({ "/seleccionPermiso" })
@@ -43,14 +48,14 @@ public class PermisoController {
     @GetMapping({ "/crearPermisoDiario" })
     public String permisoDiario(Model model) {
         Permiso permiso = new PermisoDiario();
-
+        Persona persona = new Persona();
         List<Lugar> listLugares = lugarService.listarTodos();
-        System.out.println(listLugares);
+
         model.addAttribute("desdeHasta", listLugares);
-
         model.addAttribute("titulo", "Formulario: Nuevo Permiso");
-
+        model.addAttribute("pedido",persona);
         model.addAttribute("permiso", permiso);
+        
         return "views/permiso/FormularioPermisoD";
     }
 
@@ -59,6 +64,7 @@ public class PermisoController {
             RedirectAttributes attributes) {
 
         System.out.println("RESULT: " + result);
+        System.out.println("HOLA");
 
         if (result.hasErrors()) {
 
@@ -72,8 +78,15 @@ public class PermisoController {
         }
 
         permiso.setFecha(LocalDate.now());
-        model.addAttribute("titulo", "Lista de roles");
 
+        //buscamos persona. Si no existe, la creamos 
+        if(personaService.buscarPorDni(permiso.getPedido().getDni()) != null) {
+            permiso.setPedido(personaService.buscarPorDni(permiso.getPedido().getDni()));
+        } else {
+            personaService.guardar(permiso.getPedido());
+        }
+
+        model.addAttribute("titulo", "Lista de roles");
         permisoService.guardar(permiso);
         System.out.println("Permiso Guardado: " + permiso);
         attributes.addFlashAttribute("success", "Permiso guardado con exito");

@@ -9,6 +9,7 @@ public interface IPersonaService {
     public List <Persona> listarTodos();
     public List <Persona> listarActivos();
     public Persona buscarPorID (long id);
+    public Persona buscarPorDni (long dni);
     public void guardar (Persona user);
     public List <Persona> listarDni(Long dni);
 
