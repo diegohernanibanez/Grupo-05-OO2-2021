@@ -8,7 +8,7 @@ import com.example.aplication.entity.Permiso;
 import com.example.aplication.repository.PermisoRepository;
 
 @Service
-public class PermisoServiceImplements implements IPermisoService{
+public class PermisoServiceImplements implements IPermisoService {
 
     @Autowired
     private PermisoRepository permisoRepository;
@@ -20,18 +20,24 @@ public class PermisoServiceImplements implements IPermisoService{
 
     // @Override
     // public List<Permiso> listarActivos() {
-    //     return (List<Permiso>)permisoRepository.findByEnabledTrue();
-        
-    //}
+    // return (List<Permiso>)permisoRepository.findByEnabledTrue();
+
+    // }
 
     @Override
-    public Permiso buscarPorID(long id) { 
+    public Permiso buscarPorID(long id) {
         return permisoRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void guardar (Permiso user) {
-        permisoRepository.save(user);       
+    public void guardar(Permiso user) {
+        permisoRepository.save(user);
     }
-    
+
+    @Override
+    public List<Permiso> BuscarPermisoDni(long dni) {
+        
+        return permisoRepository.findByPedidoDni(dni);
+    }
+
 }

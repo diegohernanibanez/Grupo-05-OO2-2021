@@ -8,9 +8,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PermisoRepository extends CrudRepository <Permiso, Long> {
-    
+public interface PermisoRepository extends CrudRepository<Permiso, Long> {
+
     List<Permiso> findAll();
-   // List<Permiso> findByEnabledTrue();
-    
+    // List<Permiso> findByEnabledTrue();
+
+    List<Permiso> findByPedidoDni(long dni);
+
 }

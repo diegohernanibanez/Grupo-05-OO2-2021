@@ -8,14 +8,20 @@
 
 .body-form {
 
-    background-image: url('../images/fondo.jpg') ;
+    background-image: url('../images/fondo.jpg');
     background-size: cover;
-    
+
 
 }
-.body-home{
 
-    background-image:url('../images/back.jpg')  ;
+.body-home {
+
+    background-image: url('../images/back.jpg');
+    background-size: cover;
+}
+
+.body-buscar {
+    background-image: url('https://img4.goodfon.com/wallpaper/nbig/c/fe/valeriia-zhelezovskaia-stiazhkina-kot-detektiv-knights-bride.jpg');
     background-size: cover;
 }
 
@@ -33,6 +39,8 @@
 
 
 }
+
+
 
 .form-registrer h4 {
     font-size: 17px;
@@ -52,6 +60,13 @@
     font-size: 18px;
     box-shadow: 7px 1px 37px #000000;
     color: white;
+}
+
+.controls:hover {
+    box-shadow: inset 7px 1px 37px #3b0909;
+    cursor: pointer;
+    color: white;
+
 }
 
 .form-registrer p {
@@ -82,6 +97,16 @@
     margin: 10px 0;
     font-size: 16px;
     box-shadow: 7px 1px 37px #000000;
+    box-shadow: inset 0 0 0 0 #ff0404;
+    border-radius: 4px;
+    transition: ease-out 0.3s;
+}
+
+.form-registrer .botons:hover {
+    box-shadow: inset 500px 0 0 0 #ff0404;
+    cursor: pointer;
+    color: #000000;
+
 }
 
 
@@ -164,5 +189,58 @@ input.src:hover {
     background-color: #fff;
     border-color: #56e249;
     box-shadow: 0 0 5px #110000;
+
+}
+
+.h1 {
+
+
+    box-shadow: 1px 1p 2p 5px #9c0505;
+
+}
+
+
+.form-registrer2 {
+
+    width: 300px;
+    height: 150px;
+    background: #530303c0;
+    padding: 4px;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 4px;
+    font-family: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 37px #000000;
+
+
+}
+ 
+.form-registrer2 h4 {
+    font-size: 17px;
+    margin-top: 1px;
+    padding: 3px;
+    
+    text-shadow: 3px 3px 4px  #000000;
+
+}
+.form-registrer2 .botons {
+    width: 100%;
+    background: #5f0000;
+    border: none;
+    padding: 5px;
+    color: white;
+    margin: 10px 0;
+    font-size: 16px;
+    box-shadow: 7px 1px 37px #000000;
+    box-shadow: inset 0 0 0 0 #ff0404;
+    border-radius: 4px;
+    transition: ease-out 0.5s;
+}
+
+.form-registrer2 .botons:hover {
+    box-shadow: inset 500px 0 0 0 #ff0404;
+    cursor: pointer;
+    color: #000000;
 
 }

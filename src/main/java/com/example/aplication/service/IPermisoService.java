@@ -10,5 +10,6 @@ public interface IPermisoService {
     // public List <Permiso> listarActivos();
     public Permiso buscarPorID (long id);
     public void guardar (Permiso user);
+    public List<Permiso> BuscarPermisoDni (long dni);
     
 }

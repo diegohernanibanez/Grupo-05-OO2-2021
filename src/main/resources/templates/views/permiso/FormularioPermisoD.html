@@ -18,11 +18,11 @@
                 <div class="form-group row">
 
                     <section class="form-registrer">
-                        <p align="center"> Formulario Registro Permiso Diario</p>
+                        <p align:center> Formulario Registro Permiso Diario</p>
                         <h4>Datos de la persona</h4>
                         <input class="controls" th:field="*{pedido.nombre}" type="text" name="nombre" id="nombre"
                             placeholder="Ingrese su nombre">
-                            <small class="form-text text-danger" th:if="${#fields.hasErrors('pedido.nombre')}"
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('pedido.nombre')}"
 								th:errors="*{pedido.nombre}">
 							</small>
                         <input class="controls" th:field="*{pedido.apellido}" type="text" name="apellido" id="apellido"
@@ -31,8 +31,9 @@
 								th:errors="*{pedido.apellido}">
 							</small>
                         <h4>Solicitud de permiso Diario</h4>
-                        <input class="controls" th:field="*{pedido.dni}" type="text" name="desdeHasta" id="desdeHasta"
-                            placeholder="Ingrese su dni ">
+                        <h4>Ingrese su dni</h4>
+                        <input   class="controls" th:field="*{pedido.dni}" type="text" name="dni" id="dni"
+                            placeholder="Ingrese su dni">
                             <small class="form-text text-danger" th:if="${#fields.hasErrors('pedido.dni')}"
 								th:errors="*{pedido.dni}">
 							</small>
@@ -60,7 +61,7 @@
 								th:errors="*{motivo}">
 							</small>
                         <input class="botons" type="submit" th:href="@{/home}" role="button" value="Registrar" >
-                        <a class="botons btn btn-primary btn-sm" th:href="@{/seleccionPermiso}">Cancelar</a>
+                        <a class="botons btn btn-primary btn-sm"  style="text-decoration:none" th:href="@{/seleccionPermiso}">Cancelar</a>
 
 
 
