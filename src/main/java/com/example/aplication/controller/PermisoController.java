@@ -6,6 +6,7 @@ import com.example.aplication.entity.Lugar;
 import com.example.aplication.entity.Permiso;
 import com.example.aplication.entity.PermisoDiario;
 import com.example.aplication.entity.Persona;
+import com.example.aplication.helper.ViewRouteHelper;
 import com.example.aplication.service.ILugarService;
 import com.example.aplication.service.IPermisoService;
 import com.example.aplication.service.IPersonaService;
@@ -37,12 +38,12 @@ public class PermisoController {
 
     @GetMapping({ "/seleccionPermiso" })
     public String eleccionPermiso() {
-        return "/views/permiso/EleccionPermiso";
+        return ViewRouteHelper.SELECCION_PERMISO;
     }
 
     @GetMapping({ "/permisoPeriodo" })
     public String permisoPeriodo() {
-        return "views/permiso/FormularioPermisoP";
+        return ViewRouteHelper.CREAR_PERMISO_PERIODO;
     }
 
     @GetMapping({ "/crearPermisoDiario" })
@@ -56,7 +57,7 @@ public class PermisoController {
         model.addAttribute("pedido",persona);
         model.addAttribute("permiso", permiso);
         
-        return "views/permiso/FormularioPermisoD";
+        return ViewRouteHelper.CREAR_PERMISO_DIARIO;
     }
 
     @PostMapping("/savePermisoDiario")
@@ -73,7 +74,7 @@ public class PermisoController {
             System.out.println("Errores en el formulario: ");
 
             // cambiar viewRoute
-            return "views/permiso/FormularioPermisoD";
+            return ViewRouteHelper.CREAR_PERMISO_DIARIO;
 
         }
 
@@ -92,12 +93,12 @@ public class PermisoController {
         attributes.addFlashAttribute("success", "Permiso guardado con exito");
 
         // cambiar view
-        return "redirect:/home";
+        return ViewRouteHelper.HOME_ROOT;
     }
 
     @GetMapping({ "/permiso1" })
     public String form1() {
-        return "views/permiso/FormularioPermisoDmatias";
+        return ViewRouteHelper.PERMISO_D1_MATI;
     }
 
 }
