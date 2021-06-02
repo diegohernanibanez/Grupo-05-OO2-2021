@@ -20,26 +20,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/views/rodados")
+@RequestMapping("/rodados")
 public class RodadoController {
 
     @Autowired
     private IRodadoService rodadoService;
 
-    @GetMapping("/")
-    public String listarRodados(Model model) {
-        List<Rodado> listadoRodados = rodadoService.listarTodos();
-        model.addAttribute("titulo", "Lista de rodados");
-        model.addAttribute("rodado", listadoRodados);
-        return ViewRouteHelper.LISTAR_RODADOS;
-    }
-
-    @GetMapping("create")
+    @GetMapping("/create")
     public String crear(Model model) {
 
         Rodado rodado = new Rodado();
 
-        model.addAttribute("titulo", "Formulario: Nuevo User");
+        model.addAttribute("titulo", "Formulario: Nuevo rodado");
         model.addAttribute("rodado", rodado);
         return ViewRouteHelper.CREAR_RODADO;
     }

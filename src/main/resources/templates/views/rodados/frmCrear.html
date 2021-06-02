@@ -17,7 +17,7 @@
 			<div class="card bg-light">
 				<div class="card-header bg-dark text-white" th:text=${titulo}></div>
 				<div class="card-body">
-					<form th:action="@{/views/rodados/save}" th:object="${rodado}" method="post">
+					<form th:action="@{/rodados/save}" th:object="${rodado}" method="post">
 
 						<input type="hidden" th:field="*{idRodado}">
 						<label class="col-md-2" for="dominio">Dominio:</label>
@@ -38,7 +38,7 @@
 						</small>
 						<div class="card-footer bg-dark">
 							<input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
-							<a class="btn btn-primary btn-sm" th:href="@{/views/rodados/}" role="button">Cancelar</a>
+							<a class="btn btn-primary btn-sm" th:href="@{/rodados/}" role="button">Cancelar</a>
 						</div>
 					</form>
 				</div>
