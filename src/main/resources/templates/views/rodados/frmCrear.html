@@ -21,6 +21,7 @@
 
 						<input type="hidden" th:field="*{idRodado}">
 						<label class="col-md-2" for="dominio">Dominio:</label>
+						
 						<input type="text" th:field="*{dominio}" class="form-control form-control-sm col-md-6"
 							id="dominio" placeholder="Dominio del rodado">
 						<small class="form-text text-danger" th:if="${#fields.hasErrors('dominio')}"

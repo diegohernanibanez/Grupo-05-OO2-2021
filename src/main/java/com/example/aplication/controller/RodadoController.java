@@ -1,7 +1,5 @@
 package com.example.aplication.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import com.example.aplication.entity.Rodado;
@@ -45,7 +43,6 @@ public class RodadoController {
             
             model.addAttribute("titulo", "Formulario: Nuevo rodado");
             model.addAttribute("rodado", rodado);
-            System.out.println("Errores en el formulario: ");
             return ViewRouteHelper.CREAR_RODADO;
         }
 
