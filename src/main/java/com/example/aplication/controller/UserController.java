@@ -66,7 +66,6 @@ public class UserController {
             RedirectAttributes attributes) {
 
         List<Role> listRoles = roleService.listarActivos();
-        System.out.println("RESULT: " + result);
        
         if (result.hasErrors()) {
             

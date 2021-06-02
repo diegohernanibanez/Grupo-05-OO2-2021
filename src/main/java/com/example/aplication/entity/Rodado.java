@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table (name = "rodado")
@@ -16,9 +19,12 @@ public class Rodado {
     private int idRodado;
 
     @Column(name="dominio", nullable=false)
+    @NotEmpty
+    @Pattern(regexp = "[a-z]{3}[\\d]{3}|[a-z]{2}[\\d]{3}[a-z]{2}", message = "El dominio tiene que cumplir alguno de estos formatos: aaa123, aa123aa")
     private String dominio;
 
     @Column(name="vehiculo", nullable=false)
+    @NotEmpty
     private String vehiculo;
 
     public int getIdRodado() {
