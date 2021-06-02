@@ -149,7 +149,7 @@
 
 #switch:checked+.lbl::after {
     left: 36px;
-    background: #01e239;
+    background: #ff0404;
 }
 
 #switch:checked+.lbl {
@@ -177,9 +177,9 @@ input.src {
     /* color de la fuente */
     color: rgb(20, 2, 16);
 
-    border: 3px solid #017414;
+    border: 3px solid #9c0505;
     background: #fff url("../images/search-icon.png") no-repeat 9px center;
-    width: 0px;
+    width: 180px;
     transition: all .5s;
 
 }
@@ -187,7 +187,7 @@ input.src {
 input.src:hover {
     width: 180px;
     background-color: #fff;
-    border-color: #56e249;
+    border-color: #ff0404;
     box-shadow: 0 0 5px #110000;
 
 }
@@ -203,7 +203,7 @@ input.src:hover {
 .form-registrer2 {
 
     width: 300px;
-    height: 150px;
+    height: 200px;
     background: #530303c0;
     padding: 4px;
     margin: auto;
@@ -225,12 +225,12 @@ input.src:hover {
 
 }
 .form-registrer2 .botons {
-    width: 100%;
+    width: 97%;
     background: #5f0000;
     border: none;
     padding: 5px;
     color: white;
-    margin: 10px 0;
+    margin: 7px 0;
     font-size: 16px;
     box-shadow: 7px 1px 37px #000000;
     box-shadow: inset 0 0 0 0 #ff0404;

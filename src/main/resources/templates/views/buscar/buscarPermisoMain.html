@@ -18,11 +18,12 @@
 
             <h4 class="text-center mb-4"> Buscar Permiso </h4>
 
-            <form class="text-center mb-4" th:action="@{/buscar/permiso}">
+            <form class="text-center mb-4" th:action="@{/buscar/permiso/}">
                 <input type="text" name="dni" id="dni" size="50" th:value="${dni}" required class="src" role="button"
                     placeholder="Buscar Ingrese Dni" />
+                <input class="botons btn btn-primary btn-sm" type="submit" style="text-decoration:none"></input>
                 <a class="botons btn btn-primary btn-sm" style="text-decoration:none"
-                    th:href="@{/seleccionPermiso}">Cancelar</a>
+                    th:href="@{/permiso/}">Cancelar</a>
             </form>
 
         </section>
