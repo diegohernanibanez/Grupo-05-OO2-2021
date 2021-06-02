@@ -50,9 +50,11 @@ public class PermisoController {
         Permiso permiso = new PermisoDiario();
         Persona persona = new Persona();
         List<Lugar> listLugares = lugarService.listarTodos();
+        String motivo = "";
 
         model.addAttribute("desdeHasta", listLugares);
         model.addAttribute("titulo", "Formulario: Nuevo Permiso");
+        model.addAttribute("motivo", motivo);
         model.addAttribute("pedido",persona);
         model.addAttribute("permiso", permiso);
         
@@ -63,25 +65,31 @@ public class PermisoController {
     public String guardar(@Valid @ModelAttribute PermisoDiario permiso, BindingResult result, Model model,
             RedirectAttributes attributes) {
         
-        List<Lugar> listLugares = lugarService.listarTodos();
-        Persona person = new Persona();
-        if (result.hasErrors()) {
-            model.addAttribute("desdeHasta", listLugares);
-            model.addAttribute("titulo", "Formulario: Nuevo Permiso");
-            model.addAttribute("pedido",person);
-            model.addAttribute("permiso", permiso);
-            return ViewRouteHelper.CREAR_PERMISO_DIARIO;
-        }
+        System.out.println("RESULT" + result);
+
+
+        // List<Lugar> listLugares = lugarService.listarTodos();
+        // if (result.hasErrors()) {
+        //     model.addAttribute("desdeHasta", listLugares);
+        //     model.addAttribute("titulo", "Formulario: Nuevo Permiso");
+        //     model.addAttribute("permiso", permiso);
+        //     return ViewRouteHelper.CREAR_PERMISO_DIARIO;
+        // }
 
         permiso.setFecha(LocalDate.now());
 
-        //buscamos persona. Si no existe, la creamos 
+        //buscamos persona. Si no existe, Tira error 
         Persona persona = personaService.buscarPorDni(permiso.getPedido().getDni());
         
         if(persona != null) {
             permiso.setPedido(persona);
         } else {
             attributes.addFlashAttribute("error", "La persona no esta dada de alta");
+            return ViewRouteHelper.REDIRECT_PERMISO_DIARIO_CREAR;
+        }
+
+        if(permiso.getMotivo().isEmpty()){
+            attributes.addFlashAttribute("error", "El motivo esta vacio");
             return ViewRouteHelper.REDIRECT_PERMISO_DIARIO_CREAR;
         }
         permisoService.guardar(permiso);
