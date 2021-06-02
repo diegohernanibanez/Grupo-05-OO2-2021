@@ -5,7 +5,9 @@ import javax.validation.Valid;
 import com.example.aplication.entity.Lugar;
 import com.example.aplication.entity.Permiso;
 import com.example.aplication.entity.PermisoDiario;
+import com.example.aplication.entity.PermisoPeriodo;
 import com.example.aplication.entity.Persona;
+import com.example.aplication.entity.Rodado;
 import com.example.aplication.helper.ViewRouteHelper;
 import com.example.aplication.service.ILugarService;
 import com.example.aplication.service.IPermisoService;
@@ -41,8 +43,63 @@ public class PermisoController {
     }
 
     @GetMapping({ "/periodo/create" })
-    public String permisoPeriodo() {
+    public String permisoPeriodo(Model model) {
+
+        Permiso permiso = new PermisoPeriodo();
+        Persona persona = new Persona();
+        Rodado rodado = new Rodado();
+        List<Lugar> listLugares = lugarService.listarTodos();
+        String motivo = "";
+
+        model.addAttribute("desdeHasta", listLugares);
+        model.addAttribute("titulo", "Formulario: Nuevo Permiso");
+        model.addAttribute("motivo", motivo);
+        model.addAttribute("rodado", rodado);
+        model.addAttribute("pedido",persona);
+        model.addAttribute("permiso", permiso);
+
         return ViewRouteHelper.CREAR_PERMISO_PERIODO;
+    }
+
+    @PostMapping("/periodo/save")
+    public String guardarPermisoP(@Valid @ModelAttribute PermisoPeriodo permiso, BindingResult result, Model model,
+            RedirectAttributes attributes) {
+        
+        System.out.println("RESULT" + result);
+
+
+        List<Lugar> listLugares = lugarService.listarTodos();
+        if (result.hasErrors()) {
+            model.addAttribute("desdeHasta", listLugares);
+            model.addAttribute("titulo", "Formulario: Nuevo Permiso");
+            model.addAttribute("permiso", permiso);
+            return ViewRouteHelper.CREAR_PERMISO_PERIODO;
+        }
+
+        permiso.setFecha(LocalDate.now());
+
+        //buscamos persona. Si no existe, Tira error 
+        Persona persona = personaService.buscarPorDni(permiso.getPedido().getDni());
+        
+        if(persona != null) {
+            permiso.setPedido(persona);
+        } else {
+            attributes.addFlashAttribute("error", "La persona no esta dada de alta");
+            return ViewRouteHelper.REDIRECT_PERMISO_PERIODO_CREAR;
+        }
+
+        
+        if ( permiso.getDesdeHasta().size() == 1 ) {
+            attributes.addFlashAttribute("error", "El lugar de ida y de llegada no pueden ser iguales");
+            return ViewRouteHelper.REDIRECT_PERMISO_PERIODO_CREAR;
+        }
+
+        permiso.setFecha(LocalDate.now());
+        permisoService.guardar(permiso);
+        attributes.addFlashAttribute("success", "Permiso guardado con exito");
+
+        // cambiar view
+        return ViewRouteHelper.HOME_ROOT;
     }
 
     @GetMapping({ "/diario/create" })
