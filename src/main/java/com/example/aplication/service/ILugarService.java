@@ -7,7 +7,7 @@ import com.example.aplication.entity.Lugar;
 public interface ILugarService {
     public List <Lugar> listarTodos();
     // public List <Lugar> listarActivos();
-    public Lugar buscarPorID (int id);
+    public Lugar buscarPorID (long id);
     public void guardar (Lugar user);
     
 }

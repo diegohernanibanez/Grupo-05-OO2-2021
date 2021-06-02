@@ -23,8 +23,8 @@
 
                 <label>
 
-
-                    <form th:action="@{/buscar}">
+<!-- 
+                    <form th:action="@{/buscar/permiso}">
 
 
 
@@ -35,12 +35,12 @@
                         <input type="text" name="dni" id="dni" size="50" th:value="${dni}" required
                         class="src" role="button" placeholder="Buscar Ingrese Dni" />
                         &nbsp; -->
-                        <input type="text" name="dni" id="dni" size="50" class="src" role="button"
+                        <input type="text" name="dni" id="dni" size="50" th:value="${dni}" class="src" role="button"
                             placeholder="Buscar Ingrese Dni" />
                         &nbsp;
 
 
-                    </form>
+                    </form> -->
 
 
                 </label>
