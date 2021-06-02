@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<htm>
+	<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="plantilla/template :: head">
+	</head>
+
+
+	<body>
+
+
+		<header th:replace="plantilla/template :: header"> </header>
+
+
+		<!--Formulario-->
+		<div class="container">
+			<div class="card bg-light">
+				<div class="card-header bg-dark text-white" th:text=${titulo}></div>
+				<div class="card-body">
+					<form th:action="@{/views/rodados/save}" th:object="${rodado}" method="post">
+
+						<input type="hidden" th:field="*{idRodado}">
+						<label class="col-md-2" for="dominio">Dominio:</label>
+						<input type="text" th:field="*{dominio}" class="form-control form-control-sm col-md-6"
+							id="dominio" placeholder="Dominio del rodado">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('dominio')}"
+							th:errors="*{dominio}">
+						</small>
+
+						<label class="col-md-2" for="vehiculo">Vehiculo:</label>
+						<select class="form-control form-control-sm col-md-6" th:field="*{vehiculo}"
+							id="vehiculo">
+							<option value="Auto">Auto</option>
+							<option value="Moto">Moto</option>
+						</select>
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('vehiculo')}"
+							th:errors="*{vehiculo}">
+						</small>
+						<div class="card-footer bg-dark">
+							<input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
+							<a class="btn btn-primary btn-sm" th:href="@{/views/rodados/}" role="button">Cancelar</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!--/Formulario-->
+
+		<footer th:replace="plantilla/template :: footer"> </footer>
+
+
+	</body>
+
+	</html>
