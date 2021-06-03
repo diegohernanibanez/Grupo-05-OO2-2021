@@ -9,6 +9,7 @@ import com.example.aplication.service.PersonaServiceImplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -26,7 +27,8 @@ public class BuscarController {
     @Autowired
     private PermisoServiceImplements permisoServiceImplements;
 
-    @RequestMapping("/")
+    
+    @RequestMapping("/buscar")
     public String viewHomePage(Model model, @Param("dni") Long dni) {
         List<Persona> listProducts = personaServiceImplements.listarDni(dni);
         model.addAttribute("listProducts", listProducts);

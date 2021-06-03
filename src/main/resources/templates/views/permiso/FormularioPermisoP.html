@@ -14,51 +14,67 @@
 
         <!--Formulario-->
         <div class="container">
-            <form th:action="@{/views/roles/save}" th:object="${role}" method="post">
+            <form th:action="@{/permiso/periodo/save}" th:object="${permiso}" method="post">
                 <div class="form-group row">
 
                     <section class="form-registrer">
                         <p align:center> Formulario Registro Permiso Periodo</p>
                         <h4>Datos de la persona</h4>
-                        <!--Nombre-->
-                        <input class="controls" type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre">
-                        <!--Apellido-->
-                        <input class="controls" type="text" name="apellido" id="apellido"
-                            placeholder="Ingrese su apellido">
+
                         <!--Fecha Hasta-->
-                        <input class="controls" type="text" name="desdeHasta" id="desdeHasta"
+                        <input class="controls" th:field="*{pedido.dni}" type="text" name="desdeHasta" id="desdeHasta"
                             placeholder="Ingrese su dni">
 
                         <h4>Solicitud de permiso Periodo</h4>
                         <!--Cantidad de dias, la Fecha Actual se setea por parametro-->
-                        <input class="controls" type="text" name="cantDias" id="cantDias"
+                        <input class="controls" th:field="*{cantDias}" type="text" name="cantDias" id="cantDias"
                             placeholder="Cantidad de Dias">
 
                         <!-- vacaciones -->
                         <h4>Vacaciones</h4>
-                        <input type="checkbox" id="switch" name="vacaciones" > 
+                        <input type="checkbox" id="switch" name="vacaciones" th:checked = "*{vacaciones}"> 
                         <label for="switch" class="lbl"></label>
 
                         <h4>Lugar Solicitado</h4>
                         <!--Lugar-->
-                        <input class="controls" type="text" name="lugar" id="lugar"
-                            placeholder="Ingrese el lugar de destino">
-                        <!--Codigo Postal-->
-                        <input class="controls" type="text" name="codigopostal" id="codigopostal"
-                            placeholder="Ingrese el codigo postal">
+                        <div class="form-group row">
+							<label class="col-md-2" for="desdeHasta">Lugar:</label>
+							<select type="lugar"  th:field="*{desdeHasta}" class="form-control form-control-sm col-md-6"
+								id="lugar">
 
-                        <!--link a pagina para saber codigo postal-->
-                        <h6 align:right>
-                            <a href="https://www6.oca.com.ar/BuscadorCP/" target="_blank" style="color:#5F9EA0;">No sé
-                                mi código postal</a>
-                        </h6>
+								<option th:each="r:${desdeHasta}" th:value="${r.idLugar}" th:text="${r.lugar}">
+								</option>
+
+                                
+
+							</select>
+
+                            
+
+						</div>
+
+                        <div class="form-group row">
+							<label class="col-md-2" for="desdeHasta">Lugar:</label>
+							<select type="lugar"  th:field="*{desdeHasta}" class="form-control form-control-sm col-md-6"
+								id="lugar">
+
+								<option th:each="r:${desdeHasta}" th:value="${r.idLugar}" th:text="${r.lugar}">
+								</option>
+
+                                
+
+							</select>
+
+                            
+
+						</div>
 
                         <h4>Rodado</h4>
                         <!--Dominio-->
-                        <input class="controls" type="text" name="dominio" id="dominio"
+                        <input class="controls"  th:field="*{rodado.dominio}" type="text" name="dominio" id="dominio"
                             placeholder="Ingrese el Domino 'Patente' del vehiculo ">
                         <!--vehiculo-->
-                        <input class="controls" type="text" name="vehiculo" id="vehiculo"
+                        <input class="controls" th:field="*{rodado.vehiculo}" type="text" name="vehiculo" id="vehiculo"
                             placeholder="Ingrese el tipo de vehiculo">
 
 

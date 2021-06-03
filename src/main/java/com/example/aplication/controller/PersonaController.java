@@ -68,7 +68,6 @@ public class PersonaController {
 
         }
 
-        persona.setEnabled(true);
 
         personaService.guardar(persona);
         System.out.println("Persona Guardada: " + persona);

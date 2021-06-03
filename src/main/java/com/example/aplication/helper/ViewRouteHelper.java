@@ -36,6 +36,8 @@ public class ViewRouteHelper {
     public final static String REDIRECT_PERSONA = "redirect:/views/personas/";
     public final static String REDIRECT_RODADO = "redirect:/home";
     public final static String REDIRECT_PERMISO_DIARIO_CREAR = "redirect:/permiso/diario/create";
+    public final static String REDIRECT_PERMISO_PERIODO_CREAR = "redirect:/permiso/periodo/create";
+
 	
     
 }

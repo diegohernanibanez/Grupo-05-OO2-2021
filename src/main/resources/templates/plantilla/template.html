@@ -54,10 +54,10 @@
 								Personas</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/permiso/">Tramitar Permiso</a>
+							<a class="nav-link" href="/permiso/" sec:authorize="!hasRole('ROLE_ADMIN')" >Tramitar Permiso</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/rodados/create">Ingresar Rodados</a>
+							<a class="nav-link" href="/rodados/create"  sec:authorize="hasRole('ROLE_AUDITOR')">Ingresar Rodados</a>
 						</li>
 						<li>
 

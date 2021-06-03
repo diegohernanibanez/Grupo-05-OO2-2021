@@ -30,7 +30,7 @@ public class User extends Persona implements Serializable {
     private String username;
 
     @Column(columnDefinition="tinyint(1) default 1" , nullable = false)
-    private Boolean enabled;
+    private boolean enabled;
     
     @NotEmpty
     private String password;

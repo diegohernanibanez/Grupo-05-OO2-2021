@@ -2,6 +2,7 @@ package com.example.aplication.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class Role implements Serializable {
 
     private String tipo;
 
+    @Column(columnDefinition="tinyint(1) default 1" , nullable = false)
     private Boolean enabled; 
 
     
