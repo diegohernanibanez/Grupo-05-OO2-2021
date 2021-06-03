@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/buscar")
 public class BuscarController {
 
     @Autowired
@@ -36,13 +37,13 @@ public class BuscarController {
         return "views/buscar/buscarPersona";
     }
 
-    @RequestMapping("/buscarMain")
+    @RequestMapping("/permiso/persona")
     public String viewHomePage(Model model) {
 
         return "views/buscar/buscarPermisoMain";
     }
 
-    @RequestMapping("/buscar/permiso")
+    @RequestMapping("/permiso/")
     public String buscarPermisos(Model model, @Param("dni") Long dni) {
         Persona personaFind = personaServiceImplements.buscarPorDni(dni);
         List<Permiso> listPermisos = permisoServiceImplements.listarTodos();
@@ -56,8 +57,6 @@ public class BuscarController {
 
                 if (permiso instanceof PermisoDiario) {
 
-                    
-                    
                     listProducts.add(permiso);
                     model.addAttribute("listProducts", listProducts);
                     model.addAttribute("dni", dni);
@@ -81,16 +80,16 @@ public class BuscarController {
 
     }
 
-    @RequestMapping("/buscar/permisoRodado")
-    public String buscarPermisoRodado(Model model, @Param("dni") Long dni) {
-        List<Persona> listProducts = personaServiceImplements.listarDni(dni);
-        model.addAttribute("listProducts", listProducts);
-        model.addAttribute("dni", dni);
+    // @RequestMapping("/permiso/rodado")
+    // public String buscarPermisoRodado(Model model, @Param("dominio") String dominio) {
+    //     List<Persona> listProducts = personaServiceImplements.listarDni(dni);
+    //     model.addAttribute("listProducts", listProducts);
+    //     model.addAttribute("dni", dni);
 
-        return "views/buscar/buscarRodado";
-    }
+    //     return "views/buscar/buscarRodado";
+    // }
 
-    @RequestMapping("/buscar/permisoFecha")
+    @RequestMapping("/permiso/fecha")
     public String buscarPermisoFecha(Model model, @Param("dni") Long dni) {
         List<Persona> listProducts = personaServiceImplements.listarDni(dni);
         model.addAttribute("listProducts", listProducts);
