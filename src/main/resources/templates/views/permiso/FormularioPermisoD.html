@@ -29,7 +29,7 @@
                         <h4>Lugar Solicitado</h4>
 
                         <div class="form-group row">
-							<label class="col-md-2" for="desdeHasta">Lugar:</label>
+							<label class="col-md-2" for="desdeHasta">Desde:</label>
 							<select type="lugar"  th:field="*{desdeHasta}" class="form-control form-control-sm col-md-6"
 								id="lugar">
 
@@ -40,6 +40,17 @@
 
 						</div>
                         
+                        <div class="form-group row">
+							<label class="col-md-2" for="desdeHasta">Hasta:</label>
+							<select type="lugar"  th:field="*{desdeHasta}" class="form-control form-control-sm col-md-6"
+								id="lugar">
+
+								<option th:each="r:${desdeHasta}" th:value="${r.idLugar}" th:text="${r.lugar}">
+								</option>
+
+							</select>
+
+						</div>
 
 
                         <h4>Motivo de viaje</h4>
