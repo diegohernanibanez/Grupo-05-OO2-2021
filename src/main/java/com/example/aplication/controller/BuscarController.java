@@ -73,7 +73,7 @@ public class BuscarController {
 
         }
 
-        return "views/buscar/buscarPermisoDiario";
+        return "views/buscar/buscarPermiso";
 
     }
 

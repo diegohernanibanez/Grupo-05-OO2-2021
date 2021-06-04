@@ -40,10 +40,10 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Dni</th>
                             <th scope="col">Fecha Emision</th>
-                            <th scope="col">CantDias</th>
-                            <th scope="col">Dominio</th>
-                            <th scope="col">T.Vehiculo</th>
-                            <th scope="col">CodigoPostal</th>
+                            <th scope="col">Valido Hasta</th>
+                            <th scope="col">Vacaciones</th>
+                            <th scope="col">Dominio Vehiculo</th>
+                            <th scope="col">Vehiculo</th>
                             <th scope="col">Desde</th>
                             <th scope="col">Hasta</th>
                         </tr>
@@ -56,9 +56,9 @@
                             <td th:text="${cl.pedido.dni}"></td>
                             <td th:text="${cl.fecha}"></td>
                             <td th:text="${cl.cantDias}"></td>
+                            <td th:text="${cl.vacaciones}? Si:No"></td>
                             <td th:text="${cl.rodado.dominio}"></td>
                             <td th:text="${cl.rodado.vehiculo}"></td>
-                            <td th:text="${cl.desdeHasta[0].codigoPostal}"></td>
                             <td th:text="${cl.desdeHasta[0].lugar + ' CP ' + cl.desdeHasta[0].codigoPostal}"></td>
                             <td th:text="${cl.desdeHasta[1].lugar + ' CP ' + cl.desdeHasta[1].codigoPostal}"></td>
 
