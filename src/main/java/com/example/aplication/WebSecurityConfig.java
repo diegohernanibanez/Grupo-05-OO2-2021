@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
         .antMatchers(HttpMethod.GET,"/buscar/permiso").access("not(hasRole('ADMIN'))")
         .antMatchers(HttpMethod.GET,"/buscar/permisoRodado").access("hasRole('AUDITOR')")
-        .antMatchers("/", "/home", "/index", "/css/**", "/js/**", "/images/**","/permiso/**","/buscar/**", "/rodados/**").permitAll().anyRequest()
+        .antMatchers("/", "/home", "/index", "/css/**", "/js/**", "/images/**","/permiso/**","/buscar/**", "/rodados/**", "/views/personas/**").permitAll().anyRequest()
         .authenticated().and().formLogin()
         .successHandler(loginSuccess)
         .loginPage("/login")
