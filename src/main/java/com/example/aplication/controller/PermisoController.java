@@ -15,6 +15,7 @@ import com.example.aplication.service.IPersonaService;
 import com.example.aplication.service.RodadoServiceImplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,8 +46,6 @@ public class PermisoController {
         return ViewRouteHelper.SELECCION_PERMISO;
     }
 
-
-
     @GetMapping({ "/diario/create" })
     public String permisoDiario(Model model) {
         Permiso permiso = new PermisoDiario();
@@ -57,12 +56,11 @@ public class PermisoController {
         model.addAttribute("desdeHasta", listLugares);
         model.addAttribute("titulo", "Formulario: Nuevo Permiso");
         model.addAttribute("motivo", motivo);
-        model.addAttribute("pedido",persona);
+        model.addAttribute("pedido", persona);
         model.addAttribute("permiso", permiso);
-        
+
         return ViewRouteHelper.CREAR_PERMISO_DIARIO;
     }
-
 
     @PostMapping("/diario/save")
     public String guardar(@Valid @ModelAttribute PermisoDiario permiso, BindingResult result, Model model,
@@ -70,18 +68,17 @@ public class PermisoController {
 
         permiso.setFecha(LocalDate.now());
 
-        //buscamos persona. Si no existe, Tira error 
+        // buscamos persona. Si no existe, Tira error
         Persona persona = personaService.buscarPorDni(permiso.getPedido().getDni());
-       
-        
-        if(persona != null) {
+
+        if (persona != null) {
             permiso.setPedido(persona);
         } else {
             attributes.addFlashAttribute("error", "Ese documento no se encuentra en la base de datos.");
             return ViewRouteHelper.REDIRECT_PERMISO_DIARIO_CREAR;
         }
 
-        if(permiso.getMotivo().isEmpty()){
+        if (permiso.getMotivo().isEmpty()) {
             attributes.addFlashAttribute("error", "El motivo esta vacio");
             return ViewRouteHelper.REDIRECT_PERMISO_DIARIO_CREAR;
         }
@@ -92,10 +89,8 @@ public class PermisoController {
         return ViewRouteHelper.HOME_ROOT;
     }
 
-
-
     @GetMapping({ "/periodo/create" })
-    public String permisoPeriodo(Model model) {
+    public String permisoPeriodo(Model model ) {
         Permiso permisoperiodo = new PermisoPeriodo();
         Persona persona = new Persona();
         List<Lugar> listLugares = lugarService.listarTodos();
@@ -108,25 +103,31 @@ public class PermisoController {
         return "views/permiso/FormularioPermisoP";
     }
 
-
     @PostMapping("/periodo/save")
-    public String guardarPermisoPeriodo(@Valid @ModelAttribute PermisoPeriodo permisoperiodo , BindingResult result, Model model,
-            RedirectAttributes attributes) {
-        
-        permisoperiodo.setFecha(LocalDate.now());
+    public String guardarPermisoPeriodo(@Valid @ModelAttribute PermisoPeriodo permisoperiodo,
+            @Param("dominio ") String dominio, BindingResult result, Model model, RedirectAttributes attributes) {
 
-        //buscamos persona. Si no existe, Tira error 
-        Persona persona = personaService.buscarPorDni(permisoperiodo .getPedido().getDni());
-        
-        if(persona != null) {
-            permisoperiodo .setPedido(persona);
+        permisoperiodo.setFecha(LocalDate.now());
+        Rodado rodado = rodadoService.buscarDomino(dominio);
+        // buscamos persona. Si no existe, Tira error
+        Persona persona = personaService.buscarPorDni(permisoperiodo.getPedido().getDni());
+
+        if (persona != null) {
+            permisoperiodo.setPedido(persona);
         } else {
             attributes.addFlashAttribute("error", "La persona no esta dada de alta");
             return ViewRouteHelper.REDIRECT_PERMISO_DIARIO_CREAR;
         }
 
+        if (rodado != null) {
+            permisoperiodo.setRodado(rodado);
+            ;
+        } else {
+            attributes.addFlashAttribute("error", "el rodado no esta dada de alta");
+            return ViewRouteHelper.REDIRECT_PERMISO_DIARIO_CREAR;
+        }
 
-        permisoService.guardar(permisoperiodo );
+        permisoService.guardar(permisoperiodo);
         attributes.addFlashAttribute("success", "Permiso guardado con exito");
 
         // cambiar view
