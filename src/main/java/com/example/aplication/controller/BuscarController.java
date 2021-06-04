@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,49 +90,43 @@ public class BuscarController {
     }
 
     @RequestMapping("/permiso/rodado/")
-    public String buscarPermisoRodado(Model model, @Param("dominio") String dominio) {
+    public String buscarPermisoRodado(Model model, @Param("dominio") String dominio,  RedirectAttributes attributes) {
 
         Rodado rodado = rodadoServiceImplements.buscarDomino(dominio);
 
         List<Permiso> listPermisos = permisoServiceImplements.listarTodos();
         List<Permiso> listProducts = new ArrayList<Permiso>();
 
-        System.out.println(listPermisos);
+
+        System.out.println(rodado);
+
+        System.out.println();
 
         if(rodado == null){
-            return "views/buscar/buscarRodadoMain";
-        }
+        
+                attributes.addFlashAttribute("error", "Rodado no Encontrado"); //<- no funciona
+                return "redirect:permiso/rodadoMain";
+            }
+    
+           
 
-        // for (Permiso permiso : listPermisos) {
-            // if (permiso instanceof PermisoPeriodo) {
-            //     if(((PermisoPeriodo) permiso).getRodado().getDominio() == rodado.getDominio()){
-                    // listProducts.add(permiso);
-                    // model.addAttribute("listProducts", listProducts);
-                    // model.addAttribute("dominio", dominio);
-                // }
-                
-            // }
-        // }
+            for (Permiso permiso : listPermisos) {
+
+                System.out.println(permiso.getPedido().getNombre());
+
+                if (permiso instanceof PermisoPeriodo) {
+                    if(((PermisoPeriodo) permiso).getRodado().getDominio() == rodado.getDominio()){
+                        listProducts.add(permiso);
+                        model.addAttribute("listProducts", listProducts);
+                        model.addAttribute("dominio", dominio);
+                        return "views/buscar/buscarRodado";
+                    }
+                    
+                }
+            }
         return "views/buscar/buscarRodado";
 
-        // for (Permiso permiso : listPermisos) {
-
-        //     if (permiso instanceof PermisoPeriodo) {
-        //         if (rodado.getDominio().equals(((PermisoPeriodo) permiso).getRodado().getDominio())) {
-
-        //             listProducts.add(permiso);
-        //             model.addAttribute("listProducts", listProducts);
-        //             model.addAttribute("dominio", dominio);
-        //             System.out.println(listProducts);
-        //             return "views/buscar/buscarRodado";
-
-        //         }
-
-        //     }
-
-        // }
-
-        // return "views/buscar/PermisoMain";
+ 
     }
 
     @RequestMapping("/permiso/fecha")
