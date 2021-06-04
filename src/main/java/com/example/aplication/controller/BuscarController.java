@@ -58,24 +58,17 @@ public class BuscarController {
 
         for (Permiso permiso : listPermisos) {
             if (personaFind.getDni() == permiso.getPedido().getDni()) {
-
                 if (permiso instanceof PermisoDiario) {
-
-                    
-
                     listDiarios.add(permiso);
-                    model.addAttribute("listDiarios", listDiarios);
-                    model.addAttribute("dni", dni);
-
                 } else {
                     listPeriodos.add(permiso);
-                    model.addAttribute("listPeriodos", listPeriodos);
-                    model.addAttribute("dni", dni);
                 }
 
             }
-            System.out.println("permisos  "+(permiso.getDesdeHasta()));
         }
+        model.addAttribute("listDiarios", listDiarios);
+        model.addAttribute("listPeriodos", listPeriodos);
+        model.addAttribute("dni", dni);
 
         return "views/buscar/buscarPermiso";
 
@@ -139,14 +132,13 @@ public class BuscarController {
     @RequestMapping(value = "/permiso/buscarFecha", method = RequestMethod.POST)
     public String returnBuscarFecha(@ModelAttribute("hasta")String hasta, @ModelAttribute("desde")String desde,  Model model, RedirectAttributes attribute) {
        
-        
         String[] hastas = hasta.split("-");
         String[] desdes = desde.split("-");
 
         LocalDate tope =  LocalDate.of( Integer.parseInt(hastas[0]), Integer.parseInt(hastas[1]), Integer.parseInt(hastas[2]));
         LocalDate inicio =  LocalDate.of( Integer.parseInt(desdes[0]), Integer.parseInt(desdes[1]), Integer.parseInt(desdes[2]));
         
-        List<Permiso> lPermisos = new ArrayList<>();
+        List<Permiso> lPermisos = new ArrayList<>();    
         
         try {
             lPermisos = permisoServiceImplements.filtrarPorFecha(inicio, tope);
@@ -155,14 +147,18 @@ public class BuscarController {
             return "redirect:/buscar/permiso/fecha";
 
         }
-        
-        
-       
+        List<Permiso> listPeriodos = new ArrayList<Permiso>();
+        List<Permiso> listDiarios = new ArrayList<Permiso>();
 
-        
-      
-
-        model.addAttribute("listProducts", lPermisos);
+        for (Permiso permiso : lPermisos) {
+            if (permiso instanceof PermisoDiario) {
+                listDiarios.add(permiso);
+            } else {
+                listPeriodos.add(permiso);
+            }
+        }
+        model.addAttribute("listDiarios", listDiarios);
+        model.addAttribute("listPeriodos", listPeriodos);
         return "views/buscar/buscarfechaValida";
     }
     

@@ -17,7 +17,7 @@
             <a class="botons btn btn-primary btn-sm" style="text-decoration:none" th:href="@{/permiso/}">Cancelar</a>
         </form>
     </section>
-    <div class="container mt-5" th:if="${listDiarios} != null">
+    <div class="container mt-5" th:if="${!listDiarios.empty}">
         <h4 class="mb-4">
             Permisos Diarios
         </h4>
@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    <div class="container mt-5" th:if="${listPeriodos} != null">
+    <div class="container mt-5" th:if="${!listPeriodos.empty}">
         <h4 class=" mb-4">
             Permisos Periodos
         </h4>

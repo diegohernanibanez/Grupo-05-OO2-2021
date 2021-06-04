@@ -164,7 +164,6 @@ CREATE TABLE `persona` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `apellido` varchar(45) NOT NULL,
   `dni` bigint NOT NULL,
-  `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `nombre` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_hlwyecu2r9wagqayhej1kt5wy` (`dni`)
@@ -177,7 +176,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES (1,'velez',38705112,1,'matias'),(2,'ibanez',38705100,1,'diego'),(3,'sassenus',40303030,1,'milagros'),(4,'ortiz',40303333,1,'aylen'),(5,'bermudez',41666666,1,'luz'),(6,'pere<',70602033,1,'juan'),(7,'lopez',10999999,1,'franco'),(8,'perez',10999777,1,'franco');
+INSERT INTO `persona` VALUES (1,'velez',38705112,'matias'),(2,'ibanez',38705100,'diego'),(3,'sassenus',40303030,'milagros'),(4,'ortiz',40303333,'aylen'),(5,'bermudez',41666666,'luz'),(6,'pere<',70602033,'juan'),(7,'lopez',10999999,'franco'),(8,'perez',10999777,'franco');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,6 +239,7 @@ DROP TABLE IF EXISTS `user`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `email` varchar(255) DEFAULT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `password` varchar(255) DEFAULT NULL,
   `tipo_documento` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
@@ -258,7 +258,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('aaa@aaa.com','$2a$10$lpeTNBUGJfHxsJNOkAF5IuS5eLZUOuL8vlHMd/9O0rL5Cb3rp.uk6','dni','mati',1,1);
+INSERT INTO `user` VALUES ('aaa@aaa.com',1,'$2a$10$lpeTNBUGJfHxsJNOkAF5IuS5eLZUOuL8vlHMd/9O0rL5Cb3rp.uk6','dni','mati',1,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -52,34 +52,75 @@
 
                 </label>
 
-                <table class="table table-dark table-hover">
-
-
-                    <thead>
-                        <tr>
-                            <!--th scope="col">Nombre</th-->
-                            <th scope="col">Apellido</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Dni</th>
-                            <th scope="col">Fecha de vencimiento</th>
-
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- cambiar listProducts por el que corresponda -->
-                        <tr th:each="cl:${listProducts}">
-                            <td th:text="${cl.pedido.apellido}"></td>
-                            <td th:text="${cl.pedido.nombre}"></td>
-                            <td th:text="${cl.pedido.dni}"></td>
-                            <td th:text="${cl.fecha}"></td>
-
-
-                        </tr>
-
-                    </tbody>
-
-                </table>
+                <div class="container mt-5" th:if="${listDiarios} != null">
+                    <h4 class="mb-4">
+                        Permisos Diarios
+                    </h4>
+                    <div class="row justify-content-center">
+                        <table class="table table-dark table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Apellido</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Dni</th>
+                                    <th scope="col">Fecha Emision</th>
+                                    <th scope="col">Motivo</th>
+                                    <th scope="col">Desde</th>
+                                    <th scope="col">Hasta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="cl:${listDiarios}">
+                                    <td th:text="${cl.pedido.apellido}"></td>
+                                    <td th:text="${cl.pedido.nombre}"></td>
+                                    <td th:text="${cl.pedido.dni}"></td>
+                                    <td th:text="${cl.fecha}"></td>
+                                    <td th:text="${cl.motivo}"></td>
+                                    <td th:text="${cl.desdeHasta[0].lugar + ' CP ' + cl.desdeHasta[0].codigoPostal}"></td>
+                                    <td th:text="${cl.desdeHasta[1].lugar + ' CP ' + cl.desdeHasta[1].codigoPostal}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            
+                <div class="container mt-5" th:if="${listPeriodos} != null">
+                    <h4 class=" mb-4">
+                        Permisos Periodos
+                    </h4>
+                    <div class="row justify-content-center">
+                        <table class="table table-dark table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Apellido</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Dni</th>
+                                    <th scope="col">Fecha Emision</th>
+                                    <th scope="col">Valido Hasta</th>
+                                    <th scope="col">Vacaciones</th>
+                                    <th scope="col">Dominio Vehiculo</th>
+                                    <th scope="col">Vehiculo</th>
+                                    <th scope="col">Desde</th>
+                                    <th scope="col">Hasta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="cl:${listPeriodos}">
+                                    <td th:text="${cl.pedido.apellido}"></td>
+                                    <td th:text="${cl.pedido.nombre}"></td>
+                                    <td th:text="${cl.pedido.dni}"></td>
+                                    <td th:text="${cl.fecha}"></td>
+                                    <td th:text="${cl.cantDias}"></td>
+                                    <td th:text="${cl.vacaciones}? Si:No"></td>
+                                    <td th:text="${cl.rodado.dominio}"></td>
+                                    <td th:text="${cl.rodado.vehiculo}"></td>
+                                    <td th:text="${cl.desdeHasta[0].lugar + ' CP ' + cl.desdeHasta[0].codigoPostal}"></td>
+                                    <td th:text="${cl.desdeHasta[1].lugar + ' CP ' + cl.desdeHasta[1].codigoPostal}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
 
             </div>
