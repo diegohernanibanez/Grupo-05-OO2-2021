@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         builder.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(passEncoder)
-                .usersByUsernameQuery("SELECT username, password, enabled FROM user u inner join persona p on u.id = p.id where username =?")
+                .usersByUsernameQuery("SELECT username, password, u.enabled FROM user u inner join persona p on u.id = p.id where username =?")
                 .authoritiesByUsernameQuery(
                         "Select u.username, r.tipo FROM role r inner join user u on r.id=u.role_id where u.username=?");
 
@@ -45,8 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // "/js/**", "/images/**").permitAll().anyRequest().authenticated();  
         http
             .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/buscar/permiso").access("not(hasRole('ADMIN'))")
-                .antMatchers(HttpMethod.GET,"/buscar/permisoRodado").access("hasRole('AUDITOR')")
+                // .antMatchers(HttpMethod.GET,"/buscar/permiso").access("not(hasRole('ADMIN'))")
+                // .antMatchers(HttpMethod.GET,"/buscar/permisoRodado").access("hasRole('AUDITOR')")
 
                 .antMatchers("/", "/home", "/index", "/css/**", "/js/**", "/images/**","/permiso/**", "/rodados/**").permitAll().anyRequest()
         

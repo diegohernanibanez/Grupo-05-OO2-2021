@@ -5,7 +5,7 @@
     <head th:replace="plantilla/template :: head">
     </head>
 
-                            <th scope="col">Nombre</th>
+                         
 
     <body>
 
@@ -22,12 +22,8 @@
 
 
                 <label>
-
-
-                    <form th:action="@{/buscar}">
-
-
-
+                    <form class="text-center mb-4" th:action="@{buscarFecha}" method="post">
+                        
                         <a class="btn btn-primary btn-sm" th:href="@{/home}" role="button">Volver</a>
                        
 
@@ -36,10 +32,22 @@
                         class="src" role="button" placeholder="Buscar Ingrese Dni" />
                         &nbsp; -->
                         &nbsp;
-                        <span>Ingrese Fecha -> </span>
-                        <input type="date" name="Fecha" id="Fecha" size="50" class="date" role="button"
+                        <span>Ingrese desde -> </span>
+                        <input type="date" name="desde" id="desde" role="button"
+                        th:value= "${desde}"
                              />
                         &nbsp;
+
+                        &nbsp;
+                        <span>Ingrese hasta -> </span>
+                        <input type="date" name="hasta" id="hasta" role="button"
+                        th:value= "${hasta}"
+                             />
+                        &nbsp;
+                            
+                        <!-- <a class="btn btn-primary btn-sm" th:href="@{buscarFecha/}" role="button">Submit            
+                        </a> -->
+                        <input type="submit" class="btn btn-primary btn-sm" value="Buscar" />
 
 
                     </form>
@@ -56,25 +64,20 @@
                             <th scope="col">Apellido</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Dni</th>
-                            <th scope="col">Fecha Emision</th>
-                            <th scope="col">Valido Hasta</th>
-                            <th scope="col">Vacaciones</th>
-                            <th scope="col">Dominio Vehiculo</th>
-                            <th scope="col">Vehiculo</th>
+                            <th scope="col">Fecha de vencimiento</th>
+
+
                         </tr>
                     </thead>
                     <tbody>
                         <!-- cambiar listProducts por el que corresponda -->
                         <tr th:each="cl:${listProducts}">
-                            <td th:text="${cl.apellido}"></td>
-                            <td th:text="${cl.nombre}"></td>
-                            <td th:text="${cl.dni}"></td>
-                            <td th:text="${cl.nombre}"></td>
-                            <td th:text="${cl.apellido}"></td>
-                            <td th:text="${cl.dni}"></td>
-                            <td th:text="${cl.nombre}"></td>
-                            <td th:text="${cl.apellido}"></td>
-                            <td th:text="${cl.dni}"></td>
+                            <td th:text="${cl.pedido.apellido}"></td>
+                            <td th:text="${cl.pedido.nombre}"></td>
+                            <td th:text="${cl.pedido.dni}"></td>
+                            <td th:text="${cl.fecha}"></td>
+
+
                         </tr>
 
                     </tbody>
