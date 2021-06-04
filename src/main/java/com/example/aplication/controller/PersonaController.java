@@ -75,7 +75,7 @@ public class PersonaController {
         attributes.addFlashAttribute("success", "Persona guardada con exito");
 
         // cambiar view
-        return ViewRouteHelper.REDIRECT_PERSONA;
+        return ViewRouteHelper.HOME_ROOT;
     }
 
 

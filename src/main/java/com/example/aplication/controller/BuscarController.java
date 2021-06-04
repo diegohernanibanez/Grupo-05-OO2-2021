@@ -58,6 +58,8 @@ public class BuscarController {
 
                 if (permiso instanceof PermisoDiario) {
 
+                    
+
                     listDiarios.add(permiso);
                     model.addAttribute("listDiarios", listDiarios);
                     model.addAttribute("dni", dni);
@@ -69,7 +71,7 @@ public class BuscarController {
                 }
 
             }
-
+            System.out.println("permisos  "+(permiso.getDesdeHasta()));
         }
 
         return "views/buscar/buscarPermiso";
