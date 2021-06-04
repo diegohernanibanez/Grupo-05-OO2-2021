@@ -12,5 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface LugarRepository extends CrudRepository <Lugar, Long> {
     
     List<Lugar> findAll();
+    
    // List<Lugar> findByEnabledTrue();
 }

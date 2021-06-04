@@ -76,6 +76,8 @@ public class PermisoPeriodo extends Permiso{
         return true;
     }
 
+  
+
     
     
 }

@@ -28,6 +28,7 @@ public class Persona {
 	@Column(name="dni", unique=true, nullable=false, length=8)
     private long dni;
 
+   
 
     public long getId() {
         return id;

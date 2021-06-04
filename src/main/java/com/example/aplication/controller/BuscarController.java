@@ -13,10 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +33,8 @@ public class BuscarController {
     @Autowired
     private RodadoServiceImplements rodadoServiceImplements;
 
-    @RequestMapping("/")
+    
+    @RequestMapping("/buscar")
     public String viewHomePage(Model model, @Param("dni") Long dni) {
         List<Persona> listProducts = personaServiceImplements.listarDni(dni);
         model.addAttribute("listProducts", listProducts);
@@ -118,13 +121,52 @@ public class BuscarController {
  
     }
 
-    @RequestMapping("/permiso/fecha")
-    public String buscarPermisoFecha(Model model, @Param("dni") Long dni) {
-        List<Persona> listProducts = personaServiceImplements.listarDni(dni);
-        model.addAttribute("listProducts", listProducts);
-        model.addAttribute("dni", dni);
-
-        return "views/buscar/buscarFechaValida";
+    @ModelAttribute
+    LocalDate initLocalDate() {
+        return LocalDate.now();
     }
 
+    @RequestMapping(value = "/permiso/fecha", method = RequestMethod.GET)
+    public String viewsBuscarFecha(Model model) {
+        model.addAttribute("desde" , LocalDate.now().toString());
+        model.addAttribute("hasta", LocalDate.now().toString());
+        model.addAttribute("desdeLugar", new String());
+        model.addAttribute("hastaLugar", new String());
+        
+        return "views/buscar/buscarfechaValida";
+    }
+
+    @RequestMapping(value = "/permiso/buscarFecha", method = RequestMethod.POST)
+    public String returnBuscarFecha(@ModelAttribute("hasta")String hasta, @ModelAttribute("desde")String desde,  Model model, RedirectAttributes attribute) {
+       
+        
+        String[] hastas = hasta.split("-");
+        String[] desdes = desde.split("-");
+
+        LocalDate tope =  LocalDate.of( Integer.parseInt(hastas[0]), Integer.parseInt(hastas[1]), Integer.parseInt(hastas[2]));
+        LocalDate inicio =  LocalDate.of( Integer.parseInt(desdes[0]), Integer.parseInt(desdes[1]), Integer.parseInt(desdes[2]));
+        
+        List<Permiso> lPermisos = new ArrayList<>();
+        
+        try {
+            lPermisos = permisoServiceImplements.filtrarPorFecha(inicio, tope);
+        } catch (Exception e) {
+            attribute.addFlashAttribute("error", e.getMessage());
+            return "redirect:/buscar/permiso/fecha";
+
+        }
+        
+        
+       
+
+        
+      
+
+        model.addAttribute("listProducts", lPermisos);
+        return "views/buscar/buscarfechaValida";
+    }
+    
+
+
 }
+ 

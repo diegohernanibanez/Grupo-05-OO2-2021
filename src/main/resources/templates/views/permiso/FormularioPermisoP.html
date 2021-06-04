@@ -19,15 +19,15 @@
 
                     <section class="form-registrer">
                         <p align:center> Formulario Registro Permiso Periodo</p>
-                        <h4>Ingrese su dni</h4>
-                        <input class="controls" th:field="*{pedido.dni}" type="text" name="dni" id="dni" placeholder="Ingrese su dni">
-                            <small class="form-text text-danger" th:if="${#fields.hasErrors('pedido.dni')}"
-								th:errors="*{pedido.dni}">
-							</small>
+                        <h4>Datos de la persona</h4>
+
+                        <!--Fecha Hasta-->
+                        <input class="controls" th:field="*{pedido.dni}" type="text" name="desdeHasta" id="desdeHasta"
+                            placeholder="Ingrese su dni">
 
                         <h4>Solicitud de permiso Periodo</h4>
                         <!--Cantidad de dias, la Fecha Actual se setea por parametro-->
-                        <input class="controls" type="text" name="cantDias" id="cantDias"
+                        <input class="controls" th:field="*{cantDias}" type="text" name="cantDias" id="cantDias"
                             placeholder="Cantidad de Dias">
 
                             <h4>Lugar Solicitado</h4>
@@ -58,15 +58,49 @@
 
                         <!-- vacaciones -->
                         <h4>Vacaciones</h4>
-                        <input type="checkbox" id="switch" name="vacaciones" > 
+                        <input type="checkbox" id="switch" name="vacaciones" th:checked = "*{vacaciones}"> 
                         <label for="switch" class="lbl"></label>
 
+                        <h4>Lugar Solicitado</h4>
+                        <!--Lugar-->
+                        <div class="form-group row">
+							<label class="col-md-2" for="desdeHasta">Lugar:</label>
+							<select type="lugar"  th:field="*{desdeHasta}" class="form-control form-control-sm col-md-6"
+								id="lugar">
 
+								<option th:each="r:${desdeHasta}" th:value="${r.idLugar}" th:text="${r.lugar}">
+								</option>
+
+                                
+							</select>
+
+                            
+
+						</div>
+
+                        <div class="form-group row">
+							<label class="col-md-2" for="desdeHasta">Lugar:</label>
+							<select type="lugar"  th:field="*{desdeHasta}" class="form-control form-control-sm col-md-6"
+								id="lugar">
+
+								<option th:each="r:${desdeHasta}" th:value="${r.idLugar}" th:text="${r.lugar}">
+								</option>
+
+                                
+
+							</select>
+
+                            
+
+						</div>
 
                         <h4>Rodado</h4>
                         <!--Dominio-->
-                        <input class="controls" type="text" name="dominio" id="dominio"
+                        <input class="controls"  th:field="*{rodado.dominio}" type="text" name="dominio" id="dominio"
                             placeholder="Ingrese el Domino 'Patente' del vehiculo ">
+                        <!--vehiculo-->
+                        <input class="controls" th:field="*{rodado.vehiculo}" type="text" name="vehiculo" id="vehiculo"
+                            placeholder="Ingrese el tipo de vehiculo">
 
 
                         <input class="botons" type="submit" value="Registrar">
