@@ -19,16 +19,14 @@
 
                     <section class="form-registrer">
                         <p align:center> Formulario Registro Permiso Periodo</p>
-                        <h4>Datos de la persona</h4>
+                        <h4>Ingrese su dni</h4>
 
                         <!--Fecha Hasta-->
-                        <input class="controls" th:field="*{pedido.dni}" type="text" name="desdeHasta" id="desdeHasta"
-                            placeholder="Ingrese su dni">
+                        <input class="controls" th:field="*{pedido.dni}" type="text" name="desdeHasta" id="desdeHasta">
 
-                        <h4>Solicitud de permiso Periodo</h4>
+                        <h4>Cantidad de Dias</h4>
                         <!--Cantidad de dias, la Fecha Actual se setea por parametro-->
-                        <input class="controls" th:field="*{cantDias}" type="text" name="cantDias" id="cantDias"
-                            placeholder="Cantidad de Dias">
+                        <input class="controls" th:field="*{cantDias}" type="text" name="cantDias" id="cantDias">
 
                         <!-- vacaciones -->
                         <h4>Vacaciones</h4>
@@ -38,7 +36,7 @@
                         <h4>Lugar Solicitado</h4>
                         <!--Lugar-->
                         <div class="form-group row">
-							<label class="col-md-2" for="desdeHasta">Lugar:</label>
+							<label class="col-md-2" for="desdeHasta">Desde:</label>
 							<select type="lugar"  th:field="*{desdeHasta}" class="form-control form-control-sm col-md-6"
 								id="lugar">
 
@@ -53,7 +51,7 @@
 						</div>
 
                         <div class="form-group row">
-							<label class="col-md-2" for="desdeHasta">Lugar:</label>
+							<label class="col-md-2" for="desdeHasta">Hasta:</label>
 							<select type="lugar"  th:field="*{desdeHasta}" class="form-control form-control-sm col-md-6"
 								id="lugar">
 
