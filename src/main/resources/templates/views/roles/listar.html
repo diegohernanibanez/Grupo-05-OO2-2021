@@ -24,7 +24,7 @@
                 <p>
                     <a class="btn btn-primary btn-sm" th:href="@{/views/roles/create}" sec:authorize= "hasRole('ROLE_ADMIN')" role="button">Nuevo
                         Rol</a>
-                    <a class="btn btn-success btn-sm" th:href="@{/views/roles/(format=pdf)}" role="button">Exportar a PDF
+                    <a class="btn btn-success btn-sm" th:href="@{/views/roles/(format=pdf)}" sec:authorize= "hasRole('ROLE_AUDITOR')" role="button">Exportar a PDF
                     </a>
 
 

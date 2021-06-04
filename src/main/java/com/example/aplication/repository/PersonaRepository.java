@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface PersonaRepository extends CrudRepository<Persona, Long>{
 
     List<Persona> findAll();
-    List<Persona> findByEnabledTrue();
     List<Persona> findByDni (Long dni); 
     Persona findByDni(long dni);
 }

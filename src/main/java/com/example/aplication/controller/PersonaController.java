@@ -27,16 +27,16 @@ public class PersonaController {
     @Autowired
     private IPersonaService personaService;
 
-    @GetMapping("/")
-    public String listarPersonas(Model model) {
-        List<Persona> listadoPersonas = personaService.listarTodos();
-        model.addAttribute("titulo", "Lista de personas");
-        model.addAttribute("persona", listadoPersonas);
-        System.out.println(listadoPersonas);
+    // @GetMapping("/")
+    // public String listarPersonas(Model model) {
+    //     List<Persona> listadoPersonas = personaService.listarTodos();
+    //     model.addAttribute("titulo", "Lista de personas");
+    //     model.addAttribute("persona", listadoPersonas);
+    //     System.out.println(listadoPersonas);
 
-        // cambiar view
-        return ViewRouteHelper.LISTAR_PERSONAS;
-    }
+    //     // cambiar view
+    //     return ViewRouteHelper.LISTAR_PERSONAS;
+    // }
 
     @GetMapping("create")
     public String crear(Model model) {
@@ -67,8 +67,6 @@ public class PersonaController {
             return ViewRouteHelper.CREAR_PERSONAS;
 
         }
-
-        persona.setEnabled(true);
 
         personaService.guardar(persona);
         System.out.println("Persona Guardada: " + persona);

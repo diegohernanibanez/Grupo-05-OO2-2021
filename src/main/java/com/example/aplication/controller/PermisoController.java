@@ -77,7 +77,7 @@ public class PermisoController {
         if(persona != null) {
             permiso.setPedido(persona);
         } else {
-            attributes.addFlashAttribute("error", "La persona no esta dada de alta");
+            attributes.addFlashAttribute("error", "Ese documento no se encuentra en la base de datos.");
             return ViewRouteHelper.REDIRECT_PERMISO_DIARIO_CREAR;
         }
 
