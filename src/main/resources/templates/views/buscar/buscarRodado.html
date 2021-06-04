@@ -7,72 +7,60 @@
 
 
 
-    <body>
+    <body class="body-buscar">
 
 
         <header th:replace="plantilla/template :: header"> </header>
-        <p>
-            <h4 class="text-center mb-4"> Buscar Permiso por Rodado</h4>
-        </p>
+
+        <section class="form-registrer2">
+     
+  
+                <h4 class="text-center mb-4">
+                    Buscar Permiso por Dominio
+                </h4>
+          
+            <form class="text-center mb-4" th:action="@{/buscar/permiso/rodado/}">
+                <input type="text" name="dominio" id="dominio" size="50" th:value="${dominio}" required class="src" role="button"
+                    placeholder="Buscar Ingrese Dominio" />
+                <input class="botons btn btn-primary btn-sm" type="submit" style="text-decoration:none"></input>
+                <a class="botons btn btn-primary btn-sm" style="text-decoration:none"
+                    th:href="@{/home}">Cancelar</a>
+            </form>
+      
+        </section>
 
         <div class="container mt-5">
             <div class="row justify-content-center">
-
-
-
-
-                <label>
-
-
-                    <form th:action="@{/buscar}">
-
-
-
-                        <a class="btn btn-primary btn-sm" th:href="@{/home}" role="button">Volver</a>
-                        &nbsp;
-
-                        <!-- &nbsp;
-                        <input type="text" name="dni" id="dni" size="50" th:value="${dni}" required
-                        class="src" role="button" placeholder="Buscar Ingrese Dni" />
-                        &nbsp; -->
-                        <input type="text" name="dominio" id="dominio" size="50" class="src" role="button"
-                            placeholder="Ingrese Dominio Del Vehiculo" />
-                        &nbsp;
-
-
-                    </form>
-
-
-                </label>
 
                 <table class="table table-dark table-hover">
 
 
                     <thead>
                         <tr>
-                            <!--th scope="col">Nombre</th-->
                             <th scope="col">Apellido</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Dni</th>
+                            <!-- <th scope="col">Dni</th>
                             <th scope="col">Fecha Emision</th>
-                            <th scope="col">Valido Hasta</th>
-                            <th scope="col">Vacaciones</th>
-                            <th scope="col">Dominio Vehiculo</th>
-                            <th scope="col">Vehiculo</th>
+                            <th scope="col">Lugar</th>
+                            <th scope="col">Codigo Postal</th> -->
+
                         </tr>
                     </thead>
                     <tbody>
                         <!-- cambiar listProducts por el que corresponda -->
                         <tr th:each="cl:${listProducts}">
-                            <td th:text="${cl.apellido}"></td>
-                            <td th:text="${cl.nombre}"></td>
-                            <td th:text="${cl.dni}"></td>
-                            <td th:text="${cl.nombre}"></td>
-                            <td th:text="${cl.apellido}"></td>
-                            <td th:text="${cl.dni}"></td>
-                            <td th:text="${cl.nombre}"></td>
-                            <td th:text="${cl.apellido}"></td>
-                            <td th:text="${cl.dni}"></td>
+                            <td th:text="${cl.pedido.apellido}"></td>
+                            <td th:text="${cl.pedido.nombre}"></td>
+                            <!-- <td th:text="${cl.pedido.dni}"></td>
+                            <td th:text="${cl.fecha}"></td>
+                            <td th:text="${cl.desdeHasta[0].lugar}"></td>
+                            <td th:text="${cl.desdeHasta[0].codigoPostal}"></td> -->
+
+
+                            <!-- <tr th:each="cl2:${cl.desdeHasta}">
+                            <td th:text="${cl2.lugar}"></td>
+                            <td th:text="${cl.desdeHasta.codigoPostal}"></td>  -->
+
                         </tr>
 
                     </tbody>

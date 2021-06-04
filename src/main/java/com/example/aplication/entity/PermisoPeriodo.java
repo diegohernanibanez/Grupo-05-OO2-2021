@@ -76,12 +76,6 @@ public class PermisoPeriodo extends Permiso{
         return true;
     }
 
-    public PermisoPeriodo(int cantDias, boolean vacaciones, Rodado rodado) {
-        this.cantDias = cantDias;
-        this.vacaciones = vacaciones;
-        this.rodado = rodado;
-    }
-
     
     
 }

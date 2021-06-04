@@ -33,5 +33,10 @@ public class RodadoServiceImplements implements IRodadoService {
         rodadoRepository.deleteById(id);
     }
 
+    @Override
+    public Rodado buscarDomino(String dominio) {
+       
+        return rodadoRepository.findByDominio(dominio);
+    }
     
 }

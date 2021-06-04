@@ -2,10 +2,12 @@ package com.example.aplication.controller;
 
 import com.example.aplication.entity.Permiso;
 import com.example.aplication.entity.PermisoDiario;
-
+import com.example.aplication.entity.PermisoPeriodo;
 import com.example.aplication.entity.Persona;
+import com.example.aplication.entity.Rodado;
 import com.example.aplication.service.PermisoServiceImplements;
 import com.example.aplication.service.PersonaServiceImplements;
+import com.example.aplication.service.RodadoServiceImplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -25,6 +27,8 @@ public class BuscarController {
     private PersonaServiceImplements personaServiceImplements;
     @Autowired
     private PermisoServiceImplements permisoServiceImplements;
+    @Autowired
+    private RodadoServiceImplements rodadoServiceImplements;
 
     @RequestMapping("/")
     public String viewHomePage(Model model, @Param("dni") Long dni) {
@@ -78,14 +82,57 @@ public class BuscarController {
 
     }
 
-    // @RequestMapping("/permiso/rodado")
-    // public String buscarPermisoRodado(Model model, @Param("dominio") String dominio) {
-    //     List<Persona> listProducts = personaServiceImplements.listarDni(dni);
-    //     model.addAttribute("listProducts", listProducts);
-    //     model.addAttribute("dni", dni);
+    @RequestMapping("/permiso/rodadoMain")
+    public String viewHomeRodado(Model model) {
 
-    //     return "views/buscar/buscarRodado";
-    // }
+        return "views/buscar/buscarRodadoMain";
+    }
+
+    @RequestMapping("/permiso/rodado/")
+    public String buscarPermisoRodado(Model model, @Param("dominio") String dominio) {
+
+        Rodado rodado = rodadoServiceImplements.buscarDomino(dominio);
+
+        List<Permiso> listPermisos = permisoServiceImplements.listarTodos();
+        List<Permiso> listProducts = new ArrayList<Permiso>();
+
+        System.out.println(listPermisos);
+
+        if(rodado == null){
+            return "views/buscar/buscarRodadoMain";
+        }
+
+        // for (Permiso permiso : listPermisos) {
+            // if (permiso instanceof PermisoPeriodo) {
+            //     if(((PermisoPeriodo) permiso).getRodado().getDominio() == rodado.getDominio()){
+                    // listProducts.add(permiso);
+                    // model.addAttribute("listProducts", listProducts);
+                    // model.addAttribute("dominio", dominio);
+                // }
+                
+            // }
+        // }
+        return "views/buscar/buscarRodado";
+
+        // for (Permiso permiso : listPermisos) {
+
+        //     if (permiso instanceof PermisoPeriodo) {
+        //         if (rodado.getDominio().equals(((PermisoPeriodo) permiso).getRodado().getDominio())) {
+
+        //             listProducts.add(permiso);
+        //             model.addAttribute("listProducts", listProducts);
+        //             model.addAttribute("dominio", dominio);
+        //             System.out.println(listProducts);
+        //             return "views/buscar/buscarRodado";
+
+        //         }
+
+        //     }
+
+        // }
+
+        // return "views/buscar/PermisoMain";
+    }
 
     @RequestMapping("/permiso/fecha")
     public String buscarPermisoFecha(Model model, @Param("dni") Long dni) {

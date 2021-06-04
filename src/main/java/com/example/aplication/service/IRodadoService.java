@@ -12,6 +12,6 @@ public interface IRodadoService {
     public void guardar (Rodado rodado);
     public Rodado buscarPorID (long id);
     public void eliminar (long id);
-   
+    public Rodado buscarDomino(String dominio);
     
 }
