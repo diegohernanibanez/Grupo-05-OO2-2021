@@ -53,9 +53,7 @@ public class BuscarController {
         List<Permiso> listPermisos = permisoServiceImplements.listarTodos();
         List<Permiso> listPeriodos = new ArrayList<Permiso>();
         List<Permiso> listDiarios = new ArrayList<Permiso>();
-        for (Permiso permiso : permisoServiceImplements.listarTodos()) {
-            System.out.println("dieguitokpo " + permiso);
-        }
+
         for (Permiso permiso : listPermisos) {
             if (personaFind.getDni() == permiso.getPedido().getDni()) {
 
@@ -67,7 +65,6 @@ public class BuscarController {
 
                 } else {
                     listPeriodos.add(permiso);
-                    
                     model.addAttribute("listPeriodos", listPeriodos);
                     model.addAttribute("dni", dni);
                 }

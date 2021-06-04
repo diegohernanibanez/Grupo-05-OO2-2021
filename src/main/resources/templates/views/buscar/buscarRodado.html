@@ -46,10 +46,6 @@
                             <th scope="col">CodigoPostal</th>
                             <th scope="col">Desde</th>
                             <th scope="col">Hasta</th>
-                            <th scope="col">CodigoPostal</th>
-
-
-
                         </tr>
                     </thead>
                     <tbody>
@@ -63,9 +59,8 @@
                             <td th:text="${cl.rodado.dominio}"></td>
                             <td th:text="${cl.rodado.vehiculo}"></td>
                             <td th:text="${cl.desdeHasta[0].codigoPostal}"></td>
-                            <td th:text="${cl.desdeHasta[0].lugar}"></td>
-                            <td th:text="${cl.desdeHasta[1].lugar}"></td>
-                            <td th:text="${cl.desdeHasta[1].codigoPostal}"></td>
+                            <td th:text="${cl.desdeHasta[0].lugar + ' CP ' + cl.desdeHasta[0].codigoPostal}"></td>
+                            <td th:text="${cl.desdeHasta[1].lugar + ' CP ' + cl.desdeHasta[1].codigoPostal}"></td>
 
                         </tr>
 
