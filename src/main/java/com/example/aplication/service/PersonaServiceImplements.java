@@ -19,11 +19,6 @@ public class PersonaServiceImplements implements IPersonaService {
         return (List<Persona>) personaRepository.findAll();
     }
 
-    @Override
-    public List<Persona> listarActivos() {
-        return (List<Persona>)personaRepository.findByEnabledTrue();
-        
-    }
 
     @Override
     public Persona buscarPorID(long id) { 
