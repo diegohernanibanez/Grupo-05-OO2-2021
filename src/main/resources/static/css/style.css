@@ -6,6 +6,15 @@
 
 }
 
+.body-generic {
+
+    background-image: url('../images/general.jpg');
+    background-size: cover;
+
+
+}
+
+
 .body-form {
 
     background-image: url('../images/fondo.jpg');
