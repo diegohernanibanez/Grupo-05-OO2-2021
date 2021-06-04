@@ -5,6 +5,7 @@ import com.example.aplication.entity.PermisoDiario;
 import com.example.aplication.entity.PermisoPeriodo;
 import com.example.aplication.entity.Persona;
 import com.example.aplication.entity.Rodado;
+import com.example.aplication.service.IPermisoService;
 import com.example.aplication.service.PermisoServiceImplements;
 import com.example.aplication.service.PersonaServiceImplements;
 import com.example.aplication.service.RodadoServiceImplements;
@@ -27,7 +28,7 @@ public class BuscarController {
     @Autowired
     private PersonaServiceImplements personaServiceImplements;
     @Autowired
-    private PermisoServiceImplements permisoServiceImplements;
+    private IPermisoService permisoServiceImplements;
     @Autowired
     private RodadoServiceImplements rodadoServiceImplements;
 
@@ -50,36 +51,32 @@ public class BuscarController {
     public String buscarPermisos(Model model, @Param("dni") Long dni) {
         Persona personaFind = personaServiceImplements.buscarPorDni(dni);
         List<Permiso> listPermisos = permisoServiceImplements.listarTodos();
-        List<Permiso> listProducts = new ArrayList<Permiso>();
-
-        System.out.println(listPermisos);
-
+        List<Permiso> listPeriodos = new ArrayList<Permiso>();
+        List<Permiso> listDiarios = new ArrayList<Permiso>();
+        for (Permiso permiso : permisoServiceImplements.listarTodos()) {
+            System.out.println("dieguitokpo " + permiso);
+        }
         for (Permiso permiso : listPermisos) {
-
             if (personaFind.getDni() == permiso.getPedido().getDni()) {
 
                 if (permiso instanceof PermisoDiario) {
 
-                    listProducts.add(permiso);
-                    model.addAttribute("listProducts", listProducts);
+                    listDiarios.add(permiso);
+                    model.addAttribute("listDiarios", listDiarios);
                     model.addAttribute("dni", dni);
-                    System.out.println(listProducts);
-                    return "views/buscar/buscarPermisoDiario";
 
                 } else {
-
-                    model.addAttribute("listProducts", listProducts);
+                    listPeriodos.add(permiso);
+                    
+                    model.addAttribute("listPeriodos", listPeriodos);
                     model.addAttribute("dni", dni);
-
-                    return "views/buscar/buscarPermisoPeriodo";
-
                 }
 
             }
 
         }
 
-        return "views/buscar/buscarPermisoMain";
+        return "views/buscar/buscarPermisoDiario";
 
     }
 
@@ -97,11 +94,6 @@ public class BuscarController {
         List<Permiso> listPermisos = permisoServiceImplements.listarTodos();
         List<Permiso> listProducts = new ArrayList<Permiso>();
 
-
-        System.out.println(rodado);
-
-        System.out.println();
-
         if(rodado == null){
         
                 attributes.addFlashAttribute("error", "Rodado no Encontrado"); //<- no funciona
@@ -112,7 +104,6 @@ public class BuscarController {
 
             for (Permiso permiso : listPermisos) {
 
-                System.out.println(permiso.getPedido().getNombre());
 
                 if (permiso instanceof PermisoPeriodo) {
                     if(((PermisoPeriodo) permiso).getRodado().getDominio() == rodado.getDominio()){

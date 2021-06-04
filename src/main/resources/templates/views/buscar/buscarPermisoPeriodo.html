@@ -1,53 +1,24 @@
 <!DOCTYPE html>
 <htm>
     <html xmlns:th="http://www.thymeleaf.org">
-
     <head th:replace="plantilla/template :: head">
     </head>
-
-                            <th scope="col">Nombre</th>
-
     <body>
-
-
         <header th:replace="plantilla/template :: header"> </header>
         <p>
             <h4 class="text-center mb-4"> Buscar Permiso Por Periodo</h4>
         </p>
-
         <div class="container mt-5">
             <div class="row justify-content-center">
-
-
-
-
                 <label>
-
-<!-- 
                     <form th:action="@{/buscar/permiso}">
-
-
-
-                        <a class="btn btn-primary btn-sm" th:href="@{/home}" role="button">Volver</a>
-                        &nbsp;
-
-                        <input type="text" name="dni" id="dni" size="50" th:value="${dni}" required
-                        class="src" role="button" placeholder="Buscar Ingrese Dni" />
-                        &nbsp; -->
                         <input type="text" name="dni" id="dni" size="50" th:value="${dni}" class="src" role="button"
                             placeholder="Buscar Ingrese Dni" />
                         <input class="botons btn btn-primary btn-sm" type="submit" style="text-decoration:none"></input>
                         &nbsp;
-
-
-                    </form> 
-
-
+                    </form>
                 </label>
-
                 <table class="table table-dark table-hover">
-
-
                     <thead>
                         <tr>
                             <!--th scope="col">Nombre</th-->
@@ -74,21 +45,10 @@
                             <td th:text="${cl.apellido}"></td>
                             <td th:text="${cl.dni}"></td>
                         </tr>
-
                     </tbody>
-
                 </table>
-
-
             </div>
-
         </div>
-
         <footer th:replace="plantilla/template :: footer"> </footer>
-
-
-
-
     </body>
-
     </html>
