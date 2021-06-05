@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import com.example.aplication.entity.Role;
 import com.example.aplication.entity.User;
 import com.example.aplication.helper.ViewRouteHelper;
+import com.example.aplication.service.IPersonaService;
 import com.example.aplication.service.IRoleService;
 import com.example.aplication.service.IUserService;
 
@@ -34,6 +35,9 @@ public class UserController {
     private IRoleService roleService;
     @Autowired
     private BCryptPasswordEncoder passEncoder;
+
+    @Autowired
+    private IPersonaService personaService;
 
     @Secured({"ROLE_ADMIN","ROLE_AUDITOR"})
     @GetMapping("/")
@@ -66,7 +70,6 @@ public class UserController {
             RedirectAttributes attributes) {
 
         List<Role> listRoles = roleService.listarActivos();
-        System.out.println("RESULT: " + result);
        
         if (result.hasErrors()) {
             
@@ -77,6 +80,11 @@ public class UserController {
             return ViewRouteHelper.CREAR;
 
         }
+        if (personaService.buscarPorDni(user.getDni()) != null){
+            attributes.addFlashAttribute("error","User ya existente");
+            return ViewRouteHelper.REDIRECT_CLIENTE;
+        }
+        
         user.setEnabled(true);
         user.setPassword(passEncoder.encode(user.getPassword()));
 

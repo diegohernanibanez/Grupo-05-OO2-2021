@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+
+}
+
+.body-generic {
+
+    background-image: url('../images/general.jpg');
+    background-size: cover;
+
+
+}
+
+
+.body-form {
+
+    background-image: url('../images/fondo.jpg');
+    background-size: cover;
+
+
+}
+
+.body-home {
+
+    background-image: url('../images/back.jpg');
+    background-size: cover;
+}
+
+
+.body-rodado {
+
+    background-image: url('https://img4.goodfon.com/wallpaper/nbig/c/10/bespechnyi-ezdok-mototsikl-kot-baiker-rio-de-zhaneiro-brazil.jpg');
+    background-size: cover;
+}
+
+.body-buscar {
+    background-image: url('https://img4.goodfon.com/wallpaper/nbig/c/fe/valeriia-zhelezovskaia-stiazhkina-kot-detektiv-knights-bride.jpg');
+    background-size: cover;
+}
+
+.form-registrer {
+
+    width: 500px;
+    background: #530303c0;
+    padding: 30px;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 4px;
+    font-family: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 37px #000000;
+
+
+}
+
+
+
+.form-registrer h4 {
+    font-size: 17px;
+    margin-top: 1px;
+    padding: 3px;
+
+}
+
+.controls {
+    width: 100%;
+    background: #570f0f;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #000000;
+    font-family: 'calibri';
+    font-size: 18px;
+    box-shadow: 7px 1px 37px #000000;
+    color: white;
+}
+
+.controls:hover {
+    box-shadow: inset 7px 1px 37px #3b0909;
+    cursor: pointer;
+    color: white;
+
+}
+
+.form-registrer p {
+    height: 30px;
+    text-align: center;
+    font-size: 18px;
+
+}
+
+.form-registrer a {
+    color: white;
+    text-decoration: none;
+
+
+}
+
+.form-registrer a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.form-registrer .botons {
+    width: 100%;
+    background: #5f0000;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 10px 0;
+    font-size: 16px;
+    box-shadow: 7px 1px 37px #000000;
+    box-shadow: inset 0 0 0 0 #ff0404;
+    border-radius: 4px;
+    transition: ease-out 0.3s;
+}
+
+.form-registrer .botons:hover {
+    box-shadow: inset 500px 0 0 0 #ff0404;
+    cursor: pointer;
+    color: #000000;
+
+}
+
+
+.form-registrer .btn-group {
+    width: 100%;
+    background: #5f0000;
+    border: none;
+    padding: 5px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+    box-shadow: 7px 1px 37px #000000;
+
+}
+
+.lbl {
+    display: inline-block;
+    width: 65px;
+    height: 33px;
+    background: #979797;
+    border-radius: 100px;
+    cursor: pointer;
+    position: relative;
+    transition: .3s;
+
+}
+
+.lbl::after {
+    content: '';
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: #eee;
+    border-radius: 100px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    transition: .3s;
+}
+
+#switch:checked+.lbl::after {
+    left: 36px;
+    background: #ff0404;
+}
+
+#switch:checked+.lbl {
+    background: rgb(43, 129, 3);
+}
+
+/* oculta el checkbox desplazable */
+#switch {
+    display: none;
+}
+
+
+.box {
+    position: relative;
+    top: 26px;
+    left: 30px;
+}
+
+input.src {
+    text-align: center;
+    padding: 9px 7px 9px 32px;
+    outline: none;
+    font-size: 13px;
+    border-radius: 100px;
+    /* color de la fuente */
+    color: rgb(20, 2, 16);
+
+    border: 3px solid #9c0505;
+    background: #fff url("../images/search-icon.png") no-repeat 9px center;
+    width: 180px;
+    transition: all .5s;
+
+}
+
+input.src:hover {
+    width: 180px;
+    background-color: #fff;
+    border-color: #ff0404;
+    box-shadow: 0 0 5px #110000;
+
+}
+
+.h1 {
+
+
+    box-shadow: 1px 1p 2p 5px #9c0505;
+
+}
+
+
+.form-registrer2 {
+
+    width: 300px;
+    height: 200px;
+    background: #530303c0;
+    padding: 4px;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 4px;
+    font-family: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 37px #000000;
+
+
+}
+ 
+.form-registrer2 h4 {
+    font-size: 17px;
+    margin-top: 1px;
+    padding: 3px;
+    
+    text-shadow: 3px 3px 4px  #000000;
+
+}
+.form-registrer2 .botons {
+    width: 97%;
+    background: #5f0000;
+    border: none;
+    padding: 5px;
+    color: white;
+    margin: 7px 0;
+    font-size: 16px;
+    box-shadow: 7px 1px 37px #000000;
+    box-shadow: inset 0 0 0 0 #ff0404;
+    border-radius: 4px;
+    transition: ease-out 0.5s;
+}
+
+.form-registrer2 .botons:hover {
+    box-shadow: inset 500px 0 0 0 #ff0404;
+    cursor: pointer;
+    color: #000000;
+
+}

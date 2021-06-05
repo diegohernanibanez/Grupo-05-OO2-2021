@@ -6,7 +6,7 @@
     </head>
 
 
-    <body>
+    <body class="body-generic">
 
         <header th:replace="plantilla/template :: header"> </header>
 
@@ -23,12 +23,8 @@
                 <p>
                     <a class="btn btn-primary btn-sm" th:href="@{/views/users/create}" sec:authorize= "hasRole('ROLE_ADMIN')" role="button">Nuevo
                         Usuario</a>
-                    <a class="btn btn-success btn-sm" th:href="@{/views/users/(format=pdf)}" role="button">Exportar a PDF
-                    </a>
-
-
-        
-                    
+                    <a class="btn btn-success btn-sm" th:href="@{/views/users/(format=pdf)}" sec:authorize= "hasRole('ROLE_AUDITOR')" role="button">Exportar a PDF
+                    </a> 
                 </a>
 
                 </p>

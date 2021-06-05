@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<htm>
+    <html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="plantilla/template :: head">
+    </head>
+
+
+    <body class="body-form">
+
+
+        <header th:replace="plantilla/template :: header"> </header>
+
+
+        <!--Formulario-->
+        <div class="container">
+            <form th:action="@{/permiso/periodo/save}" th:object="${permiso}" method="post">
+                <div class="form-group row">
+
+                    <section class="form-registrer">
+                        <p align:center> Formulario Registro Permiso Periodo</p>
+                        <h4>Ingrese su dni</h4>
+
+                        <!--Fecha Hasta-->
+                        <input class="controls" th:field="*{pedido.dni}" type="text" name="desdeHasta" id="desdeHasta">
+
+                        <h4>Cantidad de Dias</h4>
+                        <!--Cantidad de dias, la Fecha Actual se setea por parametro-->
+                        <input class="controls" th:field="*{cantDias}" type="text" name="cantDias" id="cantDias">
+
+                        <!-- vacaciones -->
+                        <h4>Vacaciones</h4>
+                        <input type="checkbox" id="switch" name="vacaciones" th:checked = "*{vacaciones}"> 
+                        <label for="switch" class="lbl"></label>
+
+                        <h4>Lugar Solicitado</h4>
+                        <!--Lugar-->
+                        <div class="form-group row">
+							<label class="col-md-2" for="desdeHasta">Desde:</label>
+							<select type="lugar"  th:field="*{desdeHasta}" class="form-control form-control-sm col-md-6"
+								id="lugar">
+
+								<option th:each="r:${desdeHasta}" th:value="${r.idLugar}" th:text="${r.lugar}">
+								</option>
+
+                                
+							</select>
+
+                            
+
+						</div>
+
+                        <div class="form-group row">
+							<label class="col-md-2" for="desdeHasta">Hasta:</label>
+							<select type="lugar"  th:field="*{desdeHasta}" class="form-control form-control-sm col-md-6"
+								id="lugar">
+
+								<option th:each="r:${desdeHasta}" th:value="${r.idLugar}" th:text="${r.lugar}">
+								</option>
+
+                                
+
+							</select>
+
+                            
+
+						</div>
+
+                        <h4>Rodado</h4>
+                        <!--Dominio-->
+                        <input class="controls"  th:field="*{rodado.dominio}" type="text" name="dominio" id="dominio"
+                            placeholder="Ingrese el Domino 'Patente' del vehiculo ">
+                        <!--vehiculo-->
+                        <input class="controls" th:field="*{rodado.vehiculo}" type="text" name="vehiculo" id="vehiculo"
+                            placeholder="Ingrese el tipo de vehiculo">
+
+
+                        <input class="botons" type="submit" value="Registrar">
+                        <a class="botons btn btn-primary btn-sm" th:href="@{/seleccionPermiso}">Cancelar</a>
+
+
+
+                    </section>
+
+                </div>
+           
+
+
+            </form>
+        </div>
+
+        <!--/Formulario-->
+
+
+        <footer th:replace="plantilla/template :: footer"> </footer>
+
+
+    </body>
+
+    </html>

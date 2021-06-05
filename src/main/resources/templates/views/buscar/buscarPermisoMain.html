@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<htm>
+    <html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="plantilla/template :: head">
+    </head>
+
+
+    <body class="body-buscar">
+
+
+        <header th:replace="plantilla/template :: header"> </header>
+
+
+
+        <section class="form-registrer2">
+
+
+            <h4 class="text-center mb-4"> Buscar Permiso </h4>
+
+            <form class="text-center mb-4" th:action="@{/buscar/permiso/}">
+                <input type="text" name="dni" id="dni" size="50" th:value="${dni}" required class="src" role="button"
+                    placeholder="Buscar Ingrese Dni" />
+                <input class="botons btn btn-primary btn-sm" type="submit" style="text-decoration:none"></input>
+                <a class="botons btn btn-primary btn-sm" style="text-decoration:none"
+                    th:href="@{/permiso/}">Cancelar</a>
+            </form>
+
+        </section>
+
+
+        <div class="container">
+            <div class="container">
+
+                <div class="box">
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <footer th:replace="plantilla/template :: footer"> </footer>
+
+        <script type="text/javascript">
+            function setPersonaDisabled() {
+                var element = document.getElementById("pie");
+                element.setAttribute("th:value", "false");
+            }
+        </script>
+
+
+    </body>
+
+    </html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<htm>
+    <html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="plantilla/template :: head">
+    </head>
+
+
+
+    <body class="body-buscar">
+
+
+        <header th:replace="plantilla/template :: header"> </header>
+
+        <section class="form-registrer2">
+
+
+            <h4 class="text-center mb-4">
+                Buscar Permiso por Dominio
+            </h4>
+
+            <form class="text-center mb-4" th:action="@{/buscar/permiso/rodado/}">
+                <input type="text" name="dominio" id="dominio" size="50" th:value="${dominio}" required class="src"
+                    role="button" placeholder="Buscar Ingrese Dominio" />
+                <input class="botons btn btn-primary btn-sm" type="submit" style="text-decoration:none"></input>
+                <a class="botons btn btn-primary btn-sm" style="text-decoration:none" th:href="@{/home}">Cancelar</a>
+            </form>
+
+        </section>
+
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+
+                <table class="table table-dark table-hover">
+
+
+                    <thead>
+                        <tr>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Dni</th>
+                            <th scope="col">Fecha Emision</th>
+                            <th scope="col">Valido Hasta</th>
+                            <th scope="col">Vacaciones</th>
+                            <th scope="col">Dominio Vehiculo</th>
+                            <th scope="col">Vehiculo</th>
+                            <th scope="col">Desde</th>
+                            <th scope="col">Hasta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr th:each="cl:${listProducts}">
+                            <td th:text="${cl.pedido.apellido}"></td>
+                            <td th:text="${cl.pedido.nombre}"></td>
+                            <td th:text="${cl.pedido.dni}"></td>
+                            <td th:text="${cl.fecha}"></td>
+                            <td th:text="${cl.cantDias}"></td>
+                            <td th:text="${cl.vacaciones}? Si:No"></td>
+                            <td th:text="${cl.rodado.dominio}"></td>
+                            <td th:text="${cl.rodado.vehiculo}"></td>
+                            <td th:text="${cl.desdeHasta[0].lugar + ' CP ' + cl.desdeHasta[0].codigoPostal}"></td>
+                            <td th:text="${cl.desdeHasta[1].lugar + ' CP ' + cl.desdeHasta[1].codigoPostal}"></td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+
+            </div>
+
+        </div>
+
+        <footer th:replace="plantilla/template :: footer"> </footer>
+
+
+
+
+    </body>
+
+    </html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<htm>
+	<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="plantilla/template :: head">
+	</head>
+
+
+	<body class="body-generic">
+
+
+		<header th:replace="plantilla/template :: header"> </header>
+
+
+		<!--Formulario-->
+		<div class="container">
+			<div class="card bg-light">
+				<div class="card-header bg-dark text-white" th:text=${titulo}></div>
+				<div class="card-body">
+					<form th:action="@{/views/personas/save}" th:object="${persona}" method="post">
+						<div class="form-group row">
+
+							<input type="hidden" th:field="*{id}">
+
+
+							
+							<label class="col-md-2" for="nombre">Nombre:</label>
+							<input type="text" th:field="*{nombre}" class="form-control form-control-sm col-md-6"
+								id="nombre" placeholder="Nombres de la persona">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
+								th:errors="*{nombre}">
+							</small>
+						</div>
+						<div class="form-group row">
+
+							<label class="col-md-2" for="apellido">Apellido:</label>
+							<input type="text" th:field="*{apellido}" class="form-control form-control-sm col-md-6"
+								id="apellido" placeholder="Apellido de la persona">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}"
+								th:errors="*{apellido}">
+							</small>
+						</div>
+						<div class="form-group row">
+
+							<label class="col-md-2" for="dni">Nro de documento:</label>
+							<input type="text" th:field="*{dni}" class="form-control form-control-sm col-md-6"
+								id="dni" placeholder="Numero de documento">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('dni')}"
+								th:errors="*{dni}">
+							</small>
+						</div>
+						
+						<div class="card-footer bg-dark">
+							<input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
+							<a class="btn btn-primary btn-sm" th:href="@{/home}" role="button">Cancelar</a>
+						</div>
+
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!--/Formulario-->
+
+		<footer th:replace="plantilla/template :: footer"> </footer>
+
+
+	</body>
+
+	</html>
