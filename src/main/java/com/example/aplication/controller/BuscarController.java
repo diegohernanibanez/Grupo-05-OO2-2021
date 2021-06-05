@@ -117,12 +117,7 @@ public class BuscarController {
  
     }
 
-
-
-    @ModelAttribute
-    LocalDate initLocalDate() {
-        return LocalDate.now();
-    }
+  
 
     @RequestMapping(value = "/permiso/fecha", method = RequestMethod.GET)
     public String viewsBuscarFecha(Model model) {
