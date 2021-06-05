@@ -13,6 +13,7 @@ public interface IPermisoService {
     public void guardar (Permiso user);
     public List<Permiso> BuscarPermisoDni (long dni);
     public List<Permiso> filtrarPorFecha(LocalDate desde, LocalDate hasta) throws Exception;
+    public List<Permiso> filtrarPorFechaLugar(LocalDate desde, LocalDate hasta, String desdeLugar, String hastaLugar ) throws Exception;
     
     
 }
