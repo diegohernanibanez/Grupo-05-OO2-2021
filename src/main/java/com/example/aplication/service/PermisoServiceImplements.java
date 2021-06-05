@@ -5,11 +5,10 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import com.example.aplication.entity.Lugar;
 import com.example.aplication.entity.Permiso;
+import com.example.aplication.entity.PermisoPeriodo;
 import com.example.aplication.repository.PermisoRepository;
 
 @Service
@@ -23,31 +22,39 @@ public class PermisoServiceImplements implements IPermisoService {
         return (List<Permiso>) permisoRepository.findAll();
     }
 
-    // @Override
-    // public List<Permiso> listarActivos() {
-    // return (List<Permiso>)permisoRepository.findByEnabledTrue();
-
-    // }
+    @Override
+    public List<Permiso> listarActivos(){
+        List<Permiso> todos = listarTodos();
+        List<Permiso> rta = new ArrayList<>();
+        for (int i = 0 ; i < todos.size() ; i++){
+            Permiso p = todos.get(i);
+                if (p instanceof PermisoPeriodo){
+                   if ((p.getFecha().plusDays(((PermisoPeriodo)p).getCantDias()).isAfter(LocalDate.now()) || (p.getFecha().plusDays(((PermisoPeriodo)p).getCantDias()).isEqual(LocalDate.now())))){
+                         rta.add(p);    
+                    }
+                }else{
+                    if ((p.getFecha().plusDays(1).isAfter(LocalDate.now()) || p.getFecha().plusDays(1).isEqual(LocalDate.now()) )){
+                        rta.add(p);
+                    }
+                }
+        }
+        return rta;
+    }
 
     @Override
     public List<Permiso> filtrarPorFecha(LocalDate desde, LocalDate hasta) throws Exception{
-        List<Permiso> todos = listarTodos();
+        List<Permiso> todos = listarActivos();
+        List<Permiso> rta = new ArrayList<>(); 
 
         if(hasta.isBefore(desde)) throw new Exception("Desde mayor que hasta");
         for (int i = 0 ; i < todos.size() ; i++)
             {
-                if( todos.get(i).getFecha().isAfter(hasta)) todos.remove(i);
-                if( todos.get(i).getFecha().isBefore(desde)) todos.remove(i); 
-
+                Permiso p = todos.get(i);
+                   if (((p.getFecha().isBefore(hasta) || p.getFecha().isEqual(hasta) ) && (p.getFecha().isAfter(desde)||p.getFecha().isEqual(desde))))
+                   {rta.add(p);}
             }
-        if((todos.get(0).getFecha().isAfter(hasta) && (todos.size() == 1))|| (todos.get(0).getFecha().isBefore(desde) && (todos.size() == 1)))
-         { throw new Exception("No se encontraron permisos");}
-
-        return todos;
+        return rta;
     }
-
-  
-    
 
     @Override
     public Permiso buscarPorID(long id) {
