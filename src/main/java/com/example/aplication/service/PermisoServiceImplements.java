@@ -70,30 +70,43 @@ public class PermisoServiceImplements implements IPermisoService {
         List<Lugar> lugares = lugarRepository.findAll();
         Lugar desdel = new Lugar();
         Lugar hastal = new Lugar();
-
         boolean esta = false;
+        boolean estaprimero = false;
+        boolean estasegundo= false;
+
+        // if(desdeLugar.isBlank()) esta= true;
         for (Lugar l : lugares ){
             if (l.getLugar().equals(desdeLugar)) {
+                estaprimero = true;
                 esta = true;
                 desdel = l;
             }
         }
-        if (!(esta)) throw new Exception("lugar inexistente");
-        esta = false; 
+
+
+        // if (!(esta)) throw new Exception("lugar inexistente");
+       
+        // esta = false;
+        if(desdeLugar.isBlank()) esta = true;
         for (Lugar l : lugares ){
             if (l.getLugar().equals(hastaLugar)) {
+                estasegundo = true;
                 esta = true;
                 hastal=l;
 
             }
         }
-        if (!(esta)) throw new Exception("lugar inexistente");
+        // if (!(esta)) throw new Exception("lugar inexistente");
 
 
 
         for (Permiso p : todos){
+            if(estaprimero && estasegundo){if(p.getDesdeHasta().contains(desdel)&& p.getDesdeHasta().contains(hastal)) rta.add(p);}
+            if (estaprimero && (!estasegundo)) {if(p.getDesdeHasta().contains(desdel)) rta.add(p);}
+            if ((!estaprimero) && (estasegundo)) {if(p.getDesdeHasta().contains(hastal)) rta.add(p);}
 
-            if(p.getDesdeHasta().contains(desdel)&& p.getDesdeHasta().contains(hastal)) rta.add(p);
+
+            
         }
         return rta;
 
