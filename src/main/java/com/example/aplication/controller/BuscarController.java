@@ -131,7 +131,7 @@ public class BuscarController {
 
     @Secured({"ROLE_AUDITOR"})
     @RequestMapping(value = "/permiso/buscarFecha", method = RequestMethod.POST)
-    public String returnBuscarFecha(@ModelAttribute("hasta")String hasta, @ModelAttribute("desde")String desde,  Model model, RedirectAttributes attribute) {
+    public String returnBuscarFecha(@ModelAttribute("hasta")String hasta, @ModelAttribute("desde")String desde,@ModelAttribute("desdeLugar")String desdeLugar, @ModelAttribute("hastaLugar")String hastaLugar,  Model model, RedirectAttributes attribute) {
        
         String[] hastas = hasta.split("-");
         String[] desdes = desde.split("-");
@@ -141,13 +141,21 @@ public class BuscarController {
         
         List<Permiso> lPermisos = new ArrayList<>();    
         
+        if(desdeLugar.isEmpty() && hastaLugar.isEmpty() ){
         try {
             lPermisos = permisoServiceImplements.filtrarPorFecha(inicio, tope);
         } catch (Exception e) {
             attribute.addFlashAttribute("error", e.getMessage());
             return "redirect:/buscar/permiso/fecha";
 
-        }
+        }} else {
+            try {
+            lPermisos = permisoServiceImplements.filtrarPorFechaLugar(inicio, tope, desdeLugar, hastaLugar);
+        } catch (Exception e) {
+            attribute.addFlashAttribute("error", e.getMessage());
+            return "redirect:/buscar/permiso/fecha";
+        }}
+
         List<Permiso> listPeriodos = new ArrayList<Permiso>();
         List<Permiso> listDiarios = new ArrayList<Permiso>();
 

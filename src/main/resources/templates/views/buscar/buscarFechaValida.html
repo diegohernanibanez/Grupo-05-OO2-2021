@@ -27,22 +27,40 @@
                         <a class="btn btn-primary btn-sm" th:href="@{/home}" role="button">Volver</a>
                        
 
-                       
+                        <br>
+                        <br>
+
                         &nbsp;
-                        <span>Ingrese desde -> </span>
+                        <span>Ingrese desde   &nbsp; &nbsp;-> </span>
                         <input type="date" name="desde" id="desde" role="button"
                         th:value= "${desde}"
                              />
                         &nbsp;
-
+                        <br>
                         &nbsp;
-                        <span>Ingrese hasta -> </span>
+                        <span>Ingrese hasta  &nbsp; &nbsp;-> </span>
                         <input type="date" name="hasta" id="hasta" role="button"
                         th:value= "${hasta}"
                              />
                         &nbsp;
+                        <br>
+                        &nbsp;
+                        <span>Ingrese desde lugar -> </span>
+                        <input type="text" name="desdeLugar" id="desdeLugar" role="button"
+                        th:value= "${desdeLugar}"
+                             />
+                        &nbsp;
+                        <br>
+                        &nbsp;
+                        <span>Ingrese hasta lugar  -> </span>
+                        <input type="text" name="hastaLugar" id="hastaLugar" role="button"
+                        th:value= "${hastaLugar}"
+                             />
+                        &nbsp;
                         
-                            
+                        <br> 
+                        <br>
+
                         
                         <input type="submit" class="btn btn-primary btn-sm" value="Buscar" />
 
