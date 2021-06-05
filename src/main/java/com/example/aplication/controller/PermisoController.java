@@ -59,7 +59,7 @@ public class PermisoController {
         model.addAttribute("titulo", "Formulario: Nuevo Permiso");
         model.addAttribute("motivo", motivo);
         model.addAttribute("rodado", rodado);
-        model.addAttribute("pedido",persona);
+        model.addAttribute("pedido", persona);
         model.addAttribute("permiso", permiso);
 
         return ViewRouteHelper.CREAR_PERMISO_PERIODO;
@@ -68,9 +68,8 @@ public class PermisoController {
     @PostMapping("/periodo/save")
     public String guardarPermisoP(@Valid @ModelAttribute PermisoPeriodo permiso, BindingResult result, Model model,
             RedirectAttributes attributes) {
-        
-        System.out.println("RESULT" + result);
 
+        System.out.println("RESULT" + result);
 
         List<Lugar> listLugares = lugarService.listarTodos();
         if (result.hasErrors()) {
@@ -82,18 +81,17 @@ public class PermisoController {
 
         permiso.setFecha(LocalDate.now());
 
-        //buscamos persona. Si no existe, Tira error 
+        // buscamos persona. Si no existe, Tira error
         Persona persona = personaService.buscarPorDni(permiso.getPedido().getDni());
-        
-        if(persona != null) {
+
+        if (persona != null) {
             permiso.setPedido(persona);
         } else {
-            attributes.addFlashAttribute("error", "La persona no esta dada de alta");
+            attributes.addFlashAttribute("error", "Ese documento no se encuentra en la base de datos.");
             return ViewRouteHelper.REDIRECT_PERMISO_PERIODO_CREAR;
         }
 
-        
-        if ( permiso.getDesdeHasta().size() == 1 ) {
+        if (permiso.getDesdeHasta().size() == 1) {
             attributes.addFlashAttribute("error", "El lugar de ida y de llegada no pueden ser iguales");
             return ViewRouteHelper.REDIRECT_PERMISO_PERIODO_CREAR;
         }
@@ -151,47 +149,50 @@ public class PermisoController {
 
     // @GetMapping({ "/periodo/create" })
     // public String permisoPeriodo(Model model ) {
-    //     Permiso permisoperiodo = new PermisoPeriodo();
-    //     Persona persona = new Persona();
-    //     List<Lugar> listLugares = lugarService.listarTodos();
+    // Permiso permisoperiodo = new PermisoPeriodo();
+    // Persona persona = new Persona();
+    // List<Lugar> listLugares = lugarService.listarTodos();
 
-    //     model.addAttribute("desdeHasta", listLugares);
-    //     model.addAttribute("titulo", "Formulario: Nuevo Permiso");
-    //     model.addAttribute("pedido",persona);
-    //     model.addAttribute("permiso", permisoperiodo );
-        
-    //     return "views/permiso/FormularioPermisoP";
+    // model.addAttribute("desdeHasta", listLugares);
+    // model.addAttribute("titulo", "Formulario: Nuevo Permiso");
+    // model.addAttribute("pedido",persona);
+    // model.addAttribute("permiso", permisoperiodo );
+
+    // return "views/permiso/FormularioPermisoP";
     // }
 
     // @PostMapping("/periodo/save")
-    // public String guardarPermisoPeriodo(@Valid @ModelAttribute PermisoPeriodo permisoperiodo,
-    //         @Param("dominio ") String dominio, BindingResult result, Model model, RedirectAttributes attributes) {
+    // public String guardarPermisoPeriodo(@Valid @ModelAttribute PermisoPeriodo
+    // permisoperiodo,
+    // @Param("dominio ") String dominio, BindingResult result, Model model,
+    // RedirectAttributes attributes) {
 
-    //     permisoperiodo.setFecha(LocalDate.now());
-    //     Rodado rodado = rodadoService.buscarDomino(dominio);
-    //     // buscamos persona. Si no existe, Tira error
-    //     Persona persona = personaService.buscarPorDni(permisoperiodo.getPedido().getDni());
+    // permisoperiodo.setFecha(LocalDate.now());
+    // Rodado rodado = rodadoService.buscarDomino(dominio);
+    // // buscamos persona. Si no existe, Tira error
+    // Persona persona =
+    // personaService.buscarPorDni(permisoperiodo.getPedido().getDni());
 
-    //     if (persona != null) {
-    //         permisoperiodo.setPedido(persona);
-    //     } else {
-    //         attributes.addFlashAttribute("error", "La persona no esta dada de alta");
-    //         return ViewRouteHelper.REDIRECT_PERMISO_DIARIO_CREAR;
-    //     }
+    // if (persona != null) {
+    // permisoperiodo.setPedido(persona);
+    // } else {
+    // attributes.addFlashAttribute("error", "La persona no esta dada de alta");
+    // return ViewRouteHelper.REDIRECT_PERMISO_DIARIO_CREAR;
+    // }
 
-    //     if (rodado != null) {
-    //         permisoperiodo.setRodado(rodado);
-    //         ;
-    //     } else {
-    //         attributes.addFlashAttribute("error", "el rodado no esta dada de alta");
-    //         return ViewRouteHelper.REDIRECT_PERMISO_DIARIO_CREAR;
-    //     }
+    // if (rodado != null) {
+    // permisoperiodo.setRodado(rodado);
+    // ;
+    // } else {
+    // attributes.addFlashAttribute("error", "el rodado no esta dada de alta");
+    // return ViewRouteHelper.REDIRECT_PERMISO_DIARIO_CREAR;
+    // }
 
-    //     permisoService.guardar(permisoperiodo);
-    //     attributes.addFlashAttribute("success", "Permiso guardado con exito");
+    // permisoService.guardar(permisoperiodo);
+    // attributes.addFlashAttribute("success", "Permiso guardado con exito");
 
-    //     // cambiar view
-    //     return ViewRouteHelper.HOME_ROOT;
+    // // cambiar view
+    // return ViewRouteHelper.HOME_ROOT;
     // }
 
 }

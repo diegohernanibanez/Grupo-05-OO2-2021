@@ -11,6 +11,7 @@ import com.example.aplication.service.RodadoServiceImplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -74,11 +75,13 @@ public class BuscarController {
 
     }
 
+
     @RequestMapping("/permiso/rodadoMain")
     public String viewHomeRodado(Model model) {
 
         return "views/buscar/buscarRodadoMain";
     }
+
 
     @RequestMapping("/permiso/rodado/")
     public String buscarPermisoRodado(Model model, @Param("dominio") String dominio,  RedirectAttributes attributes) {
@@ -114,6 +117,8 @@ public class BuscarController {
  
     }
 
+
+
     @ModelAttribute
     LocalDate initLocalDate() {
         return LocalDate.now();
@@ -129,6 +134,7 @@ public class BuscarController {
         return "views/buscar/buscarfechaValida";
     }
 
+    @Secured({"ROLE_AUDITOR"})
     @RequestMapping(value = "/permiso/buscarFecha", method = RequestMethod.POST)
     public String returnBuscarFecha(@ModelAttribute("hasta")String hasta, @ModelAttribute("desde")String desde,  Model model, RedirectAttributes attribute) {
        

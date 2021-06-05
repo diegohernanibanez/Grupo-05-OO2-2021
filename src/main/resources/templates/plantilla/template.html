@@ -54,7 +54,8 @@
 								Personas</a>
 						</li> -->
 						<li class="nav-item">
-							<a class="nav-link" href="/permiso/" sec:authorize="!hasRole('ROLE_ADMIN')" >Tramitar Permiso</a>
+							<a class="nav-link" href="/permiso/" sec:authorize="!hasRole('ROLE_ADMIN')">Tramitar
+								Permiso</a>
 						</li>
 						<li>
 
@@ -67,8 +68,9 @@
 									</button>
 									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 										<a class="dropdown-item" href="/buscar/permiso/persona">Permiso por Persona</a>
-										<a class="dropdown-item" href="/buscar/permiso/rodadoMain">Permiso por Rodado</a>
-										<a class="dropdown-item" href="/buscar/permiso/fecha">Permiso entre fechas</a>
+										<a class="dropdown-item" href="/buscar/permiso/rodadoMain">Permiso por
+											Rodado</a>
+										<a class="dropdown-item" href="/buscar/permiso/fecha" sec:authorize="hasRole('ROLE_AUDITOR')">Permiso entre fechas</a>
 									</div>
 								</div>
 							</div>
@@ -119,7 +121,9 @@
 		<div class="alert alert-danger alert-dismissable" th:if="${error != null}">
 			<label th:text="${error}"></label>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<a class="botons btn btn-primary btn-sm" style="text-decoration:none" th:if="${error == 'Ese documento no se encuentra en la base de datos.'}" th:href="@{/views/personas/create}">Darse de alta</a>
+			<a class="botons btn btn-primary btn-sm" style="text-decoration:none"
+				th:if="${error == 'Ese documento no se encuentra en la base de datos.'}"
+				th:href="@{/views/personas/create}">Darse de alta</a>
 		</div>
 
 		<div class="alert alert-warning alert-dismissable" th:if="${warning != null}">
