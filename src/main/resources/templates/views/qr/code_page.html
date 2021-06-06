@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<htm>
+    <html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="plantilla/template :: head">
+    </head>
+
+                         
+
+    <body class="body-buscar">
+
+
+        <header th:replace="plantilla/template :: header"> </header>
+        <p>
+            <h4 class="text-center mb-4"> Generar QR</h4>
+        </p>
+
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+
+
+
+
+                <label>
+                    <form class="text-center mb-4" th:action="@{zxing/qrcode}" method="post">
+                        
+                        <br>
+                        <br>
+
+                        &nbsp;
+                        <span>Dale click al boton para generar el qr!   &nbsp; &nbsp;-> </span>
+                        &nbsp;
+                        <br> 
+                        <br>
+
+                        
+                        <input type="submit" class="btn btn-primary btn-sm" value="Generar" />
+
+
+                    </form>
+
+
+                </label>
+
+                
+            </div>
+
+        </div>
+
+        <footer th:replace="plantilla/template :: footer"> </footer>
+
+
+
+
+    </body>
+
+    </html>

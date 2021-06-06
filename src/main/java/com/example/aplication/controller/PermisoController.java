@@ -12,7 +12,7 @@ import com.example.aplication.helper.ViewRouteHelper;
 import com.example.aplication.service.ILugarService;
 import com.example.aplication.service.IPermisoService;
 import com.example.aplication.service.IPersonaService;
-import com.example.aplication.service.RodadoServiceImplements;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,8 +37,7 @@ public class PermisoController {
     private IPersonaService personaService;
     @Autowired
     private ILugarService lugarService;
-    @Autowired
-    private RodadoServiceImplements rodadoService;
+
 
     @GetMapping({ "/" })
     public String seleccionPermiso() {
