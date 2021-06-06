@@ -25,6 +25,8 @@ public class QRController {
         return new ModelAndView("views/qr/code_page");
     }
 
+
+    // supongo que deberiamos cambiar el String barcode
     @PostMapping(value = "/zxing/qrcode", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<BufferedImage> zxingQRCode(@RequestBody String barcode) throws Exception{
         return successResponse(CodeGenerator.generateQRCode(barcode));
