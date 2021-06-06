@@ -28,6 +28,9 @@ public class ViewRouteHelper {
 
     //RODADOS
     public final static String CREAR_RODADO = "/views/rodados/frmCrear";
+
+ 
+
     
 	// /**** Redirects ****/
     public final static String HOME_ROOT = "/home";
