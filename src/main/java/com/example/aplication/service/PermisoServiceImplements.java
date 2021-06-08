@@ -129,4 +129,15 @@ public class PermisoServiceImplements implements IPermisoService {
         return permisoRepository.findByPedidoDni(dni);
     }
 
+    @Override
+    public Permiso buscarPorDniTipo(long dni, String tipo) {
+        // agregar filtrar x activo
+        List<Permiso> lista = BuscarPermisoDni(dni);
+        for (int i = 0 ; i < lista.size() ; i++){
+            Permiso p = lista.get(i);
+            if (p.getClass().getSimpleName().equals(tipo))return p;
+        }
+        return null;
+    }
+
 }

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<htm>
+	<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="plantilla/template :: head">
+		
+	</head>
+
+
+	<!--borrar background para sacar la imagen-->
+
+	<body class="body-home">
+
+
+		<header th:replace="plantilla/template :: header"> </header>
+
+		<div class="container">
+			<div class="container mt-5" th:if="${(param.permiso[0] == 'permisoDiario')}" >
+				
+				<h4 class="mb-4" style="color:white">
+					Permiso Diario
+				</h4>
+
+				<div class="row justify-content-center" >
+					<table class="table table-dark table-hover">
+						<thead>
+							<tr>
+								<th scope="col">Dni</th>
+								<th scope="col">Fecha</th>
+								<th scope="col">Motivo</th>
+								<th scope="col">Desde</th>
+								<th scope="col">Hasta</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${param.dni}"></td>
+								<td th:text="${param.fecha}"></td>
+								<td th:text="${param.motivo}"></td>
+								<td th:text="${param.lugares[0]}"></td>
+								<td th:text="${param.lugares[1]}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		
+			<div class="container mt-5" th:if="${(param.permiso[0] == 'permisoPeriodo')}">
+				<h4 class=" mb-4" style="color:white">
+					Permiso Periodo
+				</h4>
+				<div class="row justify-content-center" >
+					<table class="table table-dark table-hover">
+						<thead>
+							<tr>
+								<th scope="col">Dni</th>
+								<th scope="col">Fecha</th>
+								<th scope="col">Validez Hasta</th>
+								<th scope="col">Vacaciones</th>
+								<th scope="col">Vehiculo</th>
+								<th scope="col">Desde</th>
+								<th scope="col">Hasta</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${param.dni}"></td>
+								<td th:text="${param.fecha}"></td>
+								<td th:text="${param.validez}"></td>
+								<td th:text="${param.vacaciones}? Si:No"></td>
+								<td th:text="${param.rodado}"></td>
+								<td th:text="${param.lugares[0]}"></td>
+								<td th:text="${param.lugares[1]}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div> 
+
+		</div>
+
+			<footer th:replace="plantilla/template :: footer"> </footer>
+
+
+	</body>
+
+	</html>
