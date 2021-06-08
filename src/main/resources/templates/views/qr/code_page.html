@@ -40,9 +40,11 @@
 
                         &nbsp;
                         <span>Ingrese tipo del permiso (periodo/diario) &nbsp; &nbsp;-> </span>
-                        <input type="text" name="permiso_id" id="permiso_id" 
-                        th:value= "${tipo}"
-                             />
+                        <!--Tipo-->
+                        <select id="tipo" name="tipo">
+                            <option value="Periodo">Periodo</option>
+                            <option value="Diario"> Diario</option>
+                        </select>
                         &nbsp;
 
                         <br> 

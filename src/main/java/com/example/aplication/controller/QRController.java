@@ -32,6 +32,14 @@ import com.example.aplication.entity.Lugar;
 @RestController
 public class QRController {
 
+    //                                QUE FALTA??????????????????????
+    // quiero agregar el esValido() en el service
+    // mejor front
+
+    // mas en gral...
+    //unico rodado
+    // el quilombardo del set (creo q pasandolo a lista se lo arregla. Fijarse aca q hice algo x ahi)
+
     @Autowired
     private IPermisoService permisoService;
 
@@ -61,25 +69,31 @@ public class QRController {
 
         Long permiso_id_long = Long.parseLong(permiso_id); 
         Permiso permiso = permisoService.buscarPorDniTipo(permiso_id_long, "PermisoPeriodo");
+
+        String web = generateWebString(permiso);
+
+        return successResponse(CodeGenerator.generateQRCode("http://localhost:8080/views/barcode/qr"+ web));
+    }
+
+    private String generateWebString(Permiso permiso){
+
         PermisoPeriodo periodo = new PermisoPeriodo();
         PermisoDiario diario = new PermisoDiario();
         List<Lugar> stringsList = new ArrayList<>(permiso.getDesdeHasta());
         String web = new String();
         if(permiso instanceof PermisoDiario){
             diario = (PermisoDiario) permiso;
-            web= "?permiso=permisoDiario" + "&dni=" + permiso_id + "&fecha=" + diario.getFecha() + "&lugares=" + stringsList.get(0).getLugar() + "&lugares=" + stringsList.get(1).getLugar() + "&motivo=" +diario.getMotivo();  
+            web= "?permiso=permisoDiario" + "&dni=" + permiso.getId() + "&fecha=" + diario.getFecha() + "&lugares=" + stringsList.get(0).getLugar() + "&lugares=" + stringsList.get(1).getLugar() + "&motivo=" +diario.getMotivo();  
              //qr?permiso=permisoDiario&dni=12345678&fecha=2020-02-02&desde=MonteGrande&hasta=Calamuchita&motivo=porque%20si&vacaciones=null&rodado=null
         }else{
 
             periodo = (PermisoPeriodo)permiso;
-            System.out.println("HOLA! ");
             System.out.println(periodo.getCantDias());
-            web= "?permiso=permisoPeriodo" + "&dni=" + permiso_id + "&fecha=" + permiso.getFecha() + "&lugares=" + stringsList.get(0).getLugar() + "&lugares=" + stringsList.get(1).getLugar() + "&vacaciones=" + periodo.isVacaciones() + "&rodado=" + periodo.getRodado().getDominio() + "&validez" + permiso.getFecha().plusDays(periodo.getCantDias());  
+            web= "?permiso=permisoPeriodo" + "&dni=" + permiso.getId() + "&fecha=" + permiso.getFecha() + "&lugares=" + stringsList.get(0).getLugar() + "&lugares=" + stringsList.get(1).getLugar() + "&vacaciones=" + periodo.isVacaciones() + "&rodado=" + periodo.getRodado().getDominio() + "&validez=" + permiso.getFecha().plusDays(periodo.getCantDias());  
 
         }
+        return web;
 
-
-        return successResponse(CodeGenerator.generateQRCode("http://localhost:8080/views/barcode/qr"+ web));
     }
 
     private ResponseEntity<BufferedImage> successResponse(BufferedImage image) {
