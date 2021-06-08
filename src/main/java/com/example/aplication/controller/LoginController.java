@@ -25,7 +25,7 @@ public class LoginController {
         }
         if (principal != null) {
             attribute.addFlashAttribute("warning", "Usted ya ha inicidado sesion");
-            url = "redirect:/home";
+            url = "redirect:/index";
         }
 
 
@@ -37,6 +37,6 @@ public class LoginController {
     public String logout(RedirectAttributes attribute) {
 
         attribute.addFlashAttribute("success", "Sesion finalizada con exito");
-        return "redirect:/home";
+        return "redirect:/index";
     }
 }
