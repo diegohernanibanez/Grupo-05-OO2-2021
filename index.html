@@ -10,13 +10,17 @@
 	<body class="body-home">
 		
 
-		<h1><span id="myText"></span></h1>
+		<h1>Nombre: <span id="nombre"></span></h1>
+		<h1>Apellido: <span id="apellido"></span></h1>
+		<h1>DNI: <span id="dni"></span></h1>
+
+
 		
 		<script>
 			const urlParams = new URLSearchParams(window.location.search);
-			const size = urlParams.get('size');
-			alert(size);
-			document.getElementById("myText").innerHTML = size;
+			document.getElementById("nombre").innerHTML = urlParams.get('nombre');
+			document.getElementById("apellido").innerHTML = urlParams.get('apellido');
+			document.getElementById("dni").innerHTML = urlParams.get('dni');
 		  </script>
 	</body>
 
