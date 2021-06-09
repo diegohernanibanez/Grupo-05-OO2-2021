@@ -9,14 +9,14 @@
 
 	<body class="body-home">
 		
-		<h1>DNI:   <span id="dni"></span></h1>
-		<h1>Desde: <span id="desde"></span></h1>
-		<h1>Hasta: <span id="hasta"></span></h1>
-		<h1>Fecha: <span id="fecha"></span></h1>
-		<h1>Motivo: <span id="motivo"></span></h1>
-		<h1>Validez: <span id="validez"></span></h1>
-		<h1>Vacaciones: <span id="vacaciones"></span></h1>
-		<h1>Rodado: <span id="rodado"></span></h1>
+		<h1> DNI:   <span id="dni"></span></h1>
+		<h1> Desde: <span id="desde"></span></h1>
+		<h1> Hasta: <span id="hasta"></span></h1>
+		<h1> Fecha: <span id="fecha"></span></h1>
+		<h1 class="diario"> Motivo: <span id="motivo"></span></h1>
+		<h1 class="periodo"> Validez: <span id="validez"></span></h1>
+		<h1 class="periodo"> Vacaciones: <span id="vacaciones"></span></h1>
+		<h1 class="periodo"> Rodado: <span id="rodado"></span></h1>
 
 		<script>
 			const urlParams = new URLSearchParams(window.location.search);
@@ -34,14 +34,12 @@
 
 			
 			if(tipo == "permisoDiario"){
-				document.getElementById("rodado").style.display = "none";
-				document.getElementById("vavaciones").style.display = "none";
-				document.getElementById("validez").style.display = "none";
+				document.getElementsByClassName("periodo").style.display = "none";
 
 			}
 
 			if (tipo == "permisoPeriodo"){
-				document.getElementById("motivo").style.display = "none";
+				document.getElementsByClassName("diario").style.display = "none";
 			}
 
 

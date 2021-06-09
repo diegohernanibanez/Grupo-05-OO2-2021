@@ -44,17 +44,7 @@ public class QRController {
         model.addObject("permiso_id", new String());
         return model;
     }
-
-    //ejemplo:
-    //qr?permiso=permisoDiario&dni=12345678&fecha=2020-02-02&lugares=MonteGrande&lugares=Calamuchita&motivo=porque%20si&vacaciones=null&rodado=null
-    //LO QUE SE VE EN EL QR
-    @GetMapping("/qr")
-    public ModelAndView crearBarcode() {
-
-        return new ModelAndView("views/qr/webpage.html");
-    }
-
-
+    
     // supongo que deberiamos cambiar el String barcode
     @PostMapping(value = "/zxing/qrcode", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<BufferedImage> zxingQRCode(@ModelAttribute("permiso_id") String permiso_id, @ModelAttribute("tipo") String tipo , RedirectAttributes attributes) throws Exception{
