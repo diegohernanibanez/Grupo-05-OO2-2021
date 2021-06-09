@@ -12,17 +12,18 @@
 
 		<h1>Nombre: <span id="nombre"></span></h1>
 		<h1>Apellido: <span id="apellido"></span></h1>
-		<h1 id="123">DNI: <span id="dni"></span></h1>
+		<h1 id="dniTag">DNI: <span id="dni"></span></h1>
 
 
 		
 		<script>
 			const urlParams = new URLSearchParams(window.location.search);
-			document.getElementById("nombre").innerHTML = urlParams.get('nombre');
+			var nombre = urlParams.get('nombre');
+			document.getElementById("nombre").innerHTML = nombre
 			document.getElementById("apellido").innerHTML = urlParams.get('apellido');
 			document.getElementById("dni").innerHTML = urlParams.get('dni');
-			if(urlParams.get('nombre') = "Diego"){
-				document.getElementById("123").style.display = "none";;
+			if(nombre = "Diego"){
+				document.getElementById("dniTag").style.display = "none";
 			}
 		  </script>
 	</body>
