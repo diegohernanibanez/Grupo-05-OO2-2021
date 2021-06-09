@@ -72,7 +72,7 @@ public class QRController {
 
         String web = generateWebString(permiso);
 
-        return successResponse(CodeGenerator.generateQRCode("http://localhost:8080/views/barcode/qr"+ web));
+        return successResponse(CodeGenerator.generateQRCode("https://diegohernanibanez.github.io/Grupo-05-OO2-2021/" +  web));
     }
 
     private String generateWebString(Permiso permiso){
@@ -83,13 +83,13 @@ public class QRController {
         String web = new String();
         if(permiso instanceof PermisoDiario){
             diario = (PermisoDiario) permiso;
-            web= "?permiso=permisoDiario" + "&dni=" + permiso.getId() + "&fecha=" + diario.getFecha() + "&lugares=" + stringsList.get(0).getLugar() + "&lugares=" + stringsList.get(1).getLugar() + "&motivo=" +diario.getMotivo();  
+            web= "?permiso=permisoDiario" + "&dni=" + permiso.getPedido().getDni()+ "&fecha=" + diario.getFecha() + "&desde=" + stringsList.get(0).getLugar() + "&hasta=" + stringsList.get(1).getLugar() + "&motivo=" +diario.getMotivo();  
              //qr?permiso=permisoDiario&dni=12345678&fecha=2020-02-02&desde=MonteGrande&hasta=Calamuchita&motivo=porque%20si&vacaciones=null&rodado=null
         }else{
 
             periodo = (PermisoPeriodo)permiso;
             System.out.println(periodo.getCantDias());
-            web= "?permiso=permisoPeriodo" + "&dni=" + permiso.getId() + "&fecha=" + permiso.getFecha() + "&lugares=" + stringsList.get(0).getLugar() + "&lugares=" + stringsList.get(1).getLugar() + "&vacaciones=" + periodo.isVacaciones() + "&rodado=" + periodo.getRodado().getDominio() + "&validez=" + permiso.getFecha().plusDays(periodo.getCantDias());  
+            web= "?permiso=permisoPeriodo" + "&dni=" + permiso.getPedido().getDni()+ "&fecha=" + permiso.getFecha() + "&desde=" + stringsList.get(0).getLugar() + "&hasta=" + stringsList.get(1).getLugar() + "&vacaciones=" + periodo.isVacaciones() + "&rodado=" + periodo.getRodado().getDominio() + "&validez=" + permiso.getFecha().plusDays(periodo.getCantDias());  
 
         }
         return web;

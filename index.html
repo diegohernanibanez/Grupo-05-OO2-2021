@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<htm>
+
+	<head>
+		
+	</head>
+
+	<!--borrar background para sacar la imagen-->
+
+	<body class="body-home">
+		
+		<h1>DNI:   <span id="dni"></span></h1>
+		<h1>Desde: <span id="desde"></span></h1>
+		<h1>Hasta: <span id="hasta"></span></h1>
+		<h1>Fecha: <span id="fecha"></span></h1>
+		<h1>Motivo: <span id="motivo"></span></h1>
+		<h1>Validez: <span id="validez"></span></h1>
+		<h1>Vacaciones: <span id="vacaciones"></span></h1>
+		<h1>Rodado: <span id="rodado"></span></h1>
+
+		<script>
+			const urlParams = new URLSearchParams(window.location.search);
+
+			var tipo = urlParams.get('permiso');
+
+			document.getElementById("desde").innerHTML = urlParams.get('desde');
+			document.getElementById("hasta").innerHTML = urlParams.get('hasta');
+			document.getElementById("fecha").innerHTML = urlParams.get('fecha');
+			document.getElementById("dni").innerHTML = urlParams.get('dni');
+			document.getElementById("motivo").innerHTML = urlParams.get('motivo');
+			document.getElementById("validez").innerHTML = urlParams.get('validez');
+			document.getElementById("vacaciones").innerHTML = urlParams.get('vacaciones');
+			document.getElementById("rodado").innerHTML = urlParams.get('rodado');
+
+			
+			if(tipo == "permisoDiario"){
+				document.getElementById("rodado").style.display = "none";
+				document.getElementById("vavaciones").style.display = "none";
+				document.getElementById("validez").style.display = "none";
+
+			}
+
+			if (tipo == "permisoPeriodo"){
+				document.getElementById("motivo").style.display = "none";
+			}
+
+
+		</script>
+	</body>
+
+	</html>
