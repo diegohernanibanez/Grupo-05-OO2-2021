@@ -13,10 +13,10 @@
 		<h1> Desde: <span id="desde"></span></h1>
 		<h1> Hasta: <span id="hasta"></span></h1>
 		<h1> Fecha: <span id="fecha"></span></h1>
-		<h1 class="diario"> Motivo: <span id="motivo"></span></h1>
-		<h1 class="periodo"> Validez: <span id="validez"></span></h1>
-		<h1 class="periodo"> Vacaciones: <span id="vacaciones"></span></h1>
-		<h1 class="periodo"> Rodado: <span id="rodado"></span></h1>
+		<h1 id="motivoH1"> Motivo: <span id="motivo"></span></h1>
+		<h1 id="validezH1"> Validez: <span id="validez"></span></h1>
+		<h1 id="vacacionesH1"> Vacaciones: <span id="vacaciones"></span></h1>
+		<h1 id="rodadoH1"> Rodado: <span id="rodado"></span></h1>
 
 		<script>
 			const urlParams = new URLSearchParams(window.location.search);
@@ -34,12 +34,16 @@
 
 			
 			if(tipo == "permisoDiario"){
-				document.getElementsByClassName("periodo").style.display = "none";
+				document.getElementById("rodadoH1") = "none";
+				document.getElementById("validezH1") = "none";
+				document.getElementById("vacacionesH1") = "none";
+
 
 			}
 
 			if (tipo == "permisoPeriodo"){
-				document.getElementsByClassName("diario").style.display = "none";
+				document.getElementById("motivoH1") = "none";
+
 			}
 
 
