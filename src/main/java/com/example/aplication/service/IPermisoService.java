@@ -10,7 +10,7 @@ public interface IPermisoService {
     public List <Permiso> listarTodos();
     public List <Permiso> listarActivos();
     public Permiso buscarPorID (long id);
-    public Permiso buscarPorDniTipo(long dni, String tipo);
+    public Permiso buscarPorDniTipo(long dni, String tipo) throws Exception;
     public void guardar (Permiso user);
     public List<Permiso> BuscarPermisoDni (long dni);
     public List<Permiso> filtrarPorFecha(LocalDate desde, LocalDate hasta) throws Exception;

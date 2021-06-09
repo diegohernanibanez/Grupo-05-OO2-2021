@@ -79,6 +79,18 @@ public abstract class Permiso {
         this.fecha = fecha;
     }
 
+    public boolean esValido(){
+        boolean esValido = true;
+        if (this instanceof PermisoDiario){
+            if (LocalDate.now().isAfter(this.getFecha().plusDays(1))) esValido=false;
+        }else{
+            PermisoPeriodo aux = (PermisoPeriodo) this;
+            if(LocalDate.now().isAfter(this.getFecha().plusDays(aux.getCantDias()))) esValido=false;
+        }
+
+        return esValido;
+    }
+
      
     @Override
     public String toString() {

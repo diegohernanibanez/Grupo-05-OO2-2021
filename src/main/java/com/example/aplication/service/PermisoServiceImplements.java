@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.example.aplication.entity.Lugar;
 import com.example.aplication.entity.Permiso;
+import com.example.aplication.entity.PermisoDiario;
 import com.example.aplication.entity.PermisoPeriodo;
 import com.example.aplication.repository.LugarRepository;
 import com.example.aplication.repository.PermisoRepository;
@@ -129,15 +130,16 @@ public class PermisoServiceImplements implements IPermisoService {
         return permisoRepository.findByPedidoDni(dni);
     }
 
+
     @Override
-    public Permiso buscarPorDniTipo(long dni, String tipo) {
+    public Permiso buscarPorDniTipo(long dni, String tipo) throws Exception {
         // agregar filtrar x activo
         List<Permiso> lista = BuscarPermisoDni(dni);
         for (int i = 0 ; i < lista.size() ; i++){
             Permiso p = lista.get(i);
-            if (p.getClass().getSimpleName().equals(tipo))return p;
+            if (p.getClass().getSimpleName().equals(tipo) && p.esValido())return p;
         }
-        return null;
+       throw new Exception ("No se ha encontrado el permiso");
     }
 
 }

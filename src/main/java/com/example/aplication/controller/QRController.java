@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -33,11 +34,11 @@ import com.example.aplication.entity.Lugar;
 public class QRController {
 
     //                                QUE FALTA??????????????????????
-    // quiero agregar el esValido() en el service
     // mejor front
+    // No hacer q se rompa cuando pongo mal el doc o el tipo....
 
     // mas en gral...
-    //unico rodado
+    // unico rodado
     // el quilombardo del set (creo q pasandolo a lista se lo arregla. Fijarse aca q hice algo x ahi)
 
     @Autowired
@@ -65,10 +66,18 @@ public class QRController {
 
     // supongo que deberiamos cambiar el String barcode
     @PostMapping(value = "/zxing/qrcode", produces = MediaType.IMAGE_PNG_VALUE)
-    public ResponseEntity<BufferedImage> zxingQRCode(@ModelAttribute("permiso_id") String permiso_id, @ModelAttribute("tipo") String tipo, @RequestBody String barcode) throws Exception{
+    public ResponseEntity<BufferedImage> zxingQRCode(@ModelAttribute("permiso_id") String permiso_id, @ModelAttribute("tipo") String tipo , RedirectAttributes attributes) throws Exception{
 
         Long permiso_id_long = Long.parseLong(permiso_id); 
-        Permiso permiso = permisoService.buscarPorDniTipo(permiso_id_long, "PermisoPeriodo");
+        Permiso permiso = null;
+        try {
+            permiso = permisoService.buscarPorDniTipo(permiso_id_long, "Permiso" + tipo);
+            
+        } catch (Exception e) {
+            attributes.addFlashAttribute("error", "No se encontraron permisos");
+            throw new RuntimeException("No se encontraron permisos");
+            
+        }
 
         String web = generateWebString(permiso);
 
