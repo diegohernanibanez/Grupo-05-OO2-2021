@@ -3,16 +3,18 @@
 
 	<head>
 		<script>
-			const urlParams = new URLSearchParams(window.location.search);
-			const size = urlParams.get('size');
-      		document.getElementById("myText").innerHTML = size;
+			function myFunction() {
+				const urlParams = new URLSearchParams(window.location.search);
+				const size = urlParams.get('size');
+      			document.getElementById("myText").innerHTML = size;
+			}
 		  </script>
 	</head>
 
 
 	<!--borrar background para sacar la imagen-->
 
-	<body class="body-home">
+	<body class="body-home" onload="myFunction()">
 
 		<h1>Size = <span id="myText"></span></h1>
 		
