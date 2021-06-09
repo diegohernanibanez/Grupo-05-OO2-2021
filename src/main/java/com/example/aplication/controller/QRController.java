@@ -32,14 +32,6 @@ import com.example.aplication.entity.Lugar;
 @RestController
 public class QRController {
 
-    //                                QUE FALTA??????????????????????
-    // mejor front
-    // No hacer q se rompa cuando pongo mal el doc o el tipo....
-
-    // mas en gral...
-    // unico rodado
-    // el quilombardo del set (creo q pasandolo a lista se lo arregla. Fijarse aca q hice algo x ahi)
-
     @Autowired
     private IPermisoService permisoService;
 

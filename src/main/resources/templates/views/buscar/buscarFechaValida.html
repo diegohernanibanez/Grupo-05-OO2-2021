@@ -24,7 +24,6 @@
                 <label>
                     <form class="text-center mb-4" th:action="@{buscarFecha}" method="post">
                         
-                        <a class="btn btn-primary btn-sm" th:href="@{/home}" role="button">Volver</a>
                        
 
                         <br>
@@ -37,6 +36,7 @@
                              />
                         &nbsp;
                         <br>
+                        <br>
                         &nbsp;
                         <span>Ingrese hasta  &nbsp; &nbsp;-> </span>
                         <input type="date" name="hasta" id="hasta" role="button"
@@ -44,25 +44,49 @@
                              />
                         &nbsp;
                         <br>
-                        &nbsp;
-                        <span>Ingrese desde lugar -> </span>
-                        <input type="text" name="desdeLugar" id="desdeLugar" role="button"
-                        th:value= "${desdeLugar}"
-                             />
-                        &nbsp;
-                        <br>
-                        &nbsp;
-                        <span>Ingrese hasta lugar  -> </span>
-                        <input type="text" name="hastaLugar" id="hastaLugar" role="button"
-                        th:value= "${hastaLugar}"
-                             />
-                        &nbsp;
-                        
-                        <br> 
                         <br>
 
+
                         
-                        <input type="submit" class="btn btn-primary btn-sm" value="Buscar" />
+                        &nbsp; 
+                        
+                         &nbsp;&nbsp;&nbsp;&nbsp;	
+                        <label class="col-md-2" for="desdeLugar">Desde: </label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <select name="primer_lugar">
+                                <option th:each="hl:${desdeLugar}" th:value="${hl.idLugar}" th:text="${hl.lugar}">
+								</option>   
+                        </select>
+
+                        <br>
+                        <br>
+
+
+
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;
+                        <label class="col-md-2" for="hastaLugar">Hasta: </label>
+                        &nbsp;&nbsp;
+
+                        <select name="segundo_lugar">
+                                <option th:each="hl:${hastaLugar}" th:value="${hl.idLugar}" th:text="${hl.lugar}">
+								</option>   
+                        </select>
+
+                        <br>
+
+                        <br>
+
+
+                        <a class="btn btn-primary btn" th:href="@{/home}" role="button">Volver</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;
+                        
+                        <input type="submit" class="btn btn-primary btn" value="Buscar" />
+
+
 
 
                     </form>

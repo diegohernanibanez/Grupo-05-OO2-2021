@@ -64,51 +64,38 @@ public class PermisoServiceImplements implements IPermisoService {
 
     
     @Override
-    public List<Permiso> filtrarPorFechaLugar(LocalDate desde, LocalDate hasta, String desdeLugar, String hastaLugar )throws Exception{
+    public List<Permiso> filtrarPorFechaLugar(LocalDate desde, LocalDate hasta, Lugar desdeLugar, Lugar hastaLugar )throws Exception{
+        
         List<Permiso> todos = filtrarPorFecha(desde, hasta);
         List<Permiso> rta = new ArrayList<>(); 
-        List<Lugar> lugares = lugarRepository.findAll();
-        Lugar desdel = new Lugar();
-        Lugar hastal = new Lugar();
-        boolean estaprimero = false;
-        boolean estasegundo= false;
-
         
-        for (Lugar l : lugares ){
-            if (l.getLugar().equals(desdeLugar)) {
-                estaprimero = true;
-            
-                desdel = l;
-            }
-        }
-
-
-        // if (!(esta)) throw new Exception("lugar inexistente");
-       
-        // esta = false;
-    
-        for (Lugar l : lugares ){
-            if (l.getLugar().equals(hastaLugar)) {
-                estasegundo = true;
-            
-                hastal=l;
-
-            }
-        }
-        // if (!(esta)) throw new Exception("lugar inexistente");
-
-
 
         for (Permiso p : todos){
-            if(estaprimero && estasegundo){if(p.getDesdeHasta().contains(desdel)&& p.getDesdeHasta().contains(hastal)) rta.add(p);}
-            if (estaprimero && (!estasegundo)) {if(p.getDesdeHasta().contains(desdel)) rta.add(p);}
-            if ((!estaprimero) && (estasegundo)) {if(p.getDesdeHasta().contains(hastal)) rta.add(p);}
+
+            //pasamos el set del permiso a un array. Se me hace mas facil asi
+            List<Lugar> lugares = new ArrayList<>(p.getDesdeHasta());
+
+            //caso dos lugares seleccionados
+            if(desdeLugar.getIdLugar() >0   &&   hastaLugar.getIdLugar()>0){
+                if(lugares.get(0).equals(desdeLugar) && lugares.get(1).equals(hastaLugar)){
+                    rta.add(p);
+                }
+            }else if (desdeLugar.getIdLugar()>0){ // caso solo desde
+                if(lugares.get(0).equals(desdeLugar)){
+                    rta.add(p);
+                }
+            }else if (hastaLugar.getIdLugar()>0){
+                if(lugares.get(1).equals(hastaLugar)){ // caso solo hasta
+                    rta.add(p);
+                }
+            }
 
 
-            
+
+
+        
         }
         return rta;
-
     }
 
     
