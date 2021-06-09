@@ -2,19 +2,17 @@
 <htm>
 
 	<head>
-		<script>
-			function myFunction() {
-				const urlParams = new URLSearchParams(window.location.search);
-				const size = urlParams.get('size');
-      			document.getElementById("myText").innerHTML = size;
-			}
-		  </script>
+		
 	</head>
-
 
 	<!--borrar background para sacar la imagen-->
 
-	<body class="body-home" onload="myFunction()">
+	<body class="body-home">
+		<script>
+			const urlParams = new URLSearchParams(window.location.search);
+			const size = urlParams.get('size');
+			document.getElementById("myText").innerHTML = size;
+		  </script>
 
 		<h1>Size = <span id="myText"></span></h1>
 		
