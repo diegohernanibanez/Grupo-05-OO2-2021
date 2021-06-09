@@ -9,7 +9,6 @@ import java.util.List;
 
 import com.example.aplication.entity.Lugar;
 import com.example.aplication.entity.Permiso;
-import com.example.aplication.entity.PermisoDiario;
 import com.example.aplication.entity.PermisoPeriodo;
 import com.example.aplication.repository.LugarRepository;
 import com.example.aplication.repository.PermisoRepository;

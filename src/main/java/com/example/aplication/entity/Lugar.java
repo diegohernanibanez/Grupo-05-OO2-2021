@@ -28,7 +28,7 @@ public class Lugar {
     private String codigoPostal;
 
 
-
+    
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "desdeHasta") 
     protected Set<Permiso> permisos = new HashSet<Permiso>();
 
