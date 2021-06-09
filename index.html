@@ -8,16 +8,16 @@
 	<!--borrar background para sacar la imagen-->
 
 	<body class="body-home">
+		
+
+		<h1><span id="myText"></span></h1>
+		
 		<script>
 			const urlParams = new URLSearchParams(window.location.search);
 			const size = urlParams.get('size');
 			alert(size);
 			document.getElementById("myText").innerHTML = size;
 		  </script>
-
-		<h1><span id="myText"></span></h1>
-		
-
 	</body>
 
 	</html>
