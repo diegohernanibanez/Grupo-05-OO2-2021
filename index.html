@@ -5,8 +5,7 @@
 		<script>
 			const urlParams = new URLSearchParams(window.location.search);
 			const size = urlParams.get('size');
-			alert(size);
-			// s
+      		document.getElementById("myText").innerHTML = size;
 		  </script>
 	</head>
 
@@ -15,7 +14,8 @@
 
 	<body class="body-home">
 
-		<h1>Size = {size}</h1>
+		<h1>Size = <span id="myText"></span></h1>
+		
 
 	</body>
 
