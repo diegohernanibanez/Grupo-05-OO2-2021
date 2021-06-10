@@ -10,7 +10,6 @@ import java.util.List;
 import com.example.aplication.entity.Lugar;
 import com.example.aplication.entity.Permiso;
 import com.example.aplication.entity.PermisoPeriodo;
-import com.example.aplication.repository.LugarRepository;
 import com.example.aplication.repository.PermisoRepository;
 
 @Service
@@ -18,8 +17,6 @@ public class PermisoServiceImplements implements IPermisoService {
 
     @Autowired
     private PermisoRepository permisoRepository;
-    @Autowired
-    private LugarRepository lugarRepository;
 
     @Override
     public List<Permiso> listarTodos() {
