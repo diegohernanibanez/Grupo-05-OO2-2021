@@ -1,22 +1,39 @@
 <!DOCTYPE html>
-<htm>
+<html>
 
 	<head>
+		<meta charset="UTF-8">
+		<title>Datos del Permiso</title>
+		<link rel="stylesheet" href="estilos.css">
 		
+		<style type="text/css"> 
+   .interlineado { line-height: 200%;} 
+   </style> 
 	</head>
 
 	<!--borrar background para sacar la imagen-->
 
 	<body class="body-home">
+		<div class="modal">
+			<div class="contenedor">
+			<header align="center">Datos del Permiso</header>
+		<div class="contenido">
+		<p>
+		<br></br>
+		<h4> DNI:   <span id="dni"></span></h4>
+		<h4> Desde: <span id="desde"></span></h4>
+		<h4> Hasta: <span id="hasta"></span></h4>
+		<h4> Fecha: <span id="fecha"></span></h4>
+		<h4 id="motivoH1"> Motivo: <span id="motivo"></span></h4>
+		<h4 id="validezH1"> Validez: <span id="validez"></span></h4>
+		<h4 id="vacacionesH1"> Vacaciones: <span id="vacaciones"></span></h4>
+		<h4 id="rodadoH1"> Rodado: <span id="rodado"></span></h4>
+		<br></br>
+		</p>
+		</div>
 		
-		<h1> DNI:   <span id="dni"></span></h1>
-		<h1> Desde: <span id="desde"></span></h1>
-		<h1> Hasta: <span id="hasta"></span></h1>
-		<h1> Fecha: <span id="fecha"></span></h1>
-		<h1 id="motivoH1"> Motivo: <span id="motivo"></span></h1>
-		<h1 id="validezH1"> Validez: <span id="validez"></span></h1>
-		<h1 id="vacacionesH1"> Vacaciones: <span id="vacaciones"></span></h1>
-		<h1 id="rodadoH1"> Rodado: <span id="rodado"></span></h1>
+			</div>
+		</div>
 
 		<script>
 			const urlParams = new URLSearchParams(window.location.search);
@@ -51,3 +68,7 @@
 	</body>
 
 	</html>
+	
+	<!--body>
+  <p style="color:#FF0000";>Red paragraph text</p>
+</body-->
