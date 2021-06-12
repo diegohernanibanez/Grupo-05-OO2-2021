@@ -12,7 +12,7 @@ import com.example.aplication.helper.ViewRouteHelper;
 import com.example.aplication.service.ILugarService;
 import com.example.aplication.service.IPermisoService;
 import com.example.aplication.service.IPersonaService;
-import com.example.aplication.service.RodadoServiceImplements;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,8 +37,7 @@ public class PermisoController {
     private IPersonaService personaService;
     @Autowired
     private ILugarService lugarService;
-    @Autowired
-    private RodadoServiceImplements rodadoService;
+
 
     @GetMapping({ "/" })
     public String seleccionPermiso() {
@@ -145,53 +144,5 @@ public class PermisoController {
         // cambiar view
         return ViewRouteHelper.HOME_ROOT;
     }
-
-    // @GetMapping({ "/periodo/create" })
-    // public String permisoPeriodo(Model model ) {
-    // Permiso permisoperiodo = new PermisoPeriodo();
-    // Persona persona = new Persona();
-    // List<Lugar> listLugares = lugarService.listarTodos();
-
-    // model.addAttribute("desdeHasta", listLugares);
-    // model.addAttribute("titulo", "Formulario: Nuevo Permiso");
-    // model.addAttribute("pedido",persona);
-    // model.addAttribute("permiso", permisoperiodo );
-
-    // return "views/permiso/FormularioPermisoP";
-    // }
-
-    // @PostMapping("/periodo/save")
-    // public String guardarPermisoPeriodo(@Valid @ModelAttribute PermisoPeriodo
-    // permisoperiodo,
-    // @Param("dominio ") String dominio, BindingResult result, Model model,
-    // RedirectAttributes attributes) {
-
-    // permisoperiodo.setFecha(LocalDate.now());
-    // Rodado rodado = rodadoService.buscarDomino(dominio);
-    // // buscamos persona. Si no existe, Tira error
-    // Persona persona =
-    // personaService.buscarPorDni(permisoperiodo.getPedido().getDni());
-
-    // if (persona != null) {
-    // permisoperiodo.setPedido(persona);
-    // } else {
-    // attributes.addFlashAttribute("error", "La persona no esta dada de alta");
-    // return ViewRouteHelper.REDIRECT_PERMISO_DIARIO_CREAR;
-    // }
-
-    // if (rodado != null) {
-    // permisoperiodo.setRodado(rodado);
-    // ;
-    // } else {
-    // attributes.addFlashAttribute("error", "el rodado no esta dada de alta");
-    // return ViewRouteHelper.REDIRECT_PERMISO_DIARIO_CREAR;
-    // }
-
-    // permisoService.guardar(permisoperiodo);
-    // attributes.addFlashAttribute("success", "Permiso guardado con exito");
-
-    // // cambiar view
-    // return ViewRouteHelper.HOME_ROOT;
-    // }
 
 }

@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.InheritanceType;
 
@@ -36,6 +37,7 @@ public abstract class Permiso {
     @Column(name="fecha", nullable=false)
     protected LocalDate fecha;
 
+    @OrderBy("permisos")
     @JoinTable(
         name = "pemisos_lugares",
         joinColumns = @JoinColumn(name = "FK_LUGAR", nullable = false),
@@ -77,6 +79,18 @@ public abstract class Permiso {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+    }
+
+    public boolean esValido(){
+        boolean esValido = true;
+        if (this instanceof PermisoDiario){
+            if (LocalDate.now().isAfter(this.getFecha().plusDays(1))) esValido=false;
+        }else{
+            PermisoPeriodo aux = (PermisoPeriodo) this;
+            if(LocalDate.now().isAfter(this.getFecha().plusDays(aux.getCantDias()))) esValido=false;
+        }
+
+        return esValido;
     }
 
      

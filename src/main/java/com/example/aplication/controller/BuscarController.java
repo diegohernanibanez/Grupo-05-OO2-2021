@@ -1,16 +1,20 @@
 package com.example.aplication.controller;
 
+import com.example.aplication.entity.Lugar;
 import com.example.aplication.entity.Permiso;
 import com.example.aplication.entity.PermisoDiario;
 import com.example.aplication.entity.PermisoPeriodo;
 import com.example.aplication.entity.Persona;
 import com.example.aplication.entity.Rodado;
 import com.example.aplication.service.IPermisoService;
+import com.example.aplication.service.LugarServiceImplements;
 import com.example.aplication.service.PersonaServiceImplements;
 import com.example.aplication.service.RodadoServiceImplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +22,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.BufferedImageHttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConverter;
 
-import java.time.LocalDate;
+
+
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.aplication.entity.CodeGenerator;
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/buscar")
@@ -33,6 +46,8 @@ public class BuscarController {
     private IPermisoService permisoServiceImplements;
     @Autowired
     private RodadoServiceImplements rodadoServiceImplements;
+    @Autowired
+    private LugarServiceImplements lugarService;
 
     
     @RequestMapping("/buscar")
@@ -49,6 +64,24 @@ public class BuscarController {
 
         return "views/buscar/buscarPermisoMain";
     }
+    @RequestMapping(value = "/zxing/qrcode", produces = MediaType.IMAGE_PNG_VALUE)
+    public ResponseEntity<BufferedImage> zxingQRCode(Long dni, String tipo) throws Exception{
+
+        Permiso permiso = permisoServiceImplements.buscarPorDniTipo(dni, tipo);
+
+        String web = CodeGenerator.generateWebString(permiso);
+
+        return successResponse(CodeGenerator.generateQRCode("https://diegohernanibanez.github.io/Grupo-05-OO2-2021/" +  web));
+    }
+
+    public ResponseEntity<BufferedImage> successResponse(BufferedImage image) {
+        return new ResponseEntity<>(image, HttpStatus.OK);
+    }
+
+    @Bean
+    public HttpMessageConverter<BufferedImage> createImageHttpMessageConverter() {
+        return new BufferedImageHttpMessageConverter();
+    }
 
     @RequestMapping("/permiso/")
     public String buscarPermisos(Model model, @Param("dni") Long dni) {
@@ -60,8 +93,10 @@ public class BuscarController {
         for (Permiso permiso : listPermisos) {
             if (personaFind.getDni() == permiso.getPedido().getDni()) {
                 if (permiso instanceof PermisoDiario) {
+                    if(permiso.esValido())
                     listDiarios.add(permiso);
                 } else {
+                    if(permiso.esValido())
                     listPeriodos.add(permiso);
                 }
 
@@ -121,17 +156,20 @@ public class BuscarController {
 
     @RequestMapping(value = "/permiso/fecha", method = RequestMethod.GET)
     public String viewsBuscarFecha(Model model) {
-        model.addAttribute("desde" , LocalDate.now().toString());
-        model.addAttribute("hasta", LocalDate.now().toString());
-        model.addAttribute("desdeLugar", new String());
-        model.addAttribute("hastaLugar", new String());
+        List<Lugar> lugares = lugarService.listarTodos();
+        Lugar nulo = new Lugar(); nulo.setIdLugar(-1); nulo.setLugar("");
+        lugares.add(0, nulo);
+        if(!model.containsAttribute("desde")) model.addAttribute("desde" , LocalDate.now().toString());
+        if(!model.containsAttribute("hasta")) model.addAttribute("hasta", LocalDate.now().toString());
+        model.addAttribute("desdeLugar", lugares);
+        model.addAttribute("hastaLugar", lugares);
         
         return "views/buscar/buscarfechaValida";
     }
 
     @Secured({"ROLE_AUDITOR"})
     @RequestMapping(value = "/permiso/buscarFecha", method = RequestMethod.POST)
-    public String returnBuscarFecha(@ModelAttribute("hasta")String hasta, @ModelAttribute("desde")String desde,@ModelAttribute("desdeLugar")String desdeLugar, @ModelAttribute("hastaLugar")String hastaLugar,  Model model, RedirectAttributes attribute) {
+    public String returnBuscarFecha(@ModelAttribute("hasta")String hasta, @ModelAttribute("desde")String desde,@ModelAttribute("primer_lugar")Lugar desdeLugar, @ModelAttribute("segundo_lugar")Lugar hastaLugar,  Model model, RedirectAttributes attribute) {
        
         String[] hastas = hasta.split("-");
         String[] desdes = desde.split("-");
@@ -139,9 +177,10 @@ public class BuscarController {
         LocalDate tope =  LocalDate.of( Integer.parseInt(hastas[0]), Integer.parseInt(hastas[1]), Integer.parseInt(hastas[2]));
         LocalDate inicio =  LocalDate.of( Integer.parseInt(desdes[0]), Integer.parseInt(desdes[1]), Integer.parseInt(desdes[2]));
         
-        List<Permiso> lPermisos = new ArrayList<>();    
+        List<Permiso> lPermisos = new ArrayList<>();  
+          
         
-        if(desdeLugar.isEmpty() && hastaLugar.isEmpty() ){
+        if(desdeLugar.getIdLugar() == 0  && hastaLugar.getIdLugar() == 0 ){
         try {
             lPermisos = permisoServiceImplements.filtrarPorFecha(inicio, tope);
         } catch (Exception e) {
@@ -168,7 +207,8 @@ public class BuscarController {
         }
         model.addAttribute("listDiarios", listDiarios);
         model.addAttribute("listPeriodos", listPeriodos);
-        return "views/buscar/buscarfechaValida";
+
+        return viewsBuscarFecha(model);
     }
     
 

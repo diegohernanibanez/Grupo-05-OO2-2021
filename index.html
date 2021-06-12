@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Datos del Permiso</title>
+	<link rel="stylesheet" href="estilos.css">
+
+	<style type="text/css">
+		.interlineado {
+			line-height: 200%;
+		}
+	</style>
+</head>
+
+<body class="body-home">
+	<div class="modal">
+		<div class="contenedor">
+			<header style="text-align:center">Datos del Permiso</header>
+			<div class="contenido">
+				<p>
+					<br></br>
+					<h4 style="color:#FFFF"> DNI: <span id="dni"></span></h4>
+					<h4 style="color:#FFFF"> Desde: <span id="desde"></span></h4>
+					<h4 style="color:#FFFF"> Hasta: <span id="hasta"></span></h4>
+					<h4 style="color:#FFFF"> Fecha: <span id="fecha"></span></h4>
+					<h4 style="color:#FFFF" id="motivoH1"> Motivo: <span id="motivo"></span></h4>
+					<h4 style="color:#FFFF" id="validezH1"> Validez: <span id="validez"></span></h4>
+					<h4 style="color:#FFFF" id="vacacionesH1"> Vacaciones: <span id="vacaciones"></span></h4>
+					<h4 style="color:#FFFF" id="rodadoH1"> Rodado: <span id="rodado"></span></h4>
+					<br></br>
+				</p>
+			</div>
+
+		</div>
+	</div>
+
+	<script>
+		const urlParams = new URLSearchParams(window.location.search);
+
+		var tipo = urlParams.get('permiso');
+
+		document.getElementById("desde").innerHTML = urlParams.get('desde');
+		document.getElementById("hasta").innerHTML = urlParams.get('hasta');
+		document.getElementById("fecha").innerHTML = urlParams.get('fecha');
+		document.getElementById("dni").innerHTML = urlParams.get('dni');
+		document.getElementById("motivo").innerHTML = urlParams.get('motivo');
+		document.getElementById("validez").innerHTML = urlParams.get('validez');
+		document.getElementById("vacaciones").innerHTML = urlParams.get('vacaciones');
+		document.getElementById("rodado").innerHTML = urlParams.get('rodado');
+
+
+		if (tipo == "permisoDiario") {
+			document.getElementById("rodadoH1").style.display = "none";
+			document.getElementById("validezH1").style.display = "none";
+			document.getElementById("vacacionesH1").style.display = "none";
+
+
+		}
+
+		if (tipo == "permisoPeriodo") {
+			document.getElementById("motivoH1").style.display = "none";
+
+		}
+	</script>
+</body>
+
+</html>
+
+<!--body>
+  <p style="color:#FF0000";>Red paragraph text</p>
+</body-->

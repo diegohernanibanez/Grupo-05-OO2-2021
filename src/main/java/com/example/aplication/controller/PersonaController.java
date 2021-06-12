@@ -1,8 +1,6 @@
 package com.example.aplication.controller;
 
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import com.example.aplication.entity.Persona;
