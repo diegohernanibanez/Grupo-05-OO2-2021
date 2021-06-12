@@ -29,7 +29,7 @@ DROP TABLE IF EXISTS `lugar`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `lugar` (
-  `id_lugar` bigint NOT NULL AUTO_INCREMENT,
+  `id_lugar` bigint(20) NOT NULL AUTO_INCREMENT,
   `codigo_postal` varchar(8) NOT NULL,
   `lugar` varchar(45) NOT NULL,
   PRIMARY KEY (`id_lugar`)
@@ -54,8 +54,8 @@ DROP TABLE IF EXISTS `pemisos_lugares`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pemisos_lugares` (
-  `fk_lugar` int NOT NULL,
-  `fk_permiso` bigint NOT NULL,
+  `fk_lugar` int(11) NOT NULL,
+  `fk_permiso` bigint(20) NOT NULL,
   PRIMARY KEY (`fk_lugar`,`fk_permiso`),
   KEY `FK5xtvd1sleq8j9ib7iv8sex22a` (`fk_permiso`),
   CONSTRAINT `FK5xtvd1sleq8j9ib7iv8sex22a` FOREIGN KEY (`fk_permiso`) REFERENCES `lugar` (`id_lugar`),
@@ -69,7 +69,7 @@ CREATE TABLE `pemisos_lugares` (
 
 LOCK TABLES `pemisos_lugares` WRITE;
 /*!40000 ALTER TABLE `pemisos_lugares` DISABLE KEYS */;
-INSERT INTO `pemisos_lugares` VALUES (1,1),(2,1),(1,5),(2,5);
+INSERT INTO `pemisos_lugares` VALUES (1,1),(2,1),(4,1),(5,3),(4,4),(5,4),(1,5),(2,5);
 /*!40000 ALTER TABLE `pemisos_lugares` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,13 +81,13 @@ DROP TABLE IF EXISTS `permiso`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `permiso` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` date NOT NULL,
-  `id_persona` bigint NOT NULL,
+  `id_persona` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK8woob4cm5meiecdgbmeej96am` (`id_persona`),
   CONSTRAINT `FK8woob4cm5meiecdgbmeej96am` FOREIGN KEY (`id_persona`) REFERENCES `persona` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `permiso` (
 
 LOCK TABLES `permiso` WRITE;
 /*!40000 ALTER TABLE `permiso` DISABLE KEYS */;
-INSERT INTO `permiso` VALUES (1,'2021-06-04',1),(2,'2021-06-04',5);
+INSERT INTO `permiso` VALUES (1,'2021-06-04',1),(2,'2021-06-04',5),(4,'2021-06-12',1),(5,'2021-06-12',2);
 /*!40000 ALTER TABLE `permiso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,7 +109,7 @@ DROP TABLE IF EXISTS `permisodiario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `permisodiario` (
   `motivo` varchar(45) NOT NULL,
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `FKnwt8k1cayvtinytftu3xs1gdw` FOREIGN KEY (`id`) REFERENCES `permiso` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -121,7 +121,7 @@ CREATE TABLE `permisodiario` (
 
 LOCK TABLES `permisodiario` WRITE;
 /*!40000 ALTER TABLE `permisodiario` DISABLE KEYS */;
-INSERT INTO `permisodiario` VALUES ('vacaciones',1),('trabajo',2);
+INSERT INTO `permisodiario` VALUES ('vacaciones',1),('trabajo',2),('Vacaciones',4),('Vacaciones',5);
 /*!40000 ALTER TABLE `permisodiario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133,10 +133,10 @@ DROP TABLE IF EXISTS `permisoperiodo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `permisoperiodo` (
-  `cant_dias` int NOT NULL,
+  `cant_dias` int(11) NOT NULL,
   `vacaciones` tinyint(1) NOT NULL DEFAULT '0',
-  `id` int NOT NULL,
-  `fk_id_rodado` int NOT NULL,
+  `id` int(11) NOT NULL,
+  `fk_id_rodado` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKsgmliwygkdbrvyk87vfojcp4r` (`fk_id_rodado`),
   CONSTRAINT `FKf0x3rqglvfna95kng7h0lj07` FOREIGN KEY (`id`) REFERENCES `permiso` (`id`),
@@ -161,9 +161,9 @@ DROP TABLE IF EXISTS `persona`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `persona` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `apellido` varchar(45) NOT NULL,
-  `dni` bigint NOT NULL,
+  `dni` bigint(20) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_hlwyecu2r9wagqayhej1kt5wy` (`dni`)
@@ -188,7 +188,7 @@ DROP TABLE IF EXISTS `rodado`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rodado` (
-  `id_rodado` int NOT NULL AUTO_INCREMENT,
+  `id_rodado` int(11) NOT NULL AUTO_INCREMENT,
   `dominio` varchar(255) NOT NULL,
   `vehiculo` varchar(255) NOT NULL,
   PRIMARY KEY (`id_rodado`)
@@ -213,7 +213,7 @@ DROP TABLE IF EXISTS `role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `role` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `enabled` bit(1) DEFAULT NULL,
   `tipo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -243,8 +243,8 @@ CREATE TABLE `user` (
   `password` varchar(255) DEFAULT NULL,
   `tipo_documento` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
-  `id` bigint NOT NULL,
-  `role_id` bigint DEFAULT NULL,
+  `id` bigint(20) NOT NULL,
+  `role_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKn82ha3ccdebhokx3a8fgdqeyy` (`role_id`),
   CONSTRAINT `FKn82ha3ccdebhokx3a8fgdqeyy` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`),
@@ -271,4 +271,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-04 11:41:49
+-- Dump completed on 2021-06-12 17:15:48
