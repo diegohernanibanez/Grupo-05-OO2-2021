@@ -40,11 +40,10 @@ body,
 }
 
 .contenedor {
-	width: 200px;
-	height: auto;
+	width:200px;
+	height:auto;
 	margin: auto;
-
-	text-indent: 8px;
+    text-indent: 8px;
 
 	box-shadow: 10px 7px 25px rgba(0, 0, 0, 0.6);
 	transition: all 500ms ease;
