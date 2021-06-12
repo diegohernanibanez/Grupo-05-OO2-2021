@@ -93,8 +93,10 @@ public class BuscarController {
         for (Permiso permiso : listPermisos) {
             if (personaFind.getDni() == permiso.getPedido().getDni()) {
                 if (permiso instanceof PermisoDiario) {
+                    if(permiso.esValido())
                     listDiarios.add(permiso);
                 } else {
+                    if(permiso.esValido())
                     listPeriodos.add(permiso);
                 }
 
