@@ -6,6 +6,7 @@ import com.example.aplication.entity.PermisoDiario;
 import com.example.aplication.entity.PermisoPeriodo;
 import com.example.aplication.entity.Persona;
 import com.example.aplication.entity.Rodado;
+import com.example.aplication.helper.ViewRouteHelper;
 import com.example.aplication.service.IPermisoService;
 import com.example.aplication.service.LugarServiceImplements;
 import com.example.aplication.service.PersonaServiceImplements;
@@ -48,7 +49,6 @@ public class BuscarController {
     private RodadoServiceImplements rodadoServiceImplements;
     @Autowired
     private LugarServiceImplements lugarService;
-
     
     @RequestMapping("/buscar")
     public String viewHomePage(Model model, @Param("dni") Long dni) {
@@ -56,13 +56,13 @@ public class BuscarController {
         model.addAttribute("listProducts", listProducts);
         model.addAttribute("dni", dni);
 
-        return "views/buscar/buscarPersona";
+        return ViewRouteHelper.BUSCAR_PERSONA;
     }
 
     @RequestMapping("/permiso/persona")
     public String viewHomePage(Model model) {
 
-        return "views/buscar/buscarPermisoMain";
+    	return ViewRouteHelper.BUSCAR_PERMISO_MAIN;
     }
     @RequestMapping(value = "/zxing/qrcode", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<BufferedImage> zxingQRCode(Long dni, String tipo) throws Exception{
@@ -106,7 +106,7 @@ public class BuscarController {
         model.addAttribute("listPeriodos", listPeriodos);
         model.addAttribute("dni", dni);
 
-        return "views/buscar/buscarPermiso";
+        return ViewRouteHelper.BUSCAR_PERMISO;
 
     }
 
@@ -114,7 +114,7 @@ public class BuscarController {
     @RequestMapping("/permiso/rodadoMain")
     public String viewHomeRodado(Model model) {
 
-        return "views/buscar/buscarRodadoMain";
+        return ViewRouteHelper.BUSCAR_RODADO_MAIN;
     }
 
 
@@ -129,7 +129,7 @@ public class BuscarController {
         if(rodado == null){
         
                 attributes.addFlashAttribute("error", "Rodado no Encontrado"); //<- no funciona
-                return "redirect:permiso/rodadoMain";
+                return ViewRouteHelper.REDIRECT_PERMISO_RODADO_MAIN;
             }
     
            
@@ -142,12 +142,12 @@ public class BuscarController {
                         listProducts.add(permiso);
                         model.addAttribute("listProducts", listProducts);
                         model.addAttribute("dominio", dominio);
-                        return "views/buscar/buscarRodado";
+                        return ViewRouteHelper.BUSCAR_RODADO;
                     }
                     
                 }
             }
-        return "views/buscar/buscarRodado";
+        return ViewRouteHelper.BUSCAR_RODADO;
 
  
     }
@@ -164,7 +164,7 @@ public class BuscarController {
         model.addAttribute("desdeLugar", lugares);
         model.addAttribute("hastaLugar", lugares);
         
-        return "views/buscar/buscarfechaValida";
+        return ViewRouteHelper.BUSCAR_FECHA_VALIDA;
     }
 
     @Secured({"ROLE_AUDITOR"})
@@ -185,14 +185,14 @@ public class BuscarController {
             lPermisos = permisoServiceImplements.filtrarPorFecha(inicio, tope);
         } catch (Exception e) {
             attribute.addFlashAttribute("error", e.getMessage());
-            return "redirect:/buscar/permiso/fecha";
+            return ViewRouteHelper.REDIRECT_BUSCAR_PERMISO_FECHA;
 
         }} else {
             try {
             lPermisos = permisoServiceImplements.filtrarPorFechaLugar(inicio, tope, desdeLugar, hastaLugar);
         } catch (Exception e) {
             attribute.addFlashAttribute("error", e.getMessage());
-            return "redirect:/buscar/permiso/fecha";
+            return ViewRouteHelper.REDIRECT_BUSCAR_PERMISO_FECHA;
         }}
 
         List<Permiso> listPeriodos = new ArrayList<Permiso>();

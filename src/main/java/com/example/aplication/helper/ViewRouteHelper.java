@@ -29,8 +29,14 @@ public class ViewRouteHelper {
     //RODADOS
     public final static String CREAR_RODADO = "/views/rodados/frmCrear";
 
- 
-
+    //BUSCAR
+    public final static String BUSCAR_PERSONA = "views/buscar/buscarPersona";
+    public final static String BUSCAR_PERMISO_MAIN = "views/buscar/buscarPermisoMain";
+    public final static String BUSCAR_PERMISO = "views/buscar/buscarPermiso";
+    public final static String BUSCAR_RODADO_MAIN = "views/buscar/buscarRodadoMain";
+    public final static String BUSCAR_RODADO = "views/buscar/buscarRodado";
+    public final static String BUSCAR_FECHA_VALIDA = "views/buscar/buscarfechaValida";
+    
     
 	// /**** Redirects ****/
     public final static String HOME_ROOT = "/home";
@@ -40,7 +46,6 @@ public class ViewRouteHelper {
     public final static String REDIRECT_RODADO = "redirect:/home";
     public final static String REDIRECT_PERMISO_DIARIO_CREAR = "redirect:/permiso/diario/create";
     public final static String REDIRECT_PERMISO_PERIODO_CREAR = "redirect:/permiso/periodo/create";
-
-	
-    
+    public final static String REDIRECT_PERMISO_RODADO_MAIN = "redirect:permiso/rodadoMain";
+    public final static String REDIRECT_BUSCAR_PERMISO_FECHA = "redirect:/buscar/permiso/fecha";
 }
